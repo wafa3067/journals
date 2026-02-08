@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1">
+    <mxGraphModel dx="885" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" value="Fuzzer-Guided Automatic Bug Fixing Framework" style="group" vertex="1" connectable="0">
+          <mxGeometry x="0" y="0" width="240" height="360" as="geometry"/>
+        </mxCell>
+        <mxCell id="1" value="Input Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00b8b8;" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="0.1" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="2" value="Crash Detection and Classification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f56b00;" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="0.3" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="Automated Bug Repair" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9c27b0;" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="0.5" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Test Generation & LLM Mutation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4caf50;" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="0.7" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Bug Fix Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffeb3b;" vertex="1" connectable="0">
+          <mxGeometry x="0.1" y="0.9" width="240" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonal=1;jettySize=auto;html=1;exitX=0.5;exitY=1" edge="1" parent="0" source="1" target="2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonal=1;jettySize=auto;html=1;exitX=0.5;exitY=1" edge="1" parent="0" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonal=1;jettySize=auto;html=1;exitX=0.5;exitY=1" edge="1" parent="0" source="3" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonal=1;jettySize=auto;html=1;exitX=0.5;exitY=1" edge="1" parent="0" source="4" target="5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

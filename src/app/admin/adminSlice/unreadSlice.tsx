@@ -1,0 +1,93 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+interface NotificationState {
+  notifications: any[];
+  unreadCount: number;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: NotificationState = {
+  notifications: [],
+  unreadCount: 0,
+  loading: false,
+  error: null,
+};
+
+// ✅ Fetch unread count
+export const fetchUnreadCount = createAsyncThunk(
+  "notifications/fetchUnreadCount",
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/notification/count_unread/${email}`
+      );
+      return response.data; // Long value (number)
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || "Failed to fetch count");
+    }
+  }
+);
+
+// ✅ Fetch all notifications for user
+export const fetchUnNotifications = createAsyncThunk(
+  "notifications/fetchAll",
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/notification/get_notifications/${email}`
+      );
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data || "Failed to fetch notifications"
+      );
+    }
+  }
+);
+
+const unreadNotificationSlice = createSlice({
+  name: "notifications",
+  initialState,
+  reducers: {
+    markAllAsRead(state) {
+      state.notifications = state.notifications.map((n) => ({
+        ...n,
+        isRead: true,
+      }));
+      state.unreadCount = 0;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      // 🟡 Fetch unread count
+      .addCase(fetchUnreadCount.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUnreadCount.fulfilled, (state, action) => {
+        state.loading = false;
+        state.unreadCount = action.payload;
+      })
+      .addCase(fetchUnreadCount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      // 🔵 Fetch notifications
+      .addCase(fetchUnNotifications.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUnNotifications.fulfilled, (state, action) => {
+        state.loading = false;
+        state.notifications = action.payload;
+      })
+      .addCase(fetchUnNotifications.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+  },
+});
+
+export const { markAllAsRead } = unreadNotificationSlice.actions;
+export default unreadNotificationSlice.reducer;

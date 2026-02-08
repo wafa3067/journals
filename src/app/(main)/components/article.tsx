@@ -1,0 +1,40 @@
+import React from "react";
+import CustomText from "./custom_text";
+import { TbFileTypePdf } from "react-icons/tb";
+type Props = {
+  title1?: String;
+  title12?: String;
+  style1?: String;
+  style2?: String;
+  cited?: String;
+  citedstyle?: String;
+  onClick?: () => void;
+  pdfUrl?: string;
+};
+
+const Articles = (props: Props) => {
+  return (
+    <div className="p-5">
+      {props.title1 && <CustomText style={props.style1} text={props.title1} />}
+      <div className="flex flex-row">
+        {props.title12 && (
+          <CustomText style={props.style2} text={props.title12 ?? ""} />
+        )}
+        {props.cited && (
+          <CustomText style={props.citedstyle} text={props.cited ?? ""} />
+        )}
+      </div>
+      <a href={props.pdfUrl} target="_blank" rel="noopener noreferrer">
+        <div
+          className="flex 
+      flex-row gap-1.5 items-center pl-2 pr-2 mt-2 bg-[#000] hover:bg-amber-500 text-white rounded-sm  w-fit"
+        >
+          <TbFileTypePdf width={50} height={50} />
+          <CustomText text={"PDF"} />
+        </div>
+      </a>
+    </div>
+  );
+};
+
+export default Articles;
