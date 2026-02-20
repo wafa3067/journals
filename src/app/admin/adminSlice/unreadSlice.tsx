@@ -1,8 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+interface modificationPayload {
+  id: number;
+  title: string;
+  email: string;
+  status: string;
+  message: string;
+  isRead: boolean;
+  dateCreated: string;
+}
 
 interface NotificationState {
-  notifications: any[];
+  notifications: modificationPayload[];
   unreadCount: number;
   loading: boolean;
   error: string | null;
@@ -21,13 +30,18 @@ export const fetchUnreadCount = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/notification/count_unread/${email}`
+        `http://localhost:8080/notification/count_unread/${email}`,
       );
       return response.data; // Long value (number)
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data || "Failed to fetch count");
+    } catch (err: unknown) {
+      let message = "0";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to fetch count");
     }
-  }
+  },
 );
 
 // ✅ Fetch all notifications for user
@@ -36,15 +50,18 @@ export const fetchUnNotifications = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/notification/get_notifications/${email}`
+        `http://localhost:8080/notification/get_notifications/${email}`,
       );
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(
-        err.response?.data || "Failed to fetch notifications"
-      );
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to fetch notifications");
     }
-  }
+  },
 );
 
 const unreadNotificationSlice = createSlice({

@@ -41,10 +41,15 @@ export const fetchPendingArticles = createAsyncThunk<Article[]>(
       const response = await axios.get("http://localhost:8080/admin/pending");
 
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 // Update article status
@@ -52,18 +57,23 @@ export const updateArticleStatus = createAsyncThunk(
   "pending/updateArticleStatus",
   async (
     { id, status }: { id: number; status: string },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/status/${id}?status=${status}`
+        `http://localhost:8080/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 export const assignReviewer = createAsyncThunk(
@@ -80,7 +90,7 @@ export const assignReviewer = createAsyncThunk(
       start: string;
       end: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
@@ -93,16 +103,21 @@ export const assignReviewer = createAsyncThunk(
             reviewStartDate: start,
             reviewEndDate: end,
           },
-        }
+        },
       );
 
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
       console.log("Reviewer assignment response:", res.data);
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data?.error || err.message);
+    } catch (err: unknown) {
+      let message = " failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 const pendingSlice = createSlice({
@@ -111,7 +126,7 @@ const pendingSlice = createSlice({
   reducers: {
     toggleDetails: (state, action: PayloadAction<number>) => {
       state.articles = state.articles.map((a) =>
-        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a
+        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a,
       );
     },
   },
@@ -137,7 +152,7 @@ const pendingSlice = createSlice({
       .addCase(updateArticleStatus.fulfilled, (state, action) => {
         const { id, status } = action.payload;
         state.articles = state.articles.map((a) =>
-          a.id === id ? { ...a, status } : a
+          a.id === id ? { ...a, status } : a,
         );
       });
   },

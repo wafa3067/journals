@@ -92,10 +92,13 @@ export const uploadArticle = createAsyncThunk(
       );
 
       return response.data;
-    } catch (error: string | any) {
-      return rejectWithValue(
-        error.response?.data?.message || "Upload failed. Please try again.",
-      );
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Upload failed. Please try again.");
     }
   },
 );
@@ -131,10 +134,14 @@ export const uploadFinalFile = createAsyncThunk(
       );
 
       return response.data;
-    } catch (error: string | any) {
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
       return rejectWithValue(
-        error.response?.data?.message ||
-          "Final file upload failed. Please try again.",
+        message || "Final file upload failed. Please try again.",
       );
     }
   },

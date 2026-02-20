@@ -21,15 +21,48 @@ export default function CurrentMonthPage() {
     dispatch(fetchArchiveArticles());
   }, [dispatch]);
 
-  // Filter articles for this year/month
   useEffect(() => {
-    const filteredArticles = articles.filter((article) => {
-      if (!article.createdAt) return false;
-      const [y, m] = article.createdAt.split("-");
-      return y === "2026" && m === "01";
-    });
+    const filteredArticles = articles
+      .filter((article) => article.createdAt) // must have createdAt
+      .filter((article) => {
+        const [y, m] = article.createdAt!.split("-");
+        return y === "2026" && m === "01";
+      })
+      .map((article) => ({
+        id: article.id,
+        section: article.section ?? "",
+        previousPublished: article.previousPublished ?? "",
+        fileType: article.fileType ?? "",
+        refrencedUrl: article.refrencedUrl ?? "",
+        textStyle: article.textStyle ?? "",
+        textStylic: article.textStylic ?? "",
+        comment: article.comment ?? "",
+        copyright: article.copyright ?? "",
+        privacypolicy: article.privacypolicy ?? "",
+        pdf: article.pdf ?? "",
+        pdfUrl: article.pdfUrl ?? "",
+        finalFile: article.finalFile ?? null,
+        status: article.status ?? "",
+        user: article.user ?? "",
+        approvedBy: article.approvedBy ?? "",
+        prefix: article.prefix ?? "",
+        title: article.title ?? "",
+        subtitle: article.subtitle ?? "",
+        underReviewComments: article.underReviewComments ?? "",
+        abstracts: article.abstracts ?? "",
+        keywords: article.keywords ?? "",
+        userComments: article.userComments ?? "",
+        referenceText: article.referenceText ?? "",
+        userProductionComments: article.userProductionComments ?? "",
+        productionComments: article.productionComments ?? "",
+        createdAt: article.createdAt!,
+        modifyCopyEditor: article.modifyCopyEditor,
+        modifyProduction: article.modifyProduction,
+      }));
+
     setFiltered(filteredArticles);
   }, [articles]);
+
   if (!filtered.length)
     return (
       <p className="p-6">

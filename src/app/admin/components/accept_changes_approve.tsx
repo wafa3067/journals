@@ -1,7 +1,5 @@
 "use client";
 
-import { useAppDispatch } from "@/app/api/hooks/hooks";
-import { updateUserProductionComments } from "@/app/api/slice/getArticleSlice";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { ChangeEventHandler, useState } from "react";
 

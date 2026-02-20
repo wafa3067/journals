@@ -22,7 +22,7 @@ import {
 import { updateUserComment } from "@/app/api/slice/getArticleSlice";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
 
-export default function page() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const { articles, loading } = useAppSelector((state) => state.copy);
   const [successMessage, setSuccessMessage] = useState<string>("");
@@ -254,7 +254,7 @@ export default function page() {
         articleId: article.id,
         copy: true,
       }),
-    ).then((response) => {
+    ).then(() => {
       dispatch(
         addNotification({
           title: article.title,
@@ -271,7 +271,7 @@ export default function page() {
           status: "Copy Editor",
           comments: new_value != "" ? new_value : article.underReviewComments,
         }),
-      ).then((v) => dispatch(fetchCopyEdit()));
+      ).then(() => dispatch(fetchCopyEdit()));
 
       showAlert("Article Sent fot modification");
     });
@@ -404,7 +404,7 @@ export default function page() {
         productionNotes: input.reviewer,
         status: "Production",
       }),
-    ).then((response) => {
+    ).then(() => {
       dispatch(
         addNotification({
           title: article.title,
@@ -547,7 +547,7 @@ export default function page() {
                             bg="bg-red-400"
                             title="Recruit Reviewer"
                             description="Please provide reason for rejecting this article."
-                            onConfirm={(val) => handleModification(article)}
+                            onConfirm={() => handleModification(article)}
                           />
                           <AlertInputDialog
                             bg="bg-red-400"

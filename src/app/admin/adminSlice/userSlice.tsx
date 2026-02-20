@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface Role {
-  id: number;
-  name: string;
-}
-
 export interface Language {
   id: number;
   name: string;

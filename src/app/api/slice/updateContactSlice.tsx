@@ -48,8 +48,12 @@ export const updateContact = createAsyncThunk<
     );
     console.log("value is ", res.data);
     return res.data as string;
-  } catch (error: string | any) {
-    return rejectWithValue(error.response?.data || "Failed to update contact");
+  } catch (error: unknown) {
+    let message = "Failed to update contact";
+    if (axios.isAxiosError(error) && error.response) {
+      message = String(error.response.data);
+    }
+    return rejectWithValue(message);
   }
 });
 

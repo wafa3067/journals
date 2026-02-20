@@ -35,10 +35,13 @@ export const fetchNotifications = createAsyncThunk(
         `http://localhost:8080/notification/get_notifications/${email}`,
       );
       return res.data;
-    } catch (err: string | any) {
-      return rejectWithValue(
-        err.response?.data || "Failed to fetch notifications",
-      );
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to fetch notifications");
     }
   },
 );
@@ -54,10 +57,13 @@ export const fetchUnreadCount = createAsyncThunk(
         `http://localhost:8080/notification/count_unread/${email}`,
       );
       return res.data;
-    } catch (err: string | any) {
-      return rejectWithValue(
-        err.response?.data || "Failed to fetch unread count",
-      );
+    } catch (err: unknown) {
+      let message = " failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to fetch unread count");
     }
   },
 );
@@ -72,8 +78,13 @@ export const markAllNotificationsRead = createAsyncThunk(
         `http://localhost:8080/notification/mark_all_read/${email}`,
       );
       return res.data; // "X notifications marked as read"
-    } catch (err: string | any) {
-      return rejectWithValue(err.response?.data || "Failed to mark as read");
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to mark as read");
     }
   },
 );

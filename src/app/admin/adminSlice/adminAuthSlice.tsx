@@ -1,3 +1,4 @@
+//changes when build
 export interface Admin {
   id: number;
 
@@ -9,11 +10,11 @@ export interface AdminAuthState {
   admin: Admin | null;
   token: string | null;
   loading: boolean;
-  error: string | null;
+  error: string;
   success: boolean;
 }
 
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface LoginCredentials {
@@ -47,9 +48,12 @@ export const adminLogin = createAsyncThunk(
       }
 
       return res.data;
-    } catch (err: any) {
-      const message =
-        err.response?.data?.message || err.response?.data || "Login failed";
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
       return rejectWithValue(message);
     }
   },
@@ -71,11 +75,13 @@ export const adminRegister = createAsyncThunk(
         },
       );
       return res.data;
-    } catch (err: any) {
-      const message =
-        err.response?.data?.message ||
-        err.response?.data ||
-        "Registration failed";
+    } catch (err: unknown) {
+      let message = "Registration failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+
       return rejectWithValue(message);
     }
   },
@@ -88,7 +94,7 @@ const initialState: AdminAuthState = {
   admin: null,
   token: tokenFromStorage,
   loading: false,
-  error: null,
+  error: "",
   success: false,
 };
 
@@ -107,7 +113,7 @@ const adminAuthSlice = createSlice({
       // 🔹 Login
       .addCase(adminLogin.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = "";
       })
       .addCase(adminLogin.fulfilled, (state, action) => {
         state.loading = false;
@@ -118,22 +124,22 @@ const adminAuthSlice = createSlice({
         state.token = action.payload["token"];
         localStorage.setItem("adminToken", action.payload["token"]);
       })
-      .addCase(adminLogin.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(adminLogin.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       })
       // 🔹 Register
       .addCase(adminRegister.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = "";
       })
       .addCase(adminRegister.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
       })
-      .addCase(adminRegister.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(adminRegister.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   },
 });

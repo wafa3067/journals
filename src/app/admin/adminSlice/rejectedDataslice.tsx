@@ -39,10 +39,15 @@ export const fetchRejectedArticle = createAsyncThunk<Article[]>(
       const response = await axios.get("http://localhost:8080/admin/rejected");
 
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 // Update article status
@@ -50,18 +55,22 @@ export const updateRejectArticleStatus = createAsyncThunk(
   "pending/updateArticleStatus",
   async (
     { id, status }: { id: number; status: string },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/status/${id}?status=${status}`
+        `http://localhost:8080/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Failed to update article status";
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        message = String(err.response?.data?.error);
+      }
+      return rejectWithValue({ error: message });
     }
-  }
+  },
 );
 
 const RejectedDataSlice = createSlice({
@@ -70,7 +79,7 @@ const RejectedDataSlice = createSlice({
   reducers: {
     toggleDetails: (state, action: PayloadAction<number>) => {
       state.articles = state.articles.map((a) =>
-        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a
+        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a,
       );
     },
   },
@@ -96,7 +105,7 @@ const RejectedDataSlice = createSlice({
       .addCase(updateRejectArticleStatus.fulfilled, (state, action) => {
         const { id, status } = action.payload;
         state.articles = state.articles.map((a) =>
-          a.id === id ? { ...a, status } : a
+          a.id === id ? { ...a, status } : a,
         );
       });
   },

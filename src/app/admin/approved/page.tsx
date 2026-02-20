@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../api/hooks/hooks";
 import {
   fetchPendingArticles,
-  updateArticleStatus,
   assignReviewer,
   toggleDetails,
   Article,
 } from "../adminSlice/pending";
 
-import { sendArticleEmail } from "../adminSlice/emailSlice";
 import { fetchApproved } from "../adminSlice/approved";
 import AlertInputDialog from "../components/alert_input";
 import { rejectArticleStatus } from "../adminSlice/rejectArticalStatusSlice";
@@ -32,7 +30,7 @@ export default function PendingArticles() {
   const handleInputChange = (
     articleId: number,
     field: "reviewer" | "start" | "end",
-    value: string
+    value: string,
   ) => {
     setReviewInputs((prev) => ({
       ...prev,
@@ -42,7 +40,7 @@ export default function PendingArticles() {
       },
     }));
   };
-  const [successMessage, setSuccessMessage] = useState<string>("");
+  // const [successMessage, setSuccessMessage] = useState<string>("");
   const handleAssignReviewer = (article: Article) => {
     const input = reviewInputs[article.id] || {};
     if (!input.reviewer || !input.start || !input.end) {
@@ -64,7 +62,7 @@ export default function PendingArticles() {
         reviewer: input.reviewer,
         start: input.start,
         end: input.end,
-      })
+      }),
     );
     dispatch(fetchPendingArticles());
   };
@@ -76,11 +74,11 @@ export default function PendingArticles() {
         id: article.id,
         comments: value,
         status: "pending",
-      })
+      }),
     ).then((response) => {
-      showAlert("Article rejected successfully!");
+      showAlert(`Article rejected successfully! ${response}`);
 
-      setSuccessMessage("Reject Article Response:" + response);
+      // setSuccessMessage("Reject Article Response:" + response);
     });
   };
   return (
@@ -169,7 +167,7 @@ export default function PendingArticles() {
                             handleInputChange(
                               article.id,
                               "reviewer",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -181,7 +179,7 @@ export default function PendingArticles() {
                             handleInputChange(
                               article.id,
                               "start",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -214,7 +212,7 @@ export default function PendingArticles() {
                               handleInputChange(
                                 article.id,
                                 "reviewer",
-                                e.target.value
+                                e.target.value,
                               )
                             }
                           />

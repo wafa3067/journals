@@ -84,8 +84,13 @@ export const fetchArticlesByUser = createAsyncThunk<
     );
     console.log("Fetched articles by user:", response.data);
     return response.data;
-  } catch (error: string | any) {
-    return rejectWithValue(error.message);
+  } catch (err: unknown) {
+    let message = "Login failed";
+
+    if (axios.isAxiosError(err) && err.message) {
+      message = String(err.message);
+    }
+    return rejectWithValue(message);
   }
 });
 
@@ -137,10 +142,13 @@ export const uploadFinalFile = createAsyncThunk<
       );
       console.log("Final file upload response:", response.data);
       return response.data;
-    } catch (error: string | any) {
-      return rejectWithValue(
-        error.response?.data?.message || "File upload failed",
-      );
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.message);
+      }
+      return rejectWithValue(message || "File upload failed");
     }
   },
 );
@@ -170,10 +178,13 @@ export const updatePdfAndComments = createAsyncThunk<
       console.log("the data us ", response.data);
 
       return response.data;
-    } catch (error: string | any) {
-      return rejectWithValue(
-        error.response?.data?.message || "Failed to update PDF and comments",
-      );
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.message);
+      }
+      return rejectWithValue(message || "Failed to update PDF and comments");
     }
   },
 );
@@ -194,8 +205,13 @@ export const updateUserComment = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.message);
+      }
+      return rejectWithValue(message);
     }
   },
 );
@@ -219,8 +235,13 @@ export const updateProductionComments = createAsyncThunk<
       );
       console.log("result is ", res.data);
       return res.data;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message);
     }
   },
 );
@@ -241,8 +262,13 @@ export const updateUserProductionComments = createAsyncThunk<
 
       console.log("result is ", res.data);
       return res.data;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message);
     }
   },
 );
@@ -262,8 +288,13 @@ export const updateProductModification = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message);
     }
   },
 );
@@ -282,8 +313,13 @@ export const updateCopyModification = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message);
     }
   },
 );

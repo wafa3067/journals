@@ -12,8 +12,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ date, title, description }) => {
       <div className="text-gray-600 text-sm mb-2">{date}</div>
       <h2 className="text-2xl font-semibold text-gray-900 mb-4">{title}</h2>
       <p className="text-gray-700">{description}</p>
+
       <a
-        herf="http://www.google.com"
+        href="http://www.google.com"
         className="text-blue-500 hover:underline mt-4 inline-block"
       >
         Read more

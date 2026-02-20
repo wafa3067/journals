@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function ArticleStatusCards() {
   const [active, setActive] = useState<"approved" | "pending" | "rejected">(
-    "pending"
+    "pending",
   );
 
   const cards = [
@@ -19,7 +19,11 @@ export default function ArticleStatusCards() {
         return (
           <div
             key={status}
-            onClick={() => setActive(status.toLowerCase() as any)}
+            onClick={() =>
+              setActive(
+                status.toLowerCase() as "approved" | "pending" | "rejected",
+              )
+            }
             className={`
               flex flex-col items-center justify-center w-48 p-4 rounded-lg bg-white 
               shadow-md transition-all cursor-pointer border-t-4 

@@ -18,7 +18,7 @@ export const sendArticleEmail = createAsyncThunk(
       status: string;
       body: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await axios.post(
@@ -26,7 +26,7 @@ export const sendArticleEmail = createAsyncThunk(
         null, // no body, using query params
         {
           params: { toEmail, authorName, status, articleTitle, body },
-        }
+        },
       );
 
       if (response.status !== 200) {
@@ -34,10 +34,15 @@ export const sendArticleEmail = createAsyncThunk(
       }
 
       return response.data; // { message: "Email sent successfully" }
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data?.error || err.message);
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 interface EmailState {

@@ -34,13 +34,18 @@ export const updatePassword = createAsyncThunk<
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data || "Failed to update password");
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to update password");
     }
-  }
+  },
 );
 
 // 🔹 Slice
@@ -65,7 +70,7 @@ const passwordSlice = createSlice({
         (state, action: PayloadAction<string>) => {
           state.loading = false;
           state.message = action.payload;
-        }
+        },
       )
       .addCase(updatePassword.rejected, (state, action) => {
         state.loading = false;

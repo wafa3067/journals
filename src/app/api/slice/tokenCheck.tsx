@@ -31,8 +31,12 @@ export const checkToken = createAsyncThunk(
       }
 
       return true;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || "Token check failed");
+    } catch (error: unknown) {
+      let message = "Token check failed";
+      if (axios.isAxiosError(error) && error.response) {
+        message = String(error.response.data);
+      }
+      return rejectWithValue(message || "Failed to check token");
     }
   },
 );

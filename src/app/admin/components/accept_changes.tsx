@@ -139,8 +139,6 @@
 
 "use client";
 
-import { useAppDispatch } from "@/app/api/hooks/hooks";
-import { updateUserProductionComments } from "@/app/api/slice/getArticleSlice";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { useState } from "react";
 
@@ -149,7 +147,6 @@ export default function ArticleCheckDialog({
   button = "Review Changes",
   description = "The admin has made changes to your article. Please review and choose whether to accept or reject them.",
   onConfirm,
-  articleId,
 }: {
   button?: string;
   title?: string;

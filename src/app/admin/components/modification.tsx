@@ -31,7 +31,7 @@ export default function Modification({
 
   useEffect(() => {
     setInputValue(inputValues);
-  }, []);
+  }, [inputValues]);
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>

@@ -66,8 +66,13 @@ export const fetchArticleById = createAsyncThunk(
         `http://localhost:8080/api/article/${id}`,
       );
       return response.data;
-    } catch (error: string | any) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );

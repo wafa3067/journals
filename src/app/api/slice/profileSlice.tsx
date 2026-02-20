@@ -60,8 +60,13 @@ export const fetchUserByEmail = createAsyncThunk(
       );
 
       return response.data["user"] as User;
-    } catch (error: string | any) {
-      return rejectWithValue(error.response?.data || "Failed to fetch user");
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to fetch user");
     }
   },
 );
@@ -73,11 +78,11 @@ const userSlice = createSlice({
     // ✅ Update a single field locally
     updateField: (
       state,
-      action: PayloadAction<{ field: keyof User; value: any }>,
+      action: PayloadAction<{ field: keyof User; value: unknown }>,
     ) => {
       if (state.user) {
         const { field, value } = action.payload;
-        (state.user[field] as any) = value;
+        (state.user[field] as unknown) = value;
       }
     },
 

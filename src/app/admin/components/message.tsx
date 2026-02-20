@@ -1,15 +1,13 @@
 "use client";
 
-import CustomText from "@/app/(main)/components/custom_text";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { useState } from "react";
 import { BiMessageRounded } from "react-icons/bi";
 
 export default function MessageDialog({
   title = "Enter your input",
-  button = "Reject ",
+
   description = "Please provide a value below.",
-  bg = "bg-blue-600",
 
   onConfirm,
 }: {

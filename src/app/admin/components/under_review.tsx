@@ -20,7 +20,7 @@ export default function UnderReviewFlow() {
   ];
 
   const activeIndex = steps.findIndex(
-    (step) => step.status.toLowerCase() === active
+    (step) => step.status.toLowerCase() === active,
   );
 
   const getStepColor = (index: number) => {
@@ -78,7 +78,16 @@ export default function UnderReviewFlow() {
             <div key={step.status} className="flex items-center">
               {/* Step Node */}
               <div
-                onClick={() => setActive(step.status.toLowerCase() as any)}
+                onClick={() =>
+                  setActive(
+                    step.status.toLowerCase() as
+                      | "under review"
+                      | "copyediting"
+                      | "production"
+                      | "final approved"
+                      | "rejected",
+                  )
+                }
                 className={`
                   flex flex-col items-center cursor-pointer group
                   transition-all duration-300 transform hover:scale-110

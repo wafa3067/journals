@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
+import { useAppDispatch } from "@/app/api/hooks/hooks";
 import { getToken, getUser } from "@/app/api/slice/getTokenSlice";
 import { updatePassword } from "@/app/api/slice/passwordSlice";
 
@@ -32,24 +32,20 @@ export default function PasswordPage() {
   const [success, setSuccess] = useState<string>();
 
   const dispatch = useAppDispatch();
-  const token = useAppSelector((state) => state.token);
-
-  const getTokens = async () => {
-    const token = await localStorage.getItem("token");
-    const email = await localStorage.getItem("email");
-
-    if (token && email) {
-      dispatch(getToken(token));
-      dispatch(getUser(email));
-    }
-  };
 
   useEffect(() => {
-    getTokens();
+    const getTokens = async () => {
+      const token = localStorage.getItem("token");
+      const email = localStorage.getItem("email");
 
-    if (token.user) {
-    }
-  }, [token, getTokens]);
+      if (token && email) {
+        dispatch(getToken(token));
+        dispatch(getUser(email));
+      }
+    };
+
+    getTokens();
+  }, [dispatch]);
 
   return (
     <div className=" mt-10 p-6 border ">

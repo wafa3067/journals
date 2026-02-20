@@ -41,9 +41,14 @@ export const updateUserStatus = createAsyncThunk<
     );
     console.log("Update response:", response.data);
     return { id, status, message: response.data.message };
-  } catch (error: string | any) {
+  } catch (err: unknown) {
+    let message = "Login failed";
+
+    if (axios.isAxiosError(err) && err.response) {
+      message = String(err.response.data.error);
+    }
     return rejectWithValue({
-      error: error.response?.data?.error || "Failed to update status",
+      error: message || "Failed to update status",
     });
   }
 });
@@ -59,9 +64,14 @@ export const deleteUser = createAsyncThunk<
       `http://localhost:8080/users/delete/${id}`,
     );
     return { id, message: response.data.message };
-  } catch (error: string | any) {
+  } catch (err: unknown) {
+    let message = "Login failed";
+
+    if (axios.isAxiosError(err) && err.response) {
+      message = String(err.response.data.error);
+    }
     return rejectWithValue({
-      error: error.response?.data?.error || "Failed to delete user",
+      error: message || "Failed to delete user",
     });
   }
 });

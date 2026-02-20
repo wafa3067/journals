@@ -51,7 +51,7 @@ export const profileStateSlice = createSlice({
   initialState,
   reducers: {
     // ✅ set data after fetching from backend
-    setProfileData: (state, action: PayloadAction<any>) => {
+    setProfileData: (state, action) => {
       const V = action.payload;
       state.familyName = V.payload["familyName"];
       state.username = V.payload["username"];

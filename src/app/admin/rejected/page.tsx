@@ -13,10 +13,10 @@ import { useAlert } from "@/app/(main)/components/AlertProvider";
 import CustomText from "@/app/(main)/components/custom_text";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
 
-export default function page() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const { articles, loading } = useAppSelector(
-    (state) => state.rejectedArtical
+    (state) => state.rejectedArtical,
   );
 
   // Local state for reviewer inputs
@@ -31,7 +31,7 @@ export default function page() {
   const handleInputChange = (
     articleId: number,
     field: "reviewer" | "start" | "end",
-    value: string
+    value: string,
   ) => {
     setReviewInputs((prev) => ({
       ...prev,
@@ -77,8 +77,8 @@ export default function page() {
             <tr>
               <td style="padding:25px 35px 10px 35px; font-size:18px; color:#111827;">
                 Hello <strong>${article.givenName} ${
-          article.familyName
-        }</strong>,
+                  article.familyName
+                }</strong>,
               </td>
             </tr>
 
@@ -148,7 +148,7 @@ export default function page() {
   </body>
 </html>
 `,
-      })
+      }),
     );
     dispatch(
       assignReviewer({
@@ -156,7 +156,7 @@ export default function page() {
         reviewer: input.reviewer,
         start: input.start,
         end: input.end,
-      })
+      }),
     ).then(() => {
       dispatch(fetchRejectedArticle());
 
@@ -250,7 +250,7 @@ export default function page() {
                             handleInputChange(
                               article.id,
                               "reviewer",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -266,7 +266,7 @@ export default function page() {
                             handleInputChange(
                               article.id,
                               "start",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -306,7 +306,7 @@ export default function page() {
                               updateArticleStatus({
                                 id: article.id,
                                 status: "Production",
-                              })
+                              }),
                             )
                           }
                         >
@@ -319,7 +319,7 @@ export default function page() {
                               updateArticleStatus({
                                 id: article.id,
                                 status: "Rejected",
-                              })
+                              }),
                             )
                           }
                         >

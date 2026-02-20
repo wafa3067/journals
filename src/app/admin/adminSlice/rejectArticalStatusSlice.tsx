@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface RejectPayload {
@@ -37,10 +37,13 @@ export const rejectArticleStatus = createAsyncThunk<
         },
       );
       return response.data;
-    } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data || { error: "Failed to reject article" },
-      );
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue({ error: message || "Failed to reject article" });
     }
   },
 );

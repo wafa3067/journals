@@ -44,14 +44,18 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/copy-editor"
+        "http://localhost:8080/admin/copy-editor",
       );
       console.log("editors", response.data);
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err) {
+      let message = "Failed to fetch copy editor articles";
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        message = String(err.response?.data?.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 // Update article status
@@ -65,23 +69,28 @@ export const assignToProduction = createAsyncThunk(
       productionNotes,
       status,
     }: { articleId: number; productionNotes: string; status: string },
-    { dispatch, rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
         `http://localhost:8080/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
-          productionNotes
-        )}&status=${encodeURIComponent(status)}`
+          productionNotes,
+        )}&status=${encodeURIComponent(status)}`,
       );
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
       console.log("Assign Copy Editor Response:", res.data);
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Failed to assign to production";
+
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        message = String(err.response?.data?.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 const ProductionSlice = createSlice({
@@ -90,7 +99,7 @@ const ProductionSlice = createSlice({
   reducers: {
     toggleDetails: (state, action: PayloadAction<number>) => {
       state.articles = state.articles.map((a) =>
-        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a
+        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a,
       );
     },
   },

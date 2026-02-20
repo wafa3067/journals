@@ -39,10 +39,13 @@ export const updateRole = createAsyncThunk(
         },
       );
       return response.data;
-    } catch (error: string | any) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to update role",
-      );
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.message);
+      }
+      return thunkAPI.rejectWithValue(message || "Failed to update role");
     }
   },
 );

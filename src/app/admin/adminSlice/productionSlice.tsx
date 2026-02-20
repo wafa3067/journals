@@ -49,8 +49,13 @@ export const fetchProduction = createAsyncThunk<Article[]>(
       );
       console.log("Fetched under review articles:", response.data);
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
   },
 );
@@ -66,7 +71,7 @@ export const assignApproved = createAsyncThunk(
       productionNotes,
       status,
     }: { articleId: number; productionNotes: string; status: string },
-    { dispatch, rejectWithValue },
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
@@ -80,8 +85,13 @@ export const assignApproved = createAsyncThunk(
       // Automatically update status
 
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
   },
 );

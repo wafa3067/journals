@@ -39,10 +39,14 @@ export const fetchApproved = createAsyncThunk<Article[]>(
       const response = await axios.get("http://localhost:8080/admin/approved");
       console.log("Fetched approved articles:", response.data);
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err) {
+      let message = "Failed to fetch approved articles";
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        message = String(err.response?.data?.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 // Update article status
@@ -50,18 +54,22 @@ export const updateArticleStatus = createAsyncThunk(
   "pending/updateArticleStatus",
   async (
     { id, status }: { id: number; status: string },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/status/${id}?status=${status}`
+        `http://localhost:8080/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (er) {
+      let message = "Failed to update article status";
+      if (axios.isAxiosError(er) && er.response?.data?.error) {
+        message = String(er.response?.data?.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 export const assignReviewer = createAsyncThunk(
@@ -78,7 +86,7 @@ export const assignReviewer = createAsyncThunk(
       start: string;
       end: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
@@ -91,16 +99,21 @@ export const assignReviewer = createAsyncThunk(
             reviewStartDate: start,
             reviewEndDate: end,
           },
-        }
+        },
       );
 
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
       console.log("Reviewer assignment response:", res.data);
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data?.error || err.message);
+    } catch (err) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        message = String(err.response?.data?.error);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 const ApprovedSlice = createSlice({
@@ -109,7 +122,7 @@ const ApprovedSlice = createSlice({
   reducers: {
     toggleDetails: (state, action: PayloadAction<number>) => {
       state.articles = state.articles.map((a) =>
-        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a
+        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a,
       );
     },
   },
@@ -135,7 +148,7 @@ const ApprovedSlice = createSlice({
       .addCase(updateArticleStatus.fulfilled, (state, action) => {
         const { id, status } = action.payload;
         state.articles = state.articles.map((a) =>
-          a.id === id ? { ...a, status } : a
+          a.id === id ? { ...a, status } : a,
         );
       });
   },

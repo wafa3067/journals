@@ -32,26 +32,29 @@ export const addNotification = createAsyncThunk(
       email,
       status,
     }: { title: string; message: string; email: string; status: string },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await axios.post(
         `http://localhost:8080/notification/add/?title=${encodeURIComponent(
-          title
+          title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
-          email
+          email,
         )}&status=${encodeURIComponent(status)}&created=${encodeURIComponent(
-          new Date().toISOString()
-        )}`
+          new Date().toISOString(),
+        )}`,
       );
       console.log("Notification added:", response.data);
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(
-        err.response?.data || "Failed to add notification"
-      );
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data);
+      }
+      return rejectWithValue(message || "Failed to add notification");
     }
-  }
+  },
 );
 
 const notificationSlice = createSlice({
@@ -69,7 +72,7 @@ const notificationSlice = createSlice({
         (state, action: PayloadAction<Notification>) => {
           state.loading = false;
           state.notifications.push(action.payload);
-        }
+        },
       )
       .addCase(addNotification.rejected, (state, action) => {
         state.loading = false;

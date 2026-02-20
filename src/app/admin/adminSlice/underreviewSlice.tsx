@@ -42,14 +42,19 @@ export const fetchUnderReview = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/under-review"
+        "http://localhost:8080/admin/under-review",
       );
       console.log("Fetched under review articles:", response.data);
       return response.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 export const assignCopyEditor = createAsyncThunk(
@@ -66,25 +71,30 @@ export const assignCopyEditor = createAsyncThunk(
       status: string;
       comments: string;
     },
-    { dispatch, rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
         `http://localhost:8080/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
-          copyeditor
+          copyeditor,
         )}&status=${encodeURIComponent(status)}&comments=${encodeURIComponent(
-          comments
-        )}`
+          comments,
+        )}`,
       );
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
       console.log("Assign Copy Editor Response:", res.data);
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 export const modifyCopyEditor = createAsyncThunk(
   "pending/copyeditor",
@@ -96,23 +106,28 @@ export const modifyCopyEditor = createAsyncThunk(
       articleId: number;
       copy: boolean;
     },
-    { dispatch, rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const res = await axios.post(
         `http://localhost:8080/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
-          copy
-        )}`
+          copy,
+        )}`,
       );
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
       console.log("Assign Copy  Response:", res.data);
       return res.data;
-    } catch (err: any) {
-      return rejectWithValue(err.message);
+    } catch (err: unknown) {
+      let message = "Login failed";
+
+      if (axios.isAxiosError(err) && err.message) {
+        message = String(err.message);
+      }
+      return rejectWithValue(message);
     }
-  }
+  },
 );
 
 const underReviewSlice = createSlice({
@@ -121,7 +136,7 @@ const underReviewSlice = createSlice({
   reducers: {
     toggleDetails: (state, action: PayloadAction<number>) => {
       state.articles = state.articles.map((a) =>
-        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a
+        a.id === action.payload ? { ...a, showDetails: !a.showDetails } : a,
       );
     },
   },

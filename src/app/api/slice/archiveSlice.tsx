@@ -80,16 +80,22 @@ export const fetchArchiveArticles = createAsyncThunk<
     const response = await axios.get("http://localhost:8080/api/get");
 
     return response.data;
-  } catch (error: string | any) {
-    return rejectWithValue(error.message);
+  } catch (err: unknown) {
+    let message = " failed";
+
+    if (axios.isAxiosError(err) && err.message) {
+      message = String(err.message);
+    }
+    return rejectWithValue(message);
   }
 });
 
 /* ------------------ SLICE ------------------ */
+/* ------------------ SLICE ------------------ */
 const archiveSlice = createSlice({
   name: "archive",
   initialState: {
-    data: [] as any[],
+    data: [] as ArchiveArticle[], // ✅ use ArchiveArticle instead of any
     loading: false,
     error: null as string | null,
   },
@@ -102,9 +108,12 @@ const archiveSlice = createSlice({
       })
       .addCase(fetchArchiveArticles.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.map((article: any) => ({
+
+        state.data = action.payload.map((article: ArchiveArticle) => ({
           ...article,
-          createdAt: normalizeDate(article.createdAt), // ✅ YYYY-MM-DD
+          createdAt: article.createdAt
+            ? normalizeDate(article.createdAt)
+            : undefined, // handle possible undefined
         }));
       })
       .addCase(fetchArchiveArticles.rejected, (state, action) => {

@@ -10,24 +10,24 @@ import SubmissionsPage from "../(main)/aboutsubmissions/page";
 import PublicationEthics from "../(main)/publications_ethics/page";
 import Manuscript from "../(main)/manuscript/page";
 import PrivacyPolicyPage from "../(main)/privacy-policy/page";
-import { get } from "http";
 
 export default function Page() {
   const route = useRouter();
   const dispatch = useAppDispatch();
 
-  const getTokens = async () => {
-    const token = await localStorage.getItem("token");
-    const user = await localStorage.getItem("email");
-
-    if (token && user) {
-      dispatch(getToken(token));
-      dispatch(getUser(user));
-    }
-  };
   useEffect(() => {
+    const getTokens = async () => {
+      const token = localStorage.getItem("token");
+      const email = localStorage.getItem("email");
+
+      if (token && email) {
+        dispatch(getToken(token));
+        dispatch(getUser(email));
+      }
+    };
+
     getTokens();
-  }, [getTokens]);
+  }, [dispatch]);
 
   const { total, approved, pending, loading } = useAppSelector(
     (state) => state.getCountArticles,

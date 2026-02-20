@@ -31,11 +31,16 @@ export const updatePublicProfile = createAsyncThunk<
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     return res.data as string;
-  } catch (err: any) {
-    return rejectWithValue(err.response?.data || "Error updating user");
+  } catch (err: unknown) {
+    let message = "Login failed";
+
+    if (axios.isAxiosError(err) && err.response) {
+      message = String(err.response.data);
+    }
+    return rejectWithValue(message || "Error updating user");
   }
 });
 
@@ -60,7 +65,7 @@ const userSlice = createSlice({
         (state, action: PayloadAction<string>) => {
           state.loading = false;
           state.message = action.payload;
-        }
+        },
       )
       .addCase(updatePublicProfile.rejected, (state, action) => {
         state.loading = false;

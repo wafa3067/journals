@@ -18,14 +18,11 @@ import {
 } from "@/app/api/slice/getArticleSlice";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
 
-export default function page() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const { articles, loading } = useAppSelector((state) => state.production);
   const [new_value, setNewValue] = useState("");
 
-  const [reviewInputs, setReviewInputs] = useState<
-    Record<number, { reviewer: string; start: string; end: string }>
-  >({});
   useEffect(() => {
     dispatch(fetchProduction());
     setNewValue(`Dear Author,
@@ -145,7 +142,7 @@ Editorial Office`);
         productionComments: new_value,
         articleId: article.id,
       }),
-    ).then((v) => dispatch(fetchProduction()));
+    ).then(() => dispatch(fetchProduction()));
 
     showAlert("Article Sent fot modification");
   };
@@ -251,7 +248,7 @@ Editorial Office`);
         comments: value,
         status: "Rejected",
       }),
-    ).then((response) => {
+    ).then(() => {
       dispatch(
         addNotification({
           title: article.title,
@@ -266,24 +263,9 @@ Editorial Office`);
     });
   };
 
-  const handleInputChange = (
-    articleId: number,
-    field: "reviewer",
-    value: string,
-  ) => {
-    setReviewInputs((prev) => ({
-      ...prev,
-      [articleId]: {
-        ...prev[articleId],
-        [field]: value,
-      },
-    }));
-  };
   const { showAlert } = useAlert();
 
   const handleAssignReviewer = (article: Article) => {
-    const input = reviewInputs[article.id] || {};
-
     dispatch(
       sendArticleEmail({
         toEmail: article.email,
@@ -395,10 +377,10 @@ Editorial Office`);
     dispatch(
       assignToProduction({
         articleId: article.id,
-        productionNotes: input.reviewer ?? "",
+        productionNotes: "",
         status: "Approved",
       }),
-    ).then((response) => {
+    ).then(() => {
       dispatch(
         updateProductModification({ articleId: article.id, production: false }),
       );
@@ -534,7 +516,7 @@ Editorial Office
                             bg="bg-red-400"
                             title="Recruit Reviewer"
                             description="Please provide reason for requesting modification."
-                            onConfirm={(val) => handleModification(article)}
+                            onConfirm={() => handleModification(article)}
                           />
                           <AlertInputDialog
                             bg="bg-red-400"

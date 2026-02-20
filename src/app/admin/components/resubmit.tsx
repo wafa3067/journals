@@ -53,8 +53,7 @@ export default function ReSubmit({
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
         <AlertDialog.Content
-          onEscapeKeyDown={(e) => e.preventDefault()} // prevent ESC closing when invalid
-          onInteractOutside={(e: { preventDefault: () => void }) => {
+          onEscapeKeyDown={(e) => {
             if (error || !inputValue.trim() || !selectedFile)
               e.preventDefault();
           }}
