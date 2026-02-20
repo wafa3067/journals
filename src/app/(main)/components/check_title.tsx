@@ -1,5 +1,4 @@
 "use client";
-import { error } from "console";
 import React from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
@@ -12,14 +11,7 @@ type Props = {
   check: string;
 };
 
-const CheckText = ({
-  title,
-  onChange,
-  width,
-  error,
-  check,
-  required = false,
-}: Props) => {
+const CheckText = ({ title, onChange, width, error, check }: Props) => {
   return (
     <div>
       <div className={`${width} flex flex-row  gap-2 `}>

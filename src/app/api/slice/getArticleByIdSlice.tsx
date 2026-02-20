@@ -63,13 +63,13 @@ export const fetchArticleById = createAsyncThunk(
   async (id: number, thunkAPI) => {
     try {
       const response = await axios.get<Article>(
-        `http://localhost:8080/api/article/${id}`
+        `http://localhost:8080/api/article/${id}`,
       );
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 interface ArticleState {
@@ -105,7 +105,7 @@ export const findArticleByIdSlice = createSlice({
         (state, action: PayloadAction<Article>) => {
           state.loading = false;
           state.article = action.payload;
-        }
+        },
       )
       .addCase(fetchArticleById.rejected, (state, action) => {
         state.loading = false;

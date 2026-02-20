@@ -44,11 +44,11 @@ export const updateContact = createAsyncThunk<
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     console.log("value is ", res.data);
     return res.data as string;
-  } catch (error: any) {
+  } catch (error: string | any) {
     return rejectWithValue(error.response?.data || "Failed to update contact");
   }
 });
@@ -74,7 +74,7 @@ const ContactSlice = createSlice({
         (state, action: PayloadAction<string>) => {
           state.loading = false;
           state.message = action.payload;
-        }
+        },
       )
       .addCase(updateContact.rejected, (state, action) => {
         state.loading = false;

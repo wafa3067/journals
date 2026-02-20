@@ -21,7 +21,6 @@ import QuillViewer from "@/app/(main)/components/rectquilviwer";
 export default function page() {
   const dispatch = useAppDispatch();
   const { articles, loading } = useAppSelector((state) => state.production);
-  const [successMessage, setSuccessMessage] = useState<string>("");
   const [new_value, setNewValue] = useState("");
 
   const [reviewInputs, setReviewInputs] = useState<
@@ -523,6 +522,7 @@ Editorial Office`);
                           >
                             Approve
                           </button>
+
                           <Modification
                             inputValues={`Dear Author,
 Your manuscript is in the final review stage. Please submit the final version of your paper in LaTeX or Word format using the attached template file.

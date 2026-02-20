@@ -1,5 +1,4 @@
 import React from "react";
-import { text } from "stream/consumers";
 
 type Props = {
   textColor?: string;

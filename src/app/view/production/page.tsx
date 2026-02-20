@@ -11,7 +11,7 @@ export default function ProductionPage() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setTab("Production"));
-  }, []);
+  }, [dispatch]);
   return article?.status == "Production" ? (
     <div className="max-w-3xl mx-auto p-6 bg-gray-50 rounded-lg shadow-md mt-10">
       <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">

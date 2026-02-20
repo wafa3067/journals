@@ -49,7 +49,8 @@ export interface GetArticle {
   modifyCopyEditor: boolean;
   modifyProduction: boolean;
   contributorsList: GetContributor[];
-  finalFile: String | null;
+  finalFile: string | null;
+  pdfUrl: string | null;
 }
 
 export interface ArticleState {
@@ -68,7 +69,7 @@ const initialState: ArticleState = {
 export const fetchArticlesByUser = createAsyncThunk<
   GetArticle[],
   { userEmail: string; token: string }
->("articles/fetchByUser", async ({ userEmail, token }, { rejectWithValue }) => {
+>("articles/fetchByUser", async ({}, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
@@ -83,7 +84,7 @@ export const fetchArticlesByUser = createAsyncThunk<
     );
     console.log("Fetched articles by user:", response.data);
     return response.data;
-  } catch (error: any) {
+  } catch (error: string | any) {
     return rejectWithValue(error.message);
   }
 });
@@ -136,7 +137,7 @@ export const uploadFinalFile = createAsyncThunk<
       );
       console.log("Final file upload response:", response.data);
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(
         error.response?.data?.message || "File upload failed",
       );
@@ -169,7 +170,7 @@ export const updatePdfAndComments = createAsyncThunk<
       console.log("the data us ", response.data);
 
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to update PDF and comments",
       );
@@ -193,7 +194,7 @@ export const updateUserComment = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || error.message);
     }
   },
@@ -218,7 +219,7 @@ export const updateProductionComments = createAsyncThunk<
       );
       console.log("result is ", res.data);
       return res.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || error.message);
     }
   },
@@ -240,7 +241,7 @@ export const updateUserProductionComments = createAsyncThunk<
 
       console.log("result is ", res.data);
       return res.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || error.message);
     }
   },
@@ -261,7 +262,7 @@ export const updateProductModification = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || error.message);
     }
   },
@@ -281,7 +282,7 @@ export const updateCopyModification = createAsyncThunk<
       );
 
       return res.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || error.message);
     }
   },

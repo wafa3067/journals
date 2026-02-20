@@ -12,7 +12,7 @@ export default function PaperReviewPage() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setTab("Review"));
-  }, []);
+  }, [dispatch]);
   return article?.status == "Under Review" ? (
     <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg border border-gray-100">
       <h1 className="text-2xl font-semibold text-gray-800 mb-4">

@@ -18,7 +18,7 @@ const ArchiveComponent = (props: Props) => {
       <CustomText text={props.main} style={"font-bold text-2xl"} />
       <div className=" flex flex-row gap-5 p-5">
         {props.data.map((d) => (
-          <div>
+          <div key={d.title}>
             {d.image && (
               <Image
                 className="w-[200px] h-[120px] mb-3"

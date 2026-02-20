@@ -27,7 +27,7 @@ import {
 import { updateTab } from "@/app/api/providers/tab_bar";
 import LoadingSpinner from "@/app/(main)/components/loading_spannier";
 
-const page = () => {
+const Page = () => {
   const dispatch = useAppDispatch();
   const research = useAppSelector((state) => state.begin);
   useEffect(() => {
@@ -91,13 +91,13 @@ const page = () => {
               research.continue == false
                 ? ""
                 : research.previousPublished === ""
-                ? "This field is required"
-                : ""
+                  ? "This field is required"
+                  : ""
             }
             check={research.previousPublished}
             width="w-full"
             title="The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor)."
-            onChange={(text: string) => {
+            onChange={() => {
               if (research.previousPublished) {
                 dispatch(updatePreviousPublished(""));
               } else {
@@ -110,13 +110,13 @@ const page = () => {
               research.continue == false
                 ? ""
                 : research.fileType === ""
-                ? "This field is required"
-                : ""
+                  ? "This field is required"
+                  : ""
             }
             check={research.fileType}
             width="w-full"
             title="The submission file is in OpenOffice, Microsoft Word, or RTF document file format."
-            onChange={(text: string) => {
+            onChange={() => {
               if (research.fileType) {
                 dispatch(updateFileType(""));
               } else {
@@ -129,13 +129,13 @@ const page = () => {
               research.continue == false
                 ? ""
                 : research.refrencedUrl === ""
-                ? "This field is required"
-                : ""
+                  ? "This field is required"
+                  : ""
             }
             check={research.refrencedUrl}
             width="w-full"
             title="Where available, URLs for the references have been provided."
-            onChange={(text: string) => {
+            onChange={() => {
               if (research.refrencedUrl) {
                 dispatch(updateRefrencedUrl("no"));
               } else {
@@ -151,8 +151,8 @@ const page = () => {
               research.continue == false
                 ? ""
                 : research.setsection === ""
-                ? "This field is required"
-                : ""
+                  ? "This field is required"
+                  : ""
             }
             width="w-full"
             title="The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end."
@@ -173,8 +173,8 @@ const page = () => {
               research.continue == false
                 ? ""
                 : research.textStylic === ""
-                ? "This field is required"
-                : ""
+                  ? "This field is required"
+                  : ""
             }
             width="w-full"
             title="The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines."
@@ -206,8 +206,8 @@ const page = () => {
                 research.continue == false
                   ? ""
                   : research.copyright === ""
-                  ? "This field is required"
-                  : ""
+                    ? "This field is required"
+                    : ""
               }
               width="w-full"
               title=" Yes, I agree to abide by the terms of the copyright statement."
@@ -228,8 +228,8 @@ const page = () => {
                 research.continue == false
                   ? ""
                   : research.privacypolicy === ""
-                  ? "This field is required"
-                  : ""
+                    ? "This field is required"
+                    : ""
               }
               width="w-full"
               title=" Yes, I agree to have my data collected and stored according to the privacy statement."
@@ -294,4 +294,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

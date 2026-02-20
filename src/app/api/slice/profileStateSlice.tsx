@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Language {
-  name: string;
-}
-
-interface Role {
-  name: string;
-}
-
 interface ProfileState {
   reviewes: string;
   reader: boolean;

@@ -1,11 +1,11 @@
 import React, { MouseEventHandler } from "react";
 
 type Props = {
-  style?: String;
+  style?: string;
 
   onTap?: MouseEventHandler;
 
-  text?: String;
+  text?: string;
   boldText?: string;
   starting?: string;
 };

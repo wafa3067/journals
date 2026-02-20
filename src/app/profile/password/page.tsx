@@ -49,7 +49,7 @@ export default function PasswordPage() {
 
     if (token.user) {
     }
-  }, []);
+  }, [token, getTokens]);
 
   return (
     <div className=" mt-10 p-6 border ">
@@ -96,6 +96,7 @@ export default function PasswordPage() {
       </div>
 
       {success && <p className="text-red-500 text-sm mb-4">{success}</p>}
+      {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
       <p className="text-sm text-gray-500 mt-4">
         Your data is stored in accordance with our{" "}

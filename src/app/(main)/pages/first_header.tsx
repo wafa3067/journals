@@ -18,14 +18,13 @@ import {
 import { getToken } from "@/app/api/slice/getTokenSlice";
 import { FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import CustomDropdown from "../components/custom_dropdown";
 
 const FirstHeader = () => {
   const { token } = useAppSelector((state) => state.token);
 
   const router = useRouter();
   const result = useAppSelector((state) => state.profileData);
-  const Navigate = (route: any) => {
+  const Navigate = (route: string) => {
     router.push(route);
   };
 
@@ -47,7 +46,7 @@ const FirstHeader = () => {
         })
         .catch(console.error);
     }
-  }, [token]);
+  }, [dispatch, token]);
 
   const Navigating = (v: string) => {
     const data = dispatch(fetchUserByEmail());
@@ -70,24 +69,12 @@ const FirstHeader = () => {
   useEffect(() => {
     router.prefetch("/dashboard");
     router.prefetch("/profile/identity");
-  }, []);
+  }, [router]);
 
   const [selected, setSelected] = useState<string>();
   const [show, setShow] = useState<number>(0);
 
   const navigate = (route: string) => router.push(route);
-
-  const announce = [
-    { id: 1, label: "News" },
-    { id: 2, label: "Announcements" },
-  ];
-
-  const about = [
-    { id: 1, label: "ABOUT THE JOURNALS" },
-    { id: 2, label: "SUBMISSIONS" },
-    { id: 3, label: "PRIVACY STATEMENTS" },
-    { id: 4, label: "CONTACT" },
-  ];
 
   useEffect(() => {
     const routes = [
@@ -108,6 +95,7 @@ const FirstHeader = () => {
     routes.forEach((route) => router.prefetch(route));
   }, [router]);
 
+  console.log("token in header", selected);
   return (
     <div>
       <div

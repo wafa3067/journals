@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import "react-quill-new/dist/quill.snow.css"; // optional, if you didn’t import globally
 import CustomText from "./custom_text";
 
@@ -14,13 +13,7 @@ type EditorInputProps = {
   error?: string;
   onChange: (v: string) => void;
 };
-const EditorInput = ({
-  placeholder,
-  style,
-  onChange,
-  value,
-  error,
-}: EditorInputProps) => {
+const EditorInput = ({ style, onChange, value, error }: EditorInputProps) => {
   return (
     <div className={`w-[290px] md:w-[500px]  ${style}`}>
       <ReactQuill

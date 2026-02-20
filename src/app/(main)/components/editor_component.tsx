@@ -4,14 +4,14 @@ import CustomText from "./custom_text";
 import Link from "next/link";
 
 type Props = {
-  heading?: String;
-  title?: String;
-  name?: String;
-  desc?: String;
-  email?: String;
-  link?: String;
-  titleStyle?: String;
-  style?: String;
+  heading?: string;
+  title?: string;
+  name?: string;
+  desc?: string;
+  email?: string;
+  link?: string;
+  titleStyle?: string;
+  style?: string;
 };
 
 const EditorComponent = (props: Props) => {

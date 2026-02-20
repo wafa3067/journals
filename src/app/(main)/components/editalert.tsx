@@ -29,12 +29,11 @@ interface EditContributorDialogProps {
 
 export default function EditContributorDialog({
   editIndex,
-  triggerLabel = "Add Contributor",
 }: EditContributorDialogProps) {
   const dispatch = useAppDispatch();
   const contributor = useAppSelector((state) => state.meta);
   const [open, setOpen] = useState(false);
-  const [emailCheck, setEmailCheck] = useState(false);
+  // const [emailCheck, setEmailCheck] = useState(false);
   const [error, setError] = useState("");
 
   const [form, setForm] = useState<Contributor>({
@@ -81,7 +80,7 @@ export default function EditContributorDialog({
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value, type } = e.target;
     // Handle checkbox separately
@@ -102,15 +101,15 @@ export default function EditContributorDialog({
   const checkDuplications = (email: string) => {
     const isDuplicate = contributor.contributorsList.some(
       (val: Contributor, idx: number) =>
-        val.email === email && idx !== editIndex // exclude self when editing
+        val.email === email && idx !== editIndex, // exclude self when editing
     );
 
     if (isDuplicate) {
       setError("Please use a different email. No duplication allowed.");
-      setEmailCheck(true);
+      // setEmailCheck(true);
     } else {
       setError("");
-      setEmailCheck(false);
+      // setEmailCheck(false);
     }
     return isDuplicate;
   };
@@ -267,7 +266,7 @@ export default function EditContributorDialog({
 
           <div>
             <label className="block text-sm font-medium">
-              Contributor's Role*
+              Contributor&apos;s Role*
             </label>
             <select
               name="role"

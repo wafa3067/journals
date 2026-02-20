@@ -8,12 +8,7 @@ interface EditorProps {
   imageUrl?: string;
 }
 
-const EditorCard: React.FC<EditorProps> = ({
-  name,
-  institution,
-  location,
-  imageUrl,
-}) => {
+const EditorCard: React.FC<EditorProps> = ({ name, institution, location }) => {
   return (
     <div className="p-6 rounded-lg   text-center text-white ">
       {/* {imageUrl && ( */}

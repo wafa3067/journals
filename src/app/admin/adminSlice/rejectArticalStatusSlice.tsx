@@ -34,15 +34,15 @@ export const rejectArticleStatus = createAsyncThunk<
         null,
         {
           params: { status, comments },
-        }
+        },
       );
       return response.data;
     } catch (error: any) {
       return rejectWithValue(
-        error.response?.data || { error: "Failed to reject article" }
+        error.response?.data || { error: "Failed to reject article" },
       );
     }
-  }
+  },
 );
 
 const rejectArticleStatusSlice = createSlice({

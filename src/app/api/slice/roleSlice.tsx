@@ -36,15 +36,15 @@ export const updateRole = createAsyncThunk(
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to update role"
+        error.response?.data?.message || "Failed to update role",
       );
     }
-  }
+  },
 );
 
 const roleSlice = createSlice({

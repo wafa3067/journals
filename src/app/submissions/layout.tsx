@@ -2,27 +2,20 @@
 import { useRouter } from "next/navigation";
 import HorizontalBar from "../(main)/components/horizontal_bar";
 import React from "react";
-import FirstHeader from "../(main)/pages/first_header";
 import CustomText from "../(main)/components/custom_text";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
-import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
-import { updateTab } from "../api/providers/tab_bar";
-import { checkAllBeginFieldsFilled } from "../api/slice/beginSlice";
-import { AlertCircle } from "lucide-react";
+import { useAppSelector } from "../api/hooks/hooks";
 
 export default function SubmissionsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const dispatch = useAppDispatch();
-
   const tab = useAppSelector((state) => state.tab);
   const router = useRouter();
 
-  const Navigate = (route: any) => {
+  const Navigate = (route: string) => {
     router.push(route);
   };
   return (

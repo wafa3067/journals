@@ -1,5 +1,5 @@
 // src/app/api/slice/uploadSlice.ts
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 interface Contributor {
@@ -92,7 +92,7 @@ export const uploadArticle = createAsyncThunk(
       );
 
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(
         error.response?.data?.message || "Upload failed. Please try again.",
       );
@@ -131,7 +131,7 @@ export const uploadFinalFile = createAsyncThunk(
       );
 
       return response.data;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(
         error.response?.data?.message ||
           "Final file upload failed. Please try again.",

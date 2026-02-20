@@ -37,11 +37,11 @@ export const updateUserStatus = createAsyncThunk<
       null,
       {
         params: { status },
-      }
+      },
     );
     console.log("Update response:", response.data);
     return { id, status, message: response.data.message };
-  } catch (error: any) {
+  } catch (error: string | any) {
     return rejectWithValue({
       error: error.response?.data?.error || "Failed to update status",
     });
@@ -56,10 +56,10 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/users/delete/${id}`
+      `http://localhost:8080/users/delete/${id}`,
     );
     return { id, message: response.data.message };
-  } catch (error: any) {
+  } catch (error: string | any) {
     return rejectWithValue({
       error: error.response?.data?.error || "Failed to delete user",
     });
@@ -86,7 +86,7 @@ const UpdateUserSlice = createSlice({
         state.loading = false;
         const { id, status, message } = action.payload;
         state.users = state.users.map((user) =>
-          user.id === id ? { ...user, status } : user
+          user.id === id ? { ...user, status } : user,
         );
         state.message = message;
       })

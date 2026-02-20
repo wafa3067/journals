@@ -1,9 +1,7 @@
 import React from "react";
 import CustomText from "../components/custom_text";
 
-type Props = {};
-
-const PublicationEthics = (props: Props) => {
+const PublicationEthics = () => {
   const bulits = [
     "ensuring that all appropriate contributors are included as co-authors",
     "verifying that all co-authors have reviewed and approved the manuscript",
@@ -157,7 +155,7 @@ const PublicationEthics = (props: Props) => {
         style={"text-black pb-2 "}
       />
       {bulits.map((e) => (
-        <div className="ml-5">
+        <div className="ml-5" key={e}>
           <li className="">{e}</li>
         </div>
       ))}

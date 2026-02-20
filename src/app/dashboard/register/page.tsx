@@ -9,9 +9,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { clearError, registerUser } from "@/app/api/slice/auth";
 
-type Props = {};
-
-const page = (props: Props) => {
+const Page = () => {
   const dispatch = useAppDispatch();
   const {
     loadings, // Fixed: removed colon
@@ -96,7 +94,7 @@ const page = (props: Props) => {
     const usernameRegex = /^[a-zA-Z0-9_]+$/;
     if (!usernameRegex.test(username)) {
       setLocalError(
-        "Username can only contain letters, numbers, and underscores"
+        "Username can only contain letters, numbers, and underscores",
       );
       return false;
     }
@@ -241,4 +239,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;

@@ -15,13 +15,6 @@ export interface AdminAuthState {
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-
-interface Login {
-  token: string;
-  admin: string;
-  error: String;
-}
 
 interface LoginCredentials {
   username: string;
@@ -46,7 +39,7 @@ export const adminLogin = createAsyncThunk(
             username: credentials.username, // 👈 send as username
             password: credentials.password,
           },
-        }
+        },
       );
       console.log("error is", res.data);
       if (res.status != 200) {
@@ -59,7 +52,7 @@ export const adminLogin = createAsyncThunk(
         err.response?.data?.message || err.response?.data || "Login failed";
       return rejectWithValue(message);
     }
-  }
+  },
 );
 
 // 🟢 Admin Registration
@@ -75,7 +68,7 @@ export const adminRegister = createAsyncThunk(
             username: data.username, // 👈 send as username
             password: data.password,
           },
-        }
+        },
       );
       return res.data;
     } catch (err: any) {
@@ -85,7 +78,7 @@ export const adminRegister = createAsyncThunk(
         "Registration failed";
       return rejectWithValue(message);
     }
-  }
+  },
 );
 
 const tokenFromStorage =
@@ -116,7 +109,7 @@ const adminAuthSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(adminLogin.fulfilled, (state, action: PayloadAction) => {
+      .addCase(adminLogin.fulfilled, (state, action) => {
         state.loading = false;
         if (action.payload["error"] === "Invalid username or password ❌") {
           state.error = action.payload["error"];

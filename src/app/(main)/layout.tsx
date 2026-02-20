@@ -1,5 +1,4 @@
 "use client";
-import SideBar from "./components/side_bar";
 import "../globals.css";
 import FirstHeader from "./pages/first_header";
 import Footer from "./pages/footer";
@@ -29,7 +28,7 @@ export default function MainLayout({
       dispatch(getToken(storedToken));
     } else {
     }
-  }, []);
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (token != null && token != "") {
@@ -37,10 +36,7 @@ export default function MainLayout({
         dispatch(setProfileData(user));
       });
     }
-  }, []);
-
-  const delay = (ms: number | undefined) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (token == null && token == "") {
@@ -53,7 +49,7 @@ export default function MainLayout({
       setLoading(false);
     }
     // Cleanup timer when component unmounts
-  }, []);
+  }, [token]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">

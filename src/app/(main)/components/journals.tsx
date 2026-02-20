@@ -2,15 +2,15 @@ import React from "react";
 import CustomText from "./custom_text";
 import Image from "next/image";
 type Props = {
-  title1?: String;
-  title12?: String;
-  style1?: String;
-  style2?: String;
-  desc?: String;
-  descStyle?: String;
+  title1?: string;
+  title12?: string;
+  style1?: string;
+  style2?: string;
+  desc?: string;
+  descStyle?: string;
   img?: string;
   date?: string;
-  image_style?: String;
+  image_style?: string;
 };
 
 const Journals = (props: Props) => {

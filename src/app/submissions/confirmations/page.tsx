@@ -17,9 +17,7 @@ import { setProfileData } from "@/app/api/slice/profileStateSlice";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useTransition } from "react";
 
-type Props = {};
-
-const page = (props: Props) => {
+const Page = () => {
   const dispatch = useAppDispatch();
   const begin = useAppSelector((state) => state.begin);
   const upload = useAppSelector((state) => state.upload);
@@ -77,8 +75,8 @@ const page = (props: Props) => {
             rounded="rounded-[8px]"
             bgColor={"bg-[#671509]"}
             onClick={async () => {
-              const token = await localStorage.getItem("token");
-              const email = await localStorage.getItem("email");
+              const token = localStorage.getItem("token");
+              const email = localStorage.getItem("email");
               if (token && email) {
                 const data = {
                   section: begin.section,
@@ -105,13 +103,13 @@ const page = (props: Props) => {
                 const contributors = meta.contributorsList;
 
                 const datas = dispatch(
-                  uploadArticle({ token, data, pdfFile, contributors })
+                  uploadArticle({ token, data, pdfFile, contributors }),
                 );
                 datas.finally(() => {
                   showAlert("Article submitted successfully!");
                   Navigate("/submissions/next");
                   dispatch(
-                    fetchArticlesByUser({ userEmail: email, token: token })
+                    fetchArticlesByUser({ userEmail: email, token: token }),
                   );
                   const data = dispatch(fetchUserByEmail());
                   data.then((V) => {
@@ -136,4 +134,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;

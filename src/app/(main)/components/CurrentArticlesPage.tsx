@@ -8,12 +8,13 @@ import CustomText from "@/app/(main)/components/custom_text";
 import Articles from "@/app/(main)/components/article";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { GetSelectorArticle } from "../archive/[year]/[month]/page";
 
 export default function CurrentMonthPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
-  const [filtered, setFiltered] = useState<any[]>([]);
+  const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -27,9 +28,8 @@ export default function CurrentMonthPage() {
       const [y, m] = article.createdAt.split("-");
       return y === "2026" && m === "01";
     });
-    console.log("Filtered articles for", filteredArticles);
     setFiltered(filteredArticles);
-  }, [articles, "2026", "01"]);
+  }, [articles]);
   if (!filtered.length)
     return (
       <p className="p-6">

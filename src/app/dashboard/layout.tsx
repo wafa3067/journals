@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
 import UserMenu from "../(main)/components/user_menu";
-import { NotebookIcon } from "lucide-react";
 import NotificationDropdown from "../(main)/components/notificationDropdown";
 import { useEffect } from "react";
 import { fetchUnreadCount } from "../api/slice/getNotificationSlice";
@@ -39,7 +38,7 @@ export default function SubmissionsLayout({
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchUnreadCount());
-  }, []);
+  }, [dispatch]);
   const router = useRouter();
 
   return (

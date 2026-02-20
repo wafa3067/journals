@@ -1,22 +1,86 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export interface ArchiveArticle {
+  id: number;
+
+  reviewerComment?: string;
+  underReviewComments?: string;
+  userComments?: string;
+  userProductionComments?: string;
+  productionComments?: string;
+
+  modifyCopyEditor: boolean;
+  modifyProduction: boolean;
+
+  section?: string;
+  previousPublished?: string;
+  fileType?: string;
+  refrencedUrl?: string;
+  textStyle?: string;
+  textStylic?: string;
+
+  comment?: string;
+  copyright?: string;
+  privacypolicy?: string;
+
+  // PDF related
+  pdfData?: Uint8Array; // byte[] → Uint8Array
+  pdfUrl?: string;
+  finalFile?: string;
+
+  pdfFileName?: string;
+  pdfContentType?: string;
+
+  pdf?: string;
+  status?: string;
+  user?: string;
+  approvedBy?: string;
+
+  prefix?: string;
+  title?: string;
+  subtitle?: string;
+
+  abstracts?: string;
+  keywords?: string;
+  referenceText?: string;
+
+  createdAt?: string; // ISO string (e.g. 2026-01-12)
+
+  // Review & production workflow
+  reviewerAssigned?: string;
+  submittedOn?: string;
+  reviewStarted?: string;
+  reviewDeadline?: string;
+
+  doi?: string;
+  volumeIssue?: string;
+
+  productionNotes?: string;
+  copyeditorNotes?: string;
+
+  reviewStartDate?: string;
+  reviewEndDate?: string;
+
+  copyeditor?: string;
+  stage?: string;
+}
+
 /* ------------------ HELPERS ------------------ */
 const normalizeDate = (dateStr: string) =>
   new Date(dateStr).toISOString().split("T")[0];
 
 /* ------------------ THUNK ------------------ */
 export const fetchArchiveArticles = createAsyncThunk<
-  any[],
+  ArchiveArticle[],
   void,
   { rejectValue: string }
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get("http://localhost:8080/api/get");
 
-    console.log("Fetched archive articles:", response.data);
     return response.data;
-  } catch (error: any) {
+  } catch (error: string | any) {
     return rejectWithValue(error.message);
   }
 });

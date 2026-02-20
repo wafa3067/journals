@@ -28,7 +28,7 @@ export const checkAllFieldsComplete = (state: metaData): boolean => {
   ];
 
   const allFieldsFilled = requiredFields.every(
-    (field) => field && field.trim() !== ""
+    (field) => field && field.trim() !== "",
   );
 
   const hasContributor = state.contributorsList.length > 0;
@@ -124,7 +124,7 @@ const metaSlice = createSlice({
       action: PayloadAction<{
         index: number;
         contributor: Partial<Contributor>;
-      }>
+      }>,
     ) => {
       const { index, contributor } = action.payload;
       if (index >= 0 && index < state.contributorsList.length) {
@@ -141,7 +141,7 @@ const metaSlice = createSlice({
 
     setPrimaryContact: (state, action: PayloadAction<number>) => {
       // Reset all primary contacts
-      state.contributorsList.forEach((contributor: any) => {
+      state.contributorsList.forEach((contributor: Contributor) => {
         contributor.primaryContact = false;
       });
       // Set the new primary contact
@@ -155,7 +155,7 @@ const metaSlice = createSlice({
 
     reorderContributors: (
       state,
-      action: PayloadAction<{ fromIndex: number; toIndex: number }>
+      action: PayloadAction<{ fromIndex: number; toIndex: number }>,
     ) => {
       const { fromIndex, toIndex } = action.payload;
       const [removed] = state.contributorsList.splice(fromIndex, 1);

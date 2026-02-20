@@ -23,7 +23,7 @@ const SecondHeader = () => {
         })
         .catch(console.error);
     }
-  }, [token]);
+  }, [dispatch, token]);
   const options = [
     { id: 1, label: "CURRENT" },
     { id: 2, label: "ARCHIVES" },
@@ -76,7 +76,7 @@ const SecondHeader = () => {
             // navigate("/aboutsubmissions");
             setSelected("Submit an article");
           }}
-          onChange={(value: string) => {
+          onChange={() => {
             // setSelected("Submit an article");
           }}
         />

@@ -10,6 +10,7 @@ import SubmissionsPage from "../(main)/aboutsubmissions/page";
 import PublicationEthics from "../(main)/publications_ethics/page";
 import Manuscript from "../(main)/manuscript/page";
 import PrivacyPolicyPage from "../(main)/privacy-policy/page";
+import { get } from "http";
 
 export default function Page() {
   const route = useRouter();
@@ -26,7 +27,7 @@ export default function Page() {
   };
   useEffect(() => {
     getTokens();
-  }, []);
+  }, [getTokens]);
 
   const { total, approved, pending, loading } = useAppSelector(
     (state) => state.getCountArticles,

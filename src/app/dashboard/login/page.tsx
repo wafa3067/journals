@@ -9,19 +9,13 @@ import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { clearError } from "@/app/api/slice/auth";
 import { loginUser } from "@/app/api/slice/login";
 
-type Props = {};
-
-const page = (props: Props) => {
+const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
   const [localError, setLocalError] = useState(""); // Renamed to avoid conflict
 
-  const {
-    loadings, // Fixed: removed colon
-    errors,
-    isAuthenticated,
-  } = useAppSelector((state) => state.login);
+  const { errors, isAuthenticated } = useAppSelector((state) => state.login);
   const router = useRouter();
   useEffect(() => {
     dispatch(clearError());
@@ -42,12 +36,11 @@ const page = (props: Props) => {
       router.push("/");
     }
   };
-  const Navigate = (route: any) => {
+  const Navigate = (route: string) => {
     router.push(route);
   };
 
   const displayError = errors ?? localError;
-  const isLoading = loadings || false; // Adjust based on your Redux state structure
   return (
     <div className="w-full  min-h-screen justify-center flex items-center">
       <div className="w-[300px] md:w-[550px] p:2 md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
@@ -107,4 +100,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;

@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../api/hooks/hooks";
-import { updateArticleStatus } from "../adminSlice/pending";
 import { Article } from "../adminSlice/copyeditorSlice";
 
 import { sendArticleEmail } from "../adminSlice/emailSlice";
@@ -20,10 +19,7 @@ import {
   assignCopyEditor,
   modifyCopyEditor,
 } from "../adminSlice/underreviewSlice";
-import {
-  updatePdfAndComments,
-  updateUserComment,
-} from "@/app/api/slice/getArticleSlice";
+import { updateUserComment } from "@/app/api/slice/getArticleSlice";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
 
 export default function page() {
@@ -135,14 +131,14 @@ export default function page() {
 </html>
 
 `,
-      })
+      }),
     );
     dispatch(
       rejectArticleStatus({
         id: article.id,
         comments: value,
         status: "Rejected",
-      })
+      }),
     ).then((response) => {
       dispatch(
         addNotification({
@@ -150,7 +146,7 @@ export default function page() {
           message: `Your Article has been rejected".`,
           email: article.email,
           status: "Rejected",
-        })
+        }),
       );
       dispatch(fetchCopyEdit());
       setSuccessMessage("Reject Article Response:" + response);
@@ -251,13 +247,13 @@ export default function page() {
 </html>
 
 `,
-      })
+      }),
     );
     dispatch(
       modifyCopyEditor({
         articleId: article.id,
         copy: true,
-      })
+      }),
     ).then((response) => {
       dispatch(
         addNotification({
@@ -265,7 +261,7 @@ export default function page() {
           message: `Modification Request.`,
           email: article.email,
           status: "Modification",
-        })
+        }),
       );
       dispatch(updateUserComment({ userComments: "", articleId: article.id }));
       dispatch(
@@ -274,7 +270,7 @@ export default function page() {
           copyeditor: article.copyeditor ?? "",
           status: "Copy Editor",
           comments: new_value != "" ? new_value : article.underReviewComments,
-        })
+        }),
       ).then((v) => dispatch(fetchCopyEdit()));
 
       showAlert("Article Sent fot modification");
@@ -283,7 +279,7 @@ export default function page() {
   const handleInputChange = (
     articleId: number,
     field: "reviewer",
-    value: string
+    value: string,
   ) => {
     setReviewInputs((prev) => ({
       ...prev,
@@ -328,8 +324,8 @@ export default function page() {
             <tr>
               <td style="padding:25px 35px 10px 35px; font-size:18px; color:#111827;">
                 Dear <strong>${article.givenName} ${
-          article.familyName
-        }</strong>,
+                  article.familyName
+                }</strong>,
               </td>
             </tr>
 
@@ -400,14 +396,14 @@ export default function page() {
   </body>
 </html>
 `,
-      })
+      }),
     );
     dispatch(
       assignToProduction({
         articleId: article.id,
         productionNotes: input.reviewer,
         status: "Production",
-      })
+      }),
     ).then((response) => {
       dispatch(
         addNotification({
@@ -415,7 +411,7 @@ export default function page() {
           message: `Reviewer ${input.reviewer} has been assigned to your article "${article.title}".`,
           email: article.email,
           status: "Production",
-        })
+        }),
       );
       dispatch(updateUserComment({ articleId: article.id, userComments: "" }));
       dispatch(modifyCopyEditor({ articleId: article.id, copy: false }));
@@ -531,7 +527,7 @@ export default function page() {
                             handleInputChange(
                               article.id,
                               "reviewer",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />

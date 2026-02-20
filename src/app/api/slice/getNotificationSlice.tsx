@@ -32,15 +32,15 @@ export const fetchNotifications = createAsyncThunk(
     try {
       const email = localStorage.getItem("email");
       const res = await axios.get(
-        `http://localhost:8080/notification/get_notifications/${email}`
+        `http://localhost:8080/notification/get_notifications/${email}`,
       );
       return res.data;
-    } catch (err: any) {
+    } catch (err: string | any) {
       return rejectWithValue(
-        err.response?.data || "Failed to fetch notifications"
+        err.response?.data || "Failed to fetch notifications",
       );
     }
-  }
+  },
 );
 
 // ✅ Get unread notification count
@@ -51,15 +51,15 @@ export const fetchUnreadCount = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const res = await axios.get(
-        `http://localhost:8080/notification/count_unread/${email}`
+        `http://localhost:8080/notification/count_unread/${email}`,
       );
       return res.data;
-    } catch (err: any) {
+    } catch (err: string | any) {
       return rejectWithValue(
-        err.response?.data || "Failed to fetch unread count"
+        err.response?.data || "Failed to fetch unread count",
       );
     }
-  }
+  },
 );
 
 // ✅ Mark all notifications as read
@@ -69,13 +69,13 @@ export const markAllNotificationsRead = createAsyncThunk(
     const email = localStorage.getItem("email");
     try {
       const res = await axios.put(
-        `http://localhost:8080/notification/mark_all_read/${email}`
+        `http://localhost:8080/notification/mark_all_read/${email}`,
       );
       return res.data; // "X notifications marked as read"
-    } catch (err: any) {
+    } catch (err: string | any) {
       return rejectWithValue(err.response?.data || "Failed to mark as read");
     }
-  }
+  },
 );
 
 const getNotificationSlice = createSlice({

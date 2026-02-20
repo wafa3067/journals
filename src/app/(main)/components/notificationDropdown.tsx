@@ -14,12 +14,13 @@ const NotificationDropdown = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const { notifications, unreadCount } = useAppSelector(
-    (state) => state.getnotification
+    (state) => state.getnotification,
   );
 
   // Fetch notifications when component mounts
   useEffect(() => {
     dispatch(fetchUnreadCount());
+    setLoading(false);
     dispatch(fetchNotifications());
   }, [dispatch]);
 

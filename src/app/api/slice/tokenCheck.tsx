@@ -23,7 +23,7 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `http://localhost:8080/api/validate-token?token=${token}`
+        `http://localhost:8080/api/validate-token?token=${token}`,
       );
 
       if (!res.data.valid) {
@@ -31,10 +31,10 @@ export const checkToken = createAsyncThunk(
       }
 
       return true;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || "Token check failed");
     }
-  }
+  },
 );
 
 const authSlice = createSlice({

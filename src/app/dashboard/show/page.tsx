@@ -2,7 +2,6 @@
 import CustomInput from "@/app/(main)/components/custom_input";
 import CustomText from "@/app/(main)/components/custom_text";
 import LoadingSpinner from "@/app/(main)/components/loading_spannier";
-import { modifyCopyEditor } from "@/app/admin/adminSlice/underreviewSlice";
 import ArticleCheckDialog from "@/app/admin/components/accept_changes";
 import ArticleCheckDialogApprove from "@/app/admin/components/accept_changes_approve";
 import MessageDialog from "@/app/admin/components/message";
@@ -22,24 +21,18 @@ import { CiSearch } from "react-icons/ci";
 import { FaRegCircle } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 
-type Props = {
-  name?: string;
-};
-
-const page = (props: Props) => {
+const Page = () => {
   const route = useRouter();
   const [selected, setSelected] = useState<number>(999999);
   const [search, setSearch] = useState("");
   const { token, user } = useAppSelector((state) => state.token);
   const [selectedFileOuter, setSelectedFileOuter] = useState<File>(); // file state
 
-  const { loading, articles, error } = useAppSelector(
-    (state) => state.getArticle,
-  );
+  const { loading, articles } = useAppSelector((state) => state.getArticle);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchArticlesByUser({ userEmail: user, token: token }));
-  }, []);
+  }, [dispatch, token, user]);
 
   return loading ? (
     <LoadingSpinner />
@@ -434,4 +427,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;

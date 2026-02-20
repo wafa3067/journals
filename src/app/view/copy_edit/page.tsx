@@ -2,7 +2,6 @@
 
 import StageComplete from "@/app/admin/components/StageComplete";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
-import { updateTab } from "@/app/api/providers/tab_bar";
 import { setTab } from "@/app/api/slice/viewSlice";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,7 @@ export default function CopyEditorPage() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setTab("Copyediting"));
-  }, []);
+  }, [dispatch]);
   return article?.status == "Copy Editor" ? (
     <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md border border-gray-100">
       <h1 className="text-2xl font-semibold text-gray-800 mb-4">
@@ -44,8 +43,8 @@ export default function CopyEditorPage() {
               article?.status === "Copy Editor"
                 ? "bg-yellow-100 text-yellow-700"
                 : article?.status === "Completed"
-                ? "bg-green-100 text-green-700"
-                : "bg-gray-100 text-gray-600"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-gray-100 text-gray-600"
             }`}
           >
             {article?.status}

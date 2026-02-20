@@ -16,7 +16,7 @@ export default function ViewLayout({
   const tabs = ["Submission", "Review", "Copyediting", "Production"];
   const router = useRouter();
   const { tab } = useAppSelector((state) => state.view);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
   const [isPending, startTransition] = useTransition();
   const Navigate = (route: string) => {
     setIsLoading(true);
@@ -44,6 +44,7 @@ export default function ViewLayout({
       Navigate("/view/production");
     }
   };
+  console.log("Current tab:", isPending);
   return (
     <div>
       <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#f3f4f6] ">

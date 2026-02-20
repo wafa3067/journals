@@ -1,9 +1,7 @@
 import React from "react";
 import CustomText from "../components/custom_text";
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className=" flex flex-col h-[180px] bg-[#f2f2f2] items-end  ">
       <CustomText text={"CopyRight"} style={"text-2xl  w-fit pr-2 pb-2"} />

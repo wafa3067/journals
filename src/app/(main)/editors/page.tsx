@@ -1,8 +1,5 @@
 import React from "react";
 import EditorComponent from "../components/editor_component";
-import CustomText from "../components/custom_text";
-
-type Props = {};
 
 const options = [
   {
@@ -228,7 +225,7 @@ const professors = [
   },
 ];
 
-const Page = (props: Props) => {
+const Page = () => {
   return (
     <div className="w-[100%]   p-5">
       <div className="columns-1 md:columns-2 gap-3">
@@ -236,6 +233,7 @@ const Page = (props: Props) => {
           <EditorComponent heading={"EDITORIAL BOARD:"} />
           {editorialBoard.map((value) => (
             <EditorComponent
+              key={value.email}
               style={"p-0"}
               heading={""}
               title={""}
@@ -250,6 +248,7 @@ const Page = (props: Props) => {
           <EditorComponent heading={"EDITORIAL TEAM:"} />
           {options.map((value) => (
             <EditorComponent
+              key={value.email}
               heading={""}
               title={value.title}
               name={value.name}
@@ -261,6 +260,7 @@ const Page = (props: Props) => {
         <div className="flex flex-col w-full  gap-3 break-inside-avoid">
           {association.map((value) => (
             <EditorComponent
+              key={value.email}
               heading={value.heading}
               title={value.title}
               name={value.name}

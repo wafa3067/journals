@@ -1,5 +1,5 @@
 "use client";
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import CustomText from "./custom_text";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/app/api/hooks/hooks";
@@ -9,9 +9,7 @@ import {
   fetchApprovedArticles,
 } from "@/app/api/slice/fetchArticaleCount";
 
-type Props = {};
-
-const SideBar = (props: Props) => {
+const SideBar = () => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();

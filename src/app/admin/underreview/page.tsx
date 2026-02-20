@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../api/hooks/hooks";
-import { Article, updateArticleStatus } from "../adminSlice/pending";
+import { Article } from "../adminSlice/pending";
 import {
   assignCopyEditor,
   fetchUnderReview,
@@ -32,13 +32,13 @@ export default function UnderReviewPage() {
 
   // Filter articles that are currently "Under Review"
   const underReviewArticles = articles.filter(
-    (a) => a.status === "Under Review"
+    (a) => a.status === "Under Review",
   );
 
   const handleInputChange = (
     articleId: number,
     field: "reviewer" | "start" | "end" | "comments",
-    value: string
+    value: string,
   ) => {
     setReviewInputs((prev) => ({
       ...prev,
@@ -143,14 +143,14 @@ export default function UnderReviewPage() {
 </html>
 
 `,
-      })
+      }),
     );
     dispatch(
       rejectArticleStatus({
         id: article.id,
         comments: value,
         status: "Rejected",
-      })
+      }),
     ).then((response) => {
       dispatch(
         addNotification({
@@ -158,7 +158,7 @@ export default function UnderReviewPage() {
           message: `Your Article has been rejected .`,
           email: article.email,
           status: "Rejected",
-        })
+        }),
       );
       dispatch(fetchUnderReview());
       setSuccessMessage("Reject Article Response:" + response);
@@ -199,8 +199,8 @@ export default function UnderReviewPage() {
             <tr>
               <td style="padding:25px 35px 10px 35px; font-size:18px; color:#111827;">
                 Hello <strong>${article.givenName} ${
-          article.familyName
-        }</strong>,
+                  article.familyName
+                }</strong>,
               </td>
             </tr>
 
@@ -270,7 +270,7 @@ export default function UnderReviewPage() {
   </body>
 </html>
 `,
-      })
+      }),
     );
     dispatch(
       assignCopyEditor({
@@ -278,15 +278,15 @@ export default function UnderReviewPage() {
         copyeditor: input.reviewer,
         status: "Copy Editor",
         comments: input.comments,
-      })
-    ).then((response) => {
+      }),
+    ).then(() => {
       dispatch(
         addNotification({
           title: article.title,
           message: `Reviewer ${input.reviewer} has been assigned to your article "${article.title}".`,
           email: article.email,
           status: "Copy Editor",
-        })
+        }),
       );
       showAlert(" Article assigned to CopyEditor successfully!");
       dispatch(fetchUnderReview());
@@ -371,7 +371,7 @@ export default function UnderReviewPage() {
                           handleInputChange(
                             article.id,
                             "reviewer",
-                            e.target.value
+                            e.target.value,
                           )
                         }
                       />
@@ -383,7 +383,7 @@ export default function UnderReviewPage() {
                           handleInputChange(
                             article.id,
                             "comments",
-                            e.target.value
+                            e.target.value,
                           )
                         }
                       />

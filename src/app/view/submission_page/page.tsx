@@ -10,7 +10,7 @@ export default function SubmissionPage() {
   const { article } = useAppSelector((state) => state.getArticleById);
   useEffect(() => {
     dispatch(setTab("Submission"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="max-w-5xl mx-auto p-6">

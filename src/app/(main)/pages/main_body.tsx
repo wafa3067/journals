@@ -1,17 +1,12 @@
-import Image from "next/image";
 import React from "react";
 import CustomText from "../components/custom_text";
-import Journals from "../components/journals";
-import Articles from "../components/article";
+
 import { MdKeyboardArrowRight } from "react-icons/md";
 import EditorsList from "../components/EditorsList";
-import CurrentArticlesPage from "../components/CurrentArticlesPage";
-import ArchiveMonthPage from "../archive/[year]/[month]/page";
+
 import CurrentMonthPage from "../components/CurrentArticlesPage";
 
-type Props = {};
-
-const MainBody = (props: Props) => {
+const MainBody = () => {
   return (
     <div className="" style={{ width: "100%" }}>
       <div className=" h-fit  ">

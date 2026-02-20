@@ -44,7 +44,7 @@ const initialState: {
 // ✅ Async thunk to get user by email with token
 export const fetchUserByEmail = createAsyncThunk(
   "user/fetchByEmail",
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue }) => {
     try {
       // Get token from state or localStorage
       const token = localStorage.getItem("token");
@@ -56,14 +56,14 @@ export const fetchUserByEmail = createAsyncThunk(
           headers: {
             Authorization: `Bearer ${token}`, // send token in header
           },
-        }
+        },
       );
 
       return response.data["user"] as User;
-    } catch (error: any) {
+    } catch (error: string | any) {
       return rejectWithValue(error.response?.data || "Failed to fetch user");
     }
-  }
+  },
 );
 
 const userSlice = createSlice({
@@ -73,7 +73,7 @@ const userSlice = createSlice({
     // ✅ Update a single field locally
     updateField: (
       state,
-      action: PayloadAction<{ field: keyof User; value: any }>
+      action: PayloadAction<{ field: keyof User; value: any }>,
     ) => {
       if (state.user) {
         const { field, value } = action.payload;

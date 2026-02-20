@@ -1,5 +1,5 @@
 // lib/store/slices/authSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export interface User {
   id: number;
@@ -56,10 +56,10 @@ export const registerUser = createAsyncThunk(
       return data.message;
     } catch (error) {
       return rejectWithValue(
-        error instanceof Error ? error.message : "Registration failed"
+        error instanceof Error ? error.message : "Registration failed",
       );
     }
-  }
+  },
 );
 
 const initialState: AuthState = {
@@ -89,7 +89,7 @@ const authSlice = createSlice({
         state.loadings = true;
         state.errors = null;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(registerUser.fulfilled, (state) => {
         state.loadings = false;
         state.errors = null;
         state.isAuthenticated = true;

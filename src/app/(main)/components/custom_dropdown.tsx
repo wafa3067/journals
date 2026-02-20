@@ -21,12 +21,12 @@ export default function CustomDropdown({
   onChange,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  // const [selected, setSelected] = useState<string | null>(null);
   console.log(
     "selectedOption",
     selectedOption === "Editorial Team"
       ? "border-[#671509]"
-      : "border-[#3a1beb]"
+      : "border-[#3a1beb]",
   );
   return (
     <div
@@ -55,7 +55,7 @@ export default function CustomDropdown({
               key={option.label}
               className="px-4 py-2 text-black hover:bg-black hover:text-white"
               onClick={() => {
-                setSelected(option.label);
+                // setSelected(option.label);
                 setOpen(false);
                 onChange(option.label);
               }}

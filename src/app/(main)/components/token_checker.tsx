@@ -7,12 +7,12 @@ import { checkToken, logout } from "@/app/api/slice/tokenCheck";
 const TokenChecker = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { tokenValid, loading } = useAppSelector((state) => state.authToken);
+  const { loading } = useAppSelector((state) => state.authToken);
 
   useEffect(() => {
     dispatch(checkToken())
       .unwrap()
-      .catch((e) => {
+      .catch(() => {
         dispatch(logout());
         router.push("/");
       });

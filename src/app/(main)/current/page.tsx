@@ -7,14 +7,13 @@ import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { selectArticles } from "@/app/api/selectors/archiveSelectors";
 import { fetchArchiveArticles } from "@/app/api/slice/archiveSlice";
 import { useRouter } from "next/navigation";
+import { GetSelectorArticle } from "../archive/[year]/[month]/page";
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
-  const [filtered, setFiltered] = useState<any[]>([]);
+  const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -30,7 +29,7 @@ const Page = (props: Props) => {
     });
     console.log("Filtered articles for", filteredArticles);
     setFiltered(filteredArticles);
-  }, [articles, "2026", "01"]);
+  }, [articles]);
   if (!filtered.length)
     return (
       <p className="p-6">

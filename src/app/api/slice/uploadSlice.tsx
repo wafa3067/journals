@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState } from "./metaData";
-type FileInfo = {};
 export interface upload {
   pdf: File | null | string;
   name: string;

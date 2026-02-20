@@ -16,12 +16,46 @@ interface Props {
   };
 }
 
+export interface GetSelectorArticle {
+  id: number;
+  section: string;
+  previousPublished: string;
+  fileType: string;
+  refrencedUrl: string;
+  textStyle: string;
+  textStylic: string;
+  comment: string;
+  copyright: string;
+  privacypolicy: string;
+  pdf: string;
+  status: string;
+  user: string;
+  approvedBy: string;
+  prefix: string;
+  title: string;
+  subtitle: string;
+  underReviewComments: string;
+  abstracts: string;
+  keywords: string;
+  userComments: string;
+  referenceText: string;
+  userProductionComments: string;
+  productionComments: string;
+  createdAt: string;
+  modifyCopyEditor: boolean;
+  modifyProduction: boolean;
+  finalFile: string | null;
+  pdfUrl: string;
+}
+
 export default function ArchiveMonthPage({ params }: Props) {
   const { year, month } = params;
   const dispatch = useAppDispatch();
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
-  const [filtered, setFiltered] = useState<any[]>([]);
+
+  const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
+  // const [filtered, setFiltered] = useState<any[]>([]);
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -30,7 +64,6 @@ export default function ArchiveMonthPage({ params }: Props) {
 
   // Filter articles for this year/month
   useEffect(() => {
-    console.log("Filtering articles for", year, month);
     const filteredArticles = articles.filter((article) => {
       if (!article.createdAt) return false;
       const [y, m] = article.createdAt.split("-");

@@ -30,16 +30,19 @@ type Props = {
 
 export default function UserMenu(props: Props) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  // const [, setSelected] = useState<string | null>(null);
 
   const handleSelect = (label: string) => {
-    setSelected(label);
+    // setSelected(label);
     setOpen(false);
-    props.is_optins &&
+    if (
+      props.is_optins &&
       props.options.length &&
       props.options[0] &&
-      props.options[0].label &&
+      props.options[0].label
+    ) {
       props.selectedOpt(label);
+    }
   };
 
   const displayName = props.starting;

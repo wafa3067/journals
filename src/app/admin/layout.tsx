@@ -1,11 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
-import HorizontalBar from "../(main)/components/horizontal_bar";
-import React, { useEffect } from "react";
-import CustomText from "../(main)/components/custom_text";
-import { MdOutlineArrowBack } from "react-icons/md";
-import { TbLayoutDashboardFilled } from "react-icons/tb";
-import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
+import React from "react";
 import AdminSidebar from "./components/adminsidebar";
 
 export default function AdminLayout({

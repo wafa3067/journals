@@ -6,11 +6,10 @@ import CustomText from "@/app/(main)/components/custom_text";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-type Props = {};
 
-const page = (props: Props) => {
+const Page = () => {
   const router = useRouter();
-  const Navigate = (route: any) => {
+  const Navigate = (route: string) => {
     router.push(route);
   };
   return (
@@ -66,4 +65,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;

@@ -53,8 +53,11 @@ const SearchPage: React.FC = () => {
       // Set results
       setResults(response.data);
       console.log("Search results:", response.data);
-    } catch (err) {
-      setError("Failed to fetch data. Please try again later.");
+    } catch (error) {
+      setError(
+        "Failed to fetch data. Please try again later. " +
+          (error instanceof Error ? error.message : ""),
+      );
     } finally {
       setLoading(false);
     }

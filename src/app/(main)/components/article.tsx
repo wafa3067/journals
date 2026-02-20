@@ -2,12 +2,12 @@ import React from "react";
 import CustomText from "./custom_text";
 import { TbFileTypePdf } from "react-icons/tb";
 type Props = {
-  title1?: String;
-  title12?: String;
-  style1?: String;
-  style2?: String;
-  cited?: String;
-  citedstyle?: String;
+  title1?: string;
+  title12?: string;
+  style1?: string;
+  style2?: string;
+  cited?: string;
+  citedstyle?: string;
   onClick?: () => void;
   pdfUrl?: string;
 };

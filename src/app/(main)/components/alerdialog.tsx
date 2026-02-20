@@ -1,11 +1,7 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
-import {
-  addContributor,
-  Contributor,
-  updateContributor,
-} from "@/app/api/slice/metaData";
+import { addContributor, Contributor } from "@/app/api/slice/metaData";
 import {
   Dialog,
   DialogContent,
@@ -63,7 +59,7 @@ export default function AddContributorDialog() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value, type } = e.target;
 
@@ -83,7 +79,7 @@ export default function AddContributorDialog() {
   };
   const checkDuplications = (email: string) => {
     const isDuplicate = contributor.contributorsList.map(
-      (val: Contributor) => val.email == email
+      (val: Contributor) => val.email == email,
     );
 
     if (isDuplicate[0] == true) {
@@ -254,7 +250,7 @@ export default function AddContributorDialog() {
 
           <div>
             <label className="block text-sm font-medium">
-              Contributor's Role*
+              Contributor&apos;s Role*
             </label>
             <select
               name="role"

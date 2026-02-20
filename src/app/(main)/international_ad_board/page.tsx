@@ -2,9 +2,7 @@ import React from "react";
 import EditorComponent from "../components/editor_component";
 import CustomText from "../components/custom_text";
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page = () => {
   const professors = [
     {
       name: "Dr. Dieter Suter",

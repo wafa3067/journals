@@ -21,7 +21,7 @@ import {
 } from "@/app/api/slice/metaData";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState, useTransition } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
 import { MdOutlineDone } from "react-icons/md";
 
@@ -283,7 +283,7 @@ const Page = () => {
               console.log(isComplete);
               if (isComplete === false) {
                 setError(
-                  "Please fill all required fields and add at least one contributor!"
+                  "Please fill all required fields and add at least one contributor!",
                 );
               } else if (isComplete === true) {
                 setError("");

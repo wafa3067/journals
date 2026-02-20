@@ -40,17 +40,21 @@ export const updateIdentity = createAsyncThunk<
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     if (response.status !== 200) {
       throw new Error("Failed to update user identity");
     }
 
     return response.data as string; // "User identity updated successfully!"
-  } catch (error: any) {
-    return rejectWithValue(
-      error.response?.data || "Failed to update user identity"
-    );
+  } catch (err) {
+    let errorMessage = "Failed to update user identity";
+
+    if (axios.isAxiosError(err)) {
+      // This is an Axios error
+      errorMessage = err.response?.data || err.message;
+    }
+    return rejectWithValue(errorMessage);
   }
 });
 
