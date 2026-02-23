@@ -38,7 +38,7 @@ export const updateContact = createAsyncThunk<
     const email = await localStorage.getItem("email");
 
     const res = await axios.post(
-      `http://localhost:8080/api/update/contact?email=${email}`,
+      `https://journals-backend-ge92.onrender.com/api/update/contact?email=${email}`,
       updatedUser,
       {
         headers: {

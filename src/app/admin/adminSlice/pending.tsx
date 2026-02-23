@@ -38,7 +38,9 @@ export const fetchPendingArticles = createAsyncThunk<Article[]>(
   "pending/fetchPendingArticles",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:8080/admin/pending");
+      const response = await axios.get(
+        "https://journals-backend-ge92.onrender.com/admin/pending",
+      );
 
       return response.data;
     } catch (err: unknown) {
@@ -61,7 +63,7 @@ export const updateArticleStatus = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/status/${id}?status=${status}`,
+        `https://journals-backend-ge92.onrender.com/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
@@ -94,7 +96,7 @@ export const assignReviewer = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/status/${articleId}`,
+        `https://journals-backend-ge92.onrender.com/admin/articles/status/${articleId}`,
         null, // no body needed
         {
           params: {

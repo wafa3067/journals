@@ -45,7 +45,9 @@ const initialState: UserState = {
 };
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await axios.get("http://localhost:8080/admin/users");
+  const response = await axios.get(
+    "https://journals-backend-ge92.onrender.com/admin/users",
+  );
   // ✅ since your backend returns an array directly
   // If backend returns a string, parse it
   if (typeof response.data === "string") {

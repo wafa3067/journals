@@ -23,7 +23,7 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `http://localhost:8080/api/validate-token?token=${token}`,
+        `https://journals-backend-ge92.onrender.com/api/validate-token?token=${token}`,
       );
 
       if (!res.data.valid) {

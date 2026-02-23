@@ -32,7 +32,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         `http://localhost:8080/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+//         `https://journals-backend-ge92.onrender.com/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
 //       );
 //       dispatch(searchSuccess(response.data)); // Dispatch success action with the data
 //     } catch (error) {

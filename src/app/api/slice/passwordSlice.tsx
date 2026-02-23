@@ -26,7 +26,7 @@ export const updatePassword = createAsyncThunk<
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.patch(
-        `http://localhost:8080/api/update/password?email=${email}`,
+        `https://journals-backend-ge92.onrender.com/api/update/password?email=${email}`,
         null, // no body
         {
           params: { oldPassword, newPassword },

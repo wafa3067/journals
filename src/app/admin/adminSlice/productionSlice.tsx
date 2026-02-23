@@ -45,7 +45,7 @@ export const fetchProduction = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/get-production",
+        "https://journals-backend-ge92.onrender.com/admin/get-production",
       );
       console.log("Fetched under review articles:", response.data);
       return response.data;
@@ -75,8 +75,8 @@ export const assignApproved = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/production/${articleId}`,
-        `http://localhost:8080/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
+        `https://journals-backend-ge92.onrender.com/admin/articles/production/${articleId}`,
+        `https://journals-backend-ge92.onrender.com/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

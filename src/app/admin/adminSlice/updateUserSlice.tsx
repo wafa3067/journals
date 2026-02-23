@@ -33,7 +33,7 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/admin/users/status/${id}`,
+      `https://journals-backend-ge92.onrender.com/admin/users/status/${id}`,
       null,
       {
         params: { status },
@@ -61,7 +61,7 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/users/delete/${id}`,
+      `https://journals-backend-ge92.onrender.com/users/delete/${id}`,
     );
     return { id, message: response.data.message };
   } catch (err: unknown) {

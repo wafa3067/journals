@@ -81,7 +81,7 @@ export const uploadArticle = createAsyncThunk(
       formData.append("contributorsList", JSON.stringify(contributors));
 
       const response = await axios.post(
-        "http://localhost:8080/api/upload",
+        "https://journals-backend-ge92.onrender.com/api/upload",
         formData,
         {
           headers: {
@@ -123,7 +123,7 @@ export const uploadFinalFile = createAsyncThunk(
       formData.append("finalFile", finalFile);
 
       const response = await axios.post(
-        `http://localhost:8080/api/upload/final/${articleId}`,
+        `https://journals-backend-ge92.onrender.com/api/upload/final/${articleId}`,
         formData,
         {
           headers: {

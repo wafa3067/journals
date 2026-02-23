@@ -34,7 +34,7 @@ export const updateIdentity = createAsyncThunk<
     const email = await localStorage.getItem("email");
 
     const response = await axios.post(
-      `http://localhost:8080/api/update/identity?email=${email}`,
+      `https://journals-backend-ge92.onrender.com/api/update/identity?email=${email}`,
       updatedUser,
       {
         headers: {

@@ -24,7 +24,7 @@ export const updatePublicProfile = createAsyncThunk<
     const token = await localStorage.getItem("token");
     const email = await localStorage.getItem("email");
     const res = await axios.post(
-      `http://localhost:8080/api/update/public?email=${email}`,
+      `https://journals-backend-ge92.onrender.com/api/update/public?email=${email}`,
       formData,
       {
         headers: {

@@ -77,7 +77,9 @@ export const fetchArchiveArticles = createAsyncThunk<
   { rejectValue: string }
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get("http://localhost:8080/api/get");
+    const response = await axios.get(
+      "https://journals-backend-ge92.onrender.com/api/get",
+    );
 
     return response.data;
   } catch (err: unknown) {

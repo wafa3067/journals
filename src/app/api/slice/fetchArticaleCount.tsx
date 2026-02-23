@@ -25,17 +25,17 @@ export const fetchTotalArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `http://localhost:8080/api/total-article?email=${email}`,
+        `https://journals-backend-ge92.onrender.com/api/total-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       return res.data; // returns number
     }
-  }
+  },
 );
 
 // ✅ Fetch pending articles
@@ -46,18 +46,18 @@ export const fetchPendingArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `http://localhost:8080/api/pending-article?email=${email}`,
+        `https://journals-backend-ge92.onrender.com/api/pending-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       return res.data;
     }
     // returns number
-  }
+  },
 );
 
 // ✅ Fetch approved articles
@@ -68,18 +68,18 @@ export const fetchApprovedArticles = createAsyncThunk(
     const token = await localStorage.getItem("token");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `http://localhost:8080/api/total-approved?email=${email}`,
+        `https://journals-backend-ge92.onrender.com/api/total-approved?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       return res.data;
     }
     // returns number
-  }
+  },
 );
 
 const getCountArticles = createSlice({
@@ -98,7 +98,7 @@ const getCountArticles = createSlice({
           state.loading = false;
           state.total = action.payload;
           state.error = null;
-        }
+        },
       )
       .addCase(fetchTotalArticles.rejected, (state, action) => {
         state.loading = false;
@@ -114,7 +114,7 @@ const getCountArticles = createSlice({
           state.loading = false;
           state.pending = action.payload;
           state.error = null;
-        }
+        },
       )
       .addCase(fetchPendingArticles.rejected, (state, action) => {
         state.loading = false;
@@ -131,7 +131,7 @@ const getCountArticles = createSlice({
           state.loading = false;
           state.approved = action.payload;
           state.error = null;
-        }
+        },
       )
       .addCase(fetchApprovedArticles.rejected, (state, action) => {
         state.loading = false;

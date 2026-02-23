@@ -42,7 +42,7 @@ export const fetchUnderReview = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/under-review",
+        "https://journals-backend-ge92.onrender.com/admin/under-review",
       );
       console.log("Fetched under review articles:", response.data);
       return response.data;
@@ -75,7 +75,7 @@ export const assignCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
+        `https://journals-backend-ge92.onrender.com/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
           copyeditor,
         )}&status=${encodeURIComponent(status)}&comments=${encodeURIComponent(
           comments,
@@ -110,7 +110,7 @@ export const modifyCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
+        `https://journals-backend-ge92.onrender.com/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
           copy,
         )}`,
       );

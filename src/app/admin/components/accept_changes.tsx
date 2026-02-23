@@ -212,7 +212,7 @@ export default function ArticleCheckDialog({
           </AlertDialog.Description>
           <h1>Download Template File below </h1>
           <a
-            href="http://localhost:8080/uploads/IEEE_Conference_Template.pdf"
+            href="https://journals-backend-ge92.onrender.com/uploads/IEEE_Conference_Template.pdf"
             className="text-blue-600 hover:underline"
             target="_blank"
             rel="noopener noreferrer"

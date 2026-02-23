@@ -22,7 +22,7 @@ export const sendArticleEmail = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/admin/email",
+        "https://journals-backend-ge92.onrender.com/admin/email",
         null, // no body, using query params
         {
           params: { toEmail, authorName, status, articleTitle, body },

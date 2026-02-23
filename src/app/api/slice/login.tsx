@@ -18,11 +18,14 @@ export const loginUser = createAsyncThunk(
   "auth/register",
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:8080/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        "https://journals-backend-ge92.onrender.com/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        },
+      );
       const errorData = await response.json();
 
       if (!response.ok) {
@@ -48,10 +51,10 @@ export const loginUser = createAsyncThunk(
       return errorData;
     } catch (error) {
       return rejectWithValue(
-        error instanceof Error ? error.message : "Registration failed"
+        error instanceof Error ? error.message : "Registration failed",
       );
     }
-  }
+  },
 );
 
 const initialState: AuthState = {

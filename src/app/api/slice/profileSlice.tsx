@@ -51,7 +51,7 @@ export const fetchUserByEmail = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const response = await axios.get(
-        `http://localhost:8080/api/find?email=${email}`,
+        `https://journals-backend-ge92.onrender.com/api/find?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // send token in header

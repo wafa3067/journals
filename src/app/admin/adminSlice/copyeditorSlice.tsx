@@ -44,7 +44,7 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/copy-editor",
+        "https://journals-backend-ge92.onrender.com/admin/copy-editor",
       );
       console.log("editors", response.data);
       return response.data;
@@ -73,7 +73,7 @@ export const assignToProduction = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
+        `https://journals-backend-ge92.onrender.com/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );
