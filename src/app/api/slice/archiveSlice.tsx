@@ -78,7 +78,7 @@ export const fetchArchiveArticles = createAsyncThunk<
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(
-      "https://journals-backend-ge92.onrender.com/api/get",
+      "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/get",
     );
 
     return response.data;

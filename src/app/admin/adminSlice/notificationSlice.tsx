@@ -36,7 +36,7 @@ export const addNotification = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        `https://journals-backend-ge92.onrender.com/notification/add/?title=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/notification/add/?title=${encodeURIComponent(
           title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
           email,

@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk(
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://journals-backend-ge92.onrender.com/api/login",
+        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -75,7 +75,7 @@ export const fetchArticlesByUser = createAsyncThunk<
     const email = localStorage.getItem("email");
 
     const response = await axios.get<GetArticle[]>(
-      `https://journals-backend-ge92.onrender.com/api/user/${email}`,
+      `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/user/${email}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -130,7 +130,7 @@ export const uploadFinalFile = createAsyncThunk<
       console.log("the file is ", finalFile);
       const token = await localStorage.getItem("token");
       const response = await axios.post(
-        "https://journals-backend-ge92.onrender.com/api/uploadFinal",
+        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/uploadFinal",
         formData,
         {
           headers: {
@@ -169,7 +169,7 @@ export const updatePdfAndComments = createAsyncThunk<
       if (userComments) formData.append("userComments", userComments);
 
       const response = await axios.post<UpdateArticle>(
-        "https://journals-backend-ge92.onrender.com/api/updatePdfAndComments",
+        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/updatePdfAndComments",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -199,7 +199,7 @@ export const updateUserComment = createAsyncThunk<
   async ({ userComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
           userComments,
         )}`,
       );
@@ -229,7 +229,7 @@ export const updateProductionComments = createAsyncThunk<
         productionComments,
       );
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           productionComments,
         )}`,
       );
@@ -255,7 +255,7 @@ export const updateUserProductionComments = createAsyncThunk<
   async ({ userProductionComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           userProductionComments,
         )}`,
       );
@@ -282,7 +282,7 @@ export const updateProductModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
           production,
         )}`,
       );
@@ -307,7 +307,7 @@ export const updateCopyModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
           production,
         )}`,
       );

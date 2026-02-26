@@ -25,7 +25,7 @@ export const fetchTotalArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://journals-backend-ge92.onrender.com/api/total-article?email=${email}`,
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/total-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ export const fetchPendingArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://journals-backend-ge92.onrender.com/api/pending-article?email=${email}`,
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/pending-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export const fetchApprovedArticles = createAsyncThunk(
     const token = await localStorage.getItem("token");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://journals-backend-ge92.onrender.com/api/total-approved?email=${email}`,
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/total-approved?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

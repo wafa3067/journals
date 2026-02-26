@@ -77,7 +77,7 @@ export default function PublicPage() {
           <p className="mt-2 text-sm text-gray-600 align-middle justify-center items-center  bg-amber-100 ">
             {profile && fileName == null && (
               <Image
-                src={`https://journals-backend-ge92.onrender.com${profile}`}
+                src={`http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080${profile}`}
                 alt="Profile picture"
                 width={50}
                 height={50}

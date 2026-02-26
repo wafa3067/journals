@@ -37,7 +37,7 @@ export const fetchRejectedArticle = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://journals-backend-ge92.onrender.com/admin/rejected",
+        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/rejected",
       );
 
       return response.data;
@@ -61,7 +61,7 @@ export const updateRejectArticleStatus = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://journals-backend-ge92.onrender.com/admin/articles/status/${id}?status=${status}`,
+        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
