@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Articles = (props: Props) => {
-  const pdfUrlonline = `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com${props.pdfUrl}`;
+  const pdfUrlonline = `https://gracious-courtesy-production-48b6.up.railway.app${props.pdfUrl}`;
 
   console.log("Article Props:", props); //' Debug log to check the received props
   return (

@@ -36,7 +36,7 @@ export const addNotification = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/notification/add/?title=${encodeURIComponent(
+        `https://gracious-courtesy-production-48b6.up.railway.app/notification/add/?title=${encodeURIComponent(
           title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
           email,

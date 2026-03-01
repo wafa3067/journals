@@ -30,7 +30,7 @@ export const fetchArticles = createAsyncThunk(
   async (params: { keyword: string, startDate: string, endDate: string, author: string }) => {
     const { keyword, startDate, endDate, author } = params;
     const response = await axios.get(
-      `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+      `https://gracious-courtesy-production-48b6.up.railway.app/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
     );
     return response.data;  // Returning the data that we want to store
   }

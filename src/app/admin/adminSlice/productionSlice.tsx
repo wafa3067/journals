@@ -45,7 +45,7 @@ export const fetchProduction = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/get-production",
+        "https://gracious-courtesy-production-48b6.up.railway.app/admin/get-production",
       );
       console.log("Fetched under review articles:", response.data);
       return response.data;
@@ -75,8 +75,8 @@ export const assignApproved = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/production/${articleId}`,
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
+        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/production/${articleId}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

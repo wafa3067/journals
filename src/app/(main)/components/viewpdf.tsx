@@ -19,7 +19,7 @@ const ViewPDF: React.FC = () => {
     return <p>Loading PDF...</p>;
   }
   // data:application/pdf;base64,${pdf} -< offlince
-  const pdfUrlonline = `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/${pdf}`;
+  const pdfUrlonline = `https://gracious-courtesy-production-48b6.up.railway.app/${pdf}`;
   // console.log("Decoded PDF URL:", pdf); // Debug log to check the decoded URL
   return (
     <div>

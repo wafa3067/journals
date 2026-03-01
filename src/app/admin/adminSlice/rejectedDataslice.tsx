@@ -37,7 +37,7 @@ export const fetchRejectedArticle = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/rejected",
+        "https://gracious-courtesy-production-48b6.up.railway.app/admin/rejected",
       );
 
       return response.data;
@@ -61,7 +61,7 @@ export const updateRejectArticleStatus = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/status/${id}?status=${status}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };

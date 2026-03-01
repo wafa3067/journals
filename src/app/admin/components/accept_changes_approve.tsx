@@ -77,7 +77,7 @@ export default function ArticleCheckDialogApprove({
           </AlertDialog.Description>
           <h1>Download Template File below </h1>
           <a
-            href="http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/uploads/IEEE_Conference_Template.pdf"
+            href="https://gracious-courtesy-production-48b6.up.railway.app/uploads/IEEE_Conference_Template.pdf"
             className="text-blue-600 hover:underline"
             target="_blank"
             rel="noopener noreferrer"

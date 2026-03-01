@@ -22,7 +22,7 @@ export const sendArticleEmail = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/email",
+        "https://gracious-courtesy-production-48b6.up.railway.app/admin/email",
         null, // no body, using query params
         {
           params: { toEmail, authorName, status, articleTitle, body },

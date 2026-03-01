@@ -30,7 +30,7 @@ export const fetchUnreadCount = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/notification/count_unread/${email}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/notification/count_unread/${email}`,
       );
       return response.data; // Long value (number)
     } catch (err: unknown) {
@@ -50,7 +50,7 @@ export const fetchUnNotifications = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/notification/get_notifications/${email}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/notification/get_notifications/${email}`,
       );
       return response.data;
     } catch (err: unknown) {

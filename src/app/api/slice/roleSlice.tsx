@@ -30,7 +30,7 @@ export const updateRole = createAsyncThunk(
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.post(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/update/role?email=${email}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/api/update/role?email=${email}`,
         { review: review, role: roles },
         {
           headers: {

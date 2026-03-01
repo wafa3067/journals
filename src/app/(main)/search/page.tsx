@@ -38,7 +38,7 @@ const SearchPage: React.FC = () => {
     try {
       // Make the API call based on the user's inputs
       const response = await axios.get(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/search`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/api/search`,
         {
           params: {
             keyword: query,

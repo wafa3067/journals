@@ -32,7 +32,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+//         `https://gracious-courtesy-production-48b6.up.railway.app/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
 //       );
 //       dispatch(searchSuccess(response.data)); // Dispatch success action with the data
 //     } catch (error) {

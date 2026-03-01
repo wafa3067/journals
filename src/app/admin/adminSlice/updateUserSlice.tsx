@@ -33,7 +33,7 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/users/status/${id}`,
+      `https://gracious-courtesy-production-48b6.up.railway.app/admin/users/status/${id}`,
       null,
       {
         params: { status },
@@ -61,7 +61,7 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/users/delete/${id}`,
+      `https://gracious-courtesy-production-48b6.up.railway.app/users/delete/${id}`,
     );
     return { id, message: response.data.message };
   } catch (err: unknown) {

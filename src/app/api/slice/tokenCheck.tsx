@@ -23,7 +23,7 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/validate-token?token=${token}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/api/validate-token?token=${token}`,
       );
 
       if (!res.data.valid) {

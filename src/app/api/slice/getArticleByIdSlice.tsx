@@ -63,7 +63,7 @@ export const fetchArticleById = createAsyncThunk(
   async (id: number, thunkAPI) => {
     try {
       const response = await axios.get<Article>(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/article/${id}`,
+        `https://gracious-courtesy-production-48b6.up.railway.app/api/article/${id}`,
       );
       return response.data;
     } catch (err: unknown) {

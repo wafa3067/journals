@@ -44,7 +44,7 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/copy-editor",
+        "https://gracious-courtesy-production-48b6.up.railway.app/admin/copy-editor",
       );
       console.log("editors", response.data);
       return response.data;
@@ -73,7 +73,7 @@ export const assignToProduction = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
+        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

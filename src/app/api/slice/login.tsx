@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk(
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/login",
+        "https://gracious-courtesy-production-48b6.up.railway.app/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
