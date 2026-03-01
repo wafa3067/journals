@@ -15,10 +15,10 @@ export default function CurrentMonthPage() {
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
   const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
-  var currentYear = new Date().getFullYear();
-  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+  const currentYear = new Date().getFullYear();
+  const currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
 
-  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
+  const datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -65,13 +65,7 @@ export default function CurrentMonthPage() {
       }));
 
     setFiltered(filteredArticles);
-  }, [articles]);
-  var currentYear = new Date().getFullYear();
-  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
-
-  // Result: "2026/03"
-  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
-  console.log(" Current Month:", datePath); // Debug log to check the filtered articles
+  }, [articles, currentYear, currentMonth]);
 
   if (!filtered.length)
     return <p className="p-6">No articles found for {datePath}</p>;

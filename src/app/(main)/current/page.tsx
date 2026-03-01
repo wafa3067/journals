@@ -19,10 +19,10 @@ const Page = () => {
   useEffect(() => {
     dispatch(fetchArchiveArticles());
   }, [dispatch]);
-  var currentYear = new Date().getFullYear();
-  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+  const currentYear = new Date().getFullYear();
+  const currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
 
-  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
+  const datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
 
   // Filter articles for this year/month
   useEffect(() => {
@@ -68,7 +68,7 @@ const Page = () => {
       );
 
     setFiltered(filteredArticles);
-  }, [articles]);
+  }, [articles, currentMonth, currentYear]);
 
   if (!filtered.length)
     return <p className="p-6">No articles found for {datePath}</p>;
