@@ -81,7 +81,7 @@ export const uploadArticle = createAsyncThunk(
       formData.append("contributorsList", JSON.stringify(contributors));
 
       const response = await axios.post(
-        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/upload",
+        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/upload",
         formData,
         {
           headers: {
@@ -123,7 +123,7 @@ export const uploadFinalFile = createAsyncThunk(
       formData.append("finalFile", finalFile);
 
       const response = await axios.post(
-        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/api/upload/final/${articleId}`,
+        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/api/upload/final/${articleId}`,
         formData,
         {
           headers: {

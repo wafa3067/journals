@@ -39,7 +39,7 @@ export const fetchPendingArticles = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/pending",
+        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/pending",
       );
 
       return response.data;
@@ -63,7 +63,7 @@ export const updateArticleStatus = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/articles/status/${id}?status=${status}`,
+        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
@@ -96,7 +96,7 @@ export const assignReviewer = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/articles/status/${articleId}`,
+        `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/articles/status/${articleId}`,
         null, // no body needed
         {
           params: {

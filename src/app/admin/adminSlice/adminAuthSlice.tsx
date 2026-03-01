@@ -33,7 +33,7 @@ export const adminLogin = createAsyncThunk(
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/login/login",
+        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/login/login",
         null,
         {
           params: {
@@ -65,7 +65,7 @@ export const adminRegister = createAsyncThunk(
   async (data: RegisterData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/login/register",
+        "http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/login/register",
         null,
         {
           params: {

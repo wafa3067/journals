@@ -19,6 +19,10 @@ const Page = () => {
   useEffect(() => {
     dispatch(fetchArchiveArticles());
   }, [dispatch]);
+  var currentYear = new Date().getFullYear();
+  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+
+  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
 
   // Filter articles for this year/month
   useEffect(() => {
@@ -27,7 +31,7 @@ const Page = () => {
       .filter((article) => {
         console.log("Filtering article with createdAt:", article.createdAt);
         const [y, m] = article.createdAt!.split("-");
-        return y === "2026" && m === "01";
+        return y === `${currentYear}` && m === `${currentMonth}`;
       })
       .map(
         (article): GetSelectorArticle => ({
@@ -67,11 +71,7 @@ const Page = () => {
   }, [articles]);
 
   if (!filtered.length)
-    return (
-      <p className="p-6">
-        No articles found for {2026}/{1}
-      </p>
-    );
+    return <p className="p-6">No articles found for {datePath}</p>;
 
   return (
     <div className="w-[100%]">
@@ -83,11 +83,11 @@ const Page = () => {
       />
       <CustomText
         style={"text-black  font-bold  text-2xl  m-2 w-fit"}
-        text={"Vol. 18 No. 2 (2025): Vol18 No2 2025"}
+        text={`Vol. ${currentMonth} No. ${currentMonth} (${currentYear})`}
       />
       <Journals
         img="/images/bg.jpg"
-        date="15-12-2025"
+        date={`${currentMonth} (${currentYear})`}
         image_style={"w-[250px]"}
       />
       <CustomText

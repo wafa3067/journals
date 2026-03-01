@@ -18,11 +18,13 @@ const ViewPDF: React.FC = () => {
   if (!pdf) {
     return <p>Loading PDF...</p>;
   }
-
+  // data:application/pdf;base64,${pdf} -< offlince
+  const pdfUrlonline = `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/${pdf}`;
+  // console.log("Decoded PDF URL:", pdf); // Debug log to check the decoded URL
   return (
     <div>
       <h1>PDF Viewer</h1>
-      <Document file={`data:application/pdf;base64,${pdf}`}>
+      <Document file={pdfUrlonline}>
         <Page pageNumber={1} />
       </Document>
     </div>

@@ -13,6 +13,9 @@ type Props = {
 };
 
 const Articles = (props: Props) => {
+  const pdfUrlonline = `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com${props.pdfUrl}`;
+
+  console.log("Article Props:", props); //' Debug log to check the received props
   return (
     <div className="p-5">
       {props.title1 && <CustomText style={props.style1} text={props.title1} />}
@@ -24,7 +27,7 @@ const Articles = (props: Props) => {
           <CustomText style={props.citedstyle} text={props.cited ?? ""} />
         )}
       </div>
-      <a href={props.pdfUrl} target="_blank" rel="noopener noreferrer">
+      <a href={pdfUrlonline} target="_blank" rel="noopener noreferrer">
         <div
           className="flex 
       flex-row gap-1.5 items-center pl-2 pr-2 mt-2 bg-[#000] hover:bg-amber-500 text-white rounded-sm  w-fit"

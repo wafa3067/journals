@@ -118,7 +118,7 @@ const ViewPDF = () => {
   }, [params?.pdfData]);
 
   if (!pdfUrl) return <p>Loading PDF...</p>;
-
+  console.log("Decoded PDF URL:", pdfUrl); // Debug log to check the decoded URL
   return (
     <div className="flex justify-center items-center flex-col p-6 bg-gray-100 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">PDF Viewer</h1>

@@ -15,6 +15,10 @@ export default function CurrentMonthPage() {
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
   const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
+  var currentYear = new Date().getFullYear();
+  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+
+  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function CurrentMonthPage() {
       .filter((article) => article.createdAt) // must have createdAt
       .filter((article) => {
         const [y, m] = article.createdAt!.split("-");
-        return y === "2026" && m === "01";
+        return y === `${currentYear}` && m === `${currentMonth}`;
       })
       .map((article) => ({
         id: article.id,
@@ -62,14 +66,15 @@ export default function CurrentMonthPage() {
 
     setFiltered(filteredArticles);
   }, [articles]);
+  var currentYear = new Date().getFullYear();
+  var currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+
+  // Result: "2026/03"
+  var datePath = `${currentYear}/${currentMonth}/`; // Months are 0-indexed
+  console.log(" Current Month:", datePath); // Debug log to check the filtered articles
 
   if (!filtered.length)
-    return (
-      <p className="p-6">
-        No articles found for {2026}/{1}
-      </p>
-    );
-
+    return <p className="p-6">No articles found for {datePath}</p>;
   return (
     <div className="p-6">
       <div className=" shadow-sm rounded-2xl p-5">
@@ -81,9 +86,7 @@ export default function CurrentMonthPage() {
           objectFit="cover"
           alt={"no image"}
         />
-        <h1 className="text-2xl font-bold mb-4">
-          Vol {2026}/{1}
-        </h1>
+        <h1 className="text-2xl font-bold mb-4">Vol {datePath}</h1>
       </div>
 
       <ul className="space-y-4">

@@ -33,7 +33,7 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/admin/users/status/${id}`,
+      `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/admin/users/status/${id}`,
       null,
       {
         params: { status },
@@ -61,7 +61,7 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `http://ec2-18-179-200-143.ap-northeast-1.compute.amazonaws.com:8080/users/delete/${id}`,
+      `http://journalsbackend-env.eba-ebzkqbct.ap-northeast-1.elasticbeanstalk.com/users/delete/${id}`,
     );
     return { id, message: response.data.message };
   } catch (err: unknown) {

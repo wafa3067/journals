@@ -297,7 +297,7 @@ export default function ArchiveMonthPage() {
             key={article.id}
             style1={"font-bold text-[#4b7d92]"}
             style2={"text-black w-[90%]"}
-            title1={article.title}
+            title1={article.pdfUrl}
             title12={article.subtitle}
           />
         ))}
