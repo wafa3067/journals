@@ -42,9 +42,8 @@ export const fetchUnderReview = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://gracious-courtesy-production-48b6.up.railway.app/admin/under-review",
+        "https://generous-love-production-3a3d.up.railway.app/admin/under-review",
       );
-      console.log("Fetched under review articles:", response.data);
       return response.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -75,7 +74,7 @@ export const assignCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
           copyeditor,
         )}&status=${encodeURIComponent(status)}&comments=${encodeURIComponent(
           comments,
@@ -84,7 +83,6 @@ export const assignCopyEditor = createAsyncThunk(
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
-      console.log("Assign Copy Editor Response:", res.data);
       return res.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -110,14 +108,13 @@ export const modifyCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
           copy,
         )}`,
       );
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
-      console.log("Assign Copy  Response:", res.data);
       return res.data;
     } catch (err: unknown) {
       let message = "Login failed";

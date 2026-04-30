@@ -44,7 +44,7 @@ export default function ViewLayout({
       Navigate("/view/production");
     }
   };
-  console.log("Current tab:", isPending);
+  //console.log("Current tab:", isPending);
   return (
     <div>
       <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#f3f4f6] ">

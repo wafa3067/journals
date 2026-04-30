@@ -125,7 +125,7 @@ const Page = () => {
 
       const result = await dispatch(registerUser(registrationData));
 
-      console.log("Registration successful:", result);
+      //console.log("Registration successful:", result);
       // Redirection will happen automatically due to useEffect
     } catch (err) {
       console.error("Registration failed:", err);

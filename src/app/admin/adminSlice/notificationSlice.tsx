@@ -36,7 +36,7 @@ export const addNotification = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/notification/add/?title=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/notification/add/?title=${encodeURIComponent(
           title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
           email,
@@ -44,7 +44,6 @@ export const addNotification = createAsyncThunk(
           new Date().toISOString(),
         )}`,
       );
-      console.log("Notification added:", response.data);
       return response.data;
     } catch (err: unknown) {
       let message = "Login failed";

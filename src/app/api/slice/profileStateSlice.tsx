@@ -89,7 +89,7 @@ export const profileStateSlice = createSlice({
       state.givenName = action.payload;
     },
     setPublicName: (state, action: PayloadAction<string>) => {
-      console.log("Setting public name to:", action.payload);
+      //console.log("Setting public name to:", action.payload);
       state.publicName = action.payload;
     },
     setSignature: (state, action: PayloadAction<string>) => {

@@ -39,14 +39,14 @@ export const registerUser = createAsyncThunk(
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://gracious-courtesy-production-48b6.up.railway.app/api/sign-up",
+        "https://generous-love-production-3a3d.up.railway.app/api/sign-up",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
         },
       );
-
+      //console.log("response:", response);
       const data = await response.json();
 
       if (!response.ok) {
@@ -55,8 +55,8 @@ export const registerUser = createAsyncThunk(
       if (data.message === "Email already registered!") {
         return rejectWithValue(data.message);
       }
-      console.log("Registration successful:", response, data);
-      return data.message;
+      //console.log("Registration successful:", response, data);
+      return "data.message";
     } catch (error) {
       return rejectWithValue(
         error instanceof Error ? error.message : "Registration failed",

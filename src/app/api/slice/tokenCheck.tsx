@@ -23,10 +23,15 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/validate-token?token=${token}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/validate-token?token=${token}`,
       );
-
+      //console.log("Token check response:", res.data);
       if (!res.data.valid) {
+        localStorage.removeItem("id");
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        localStorage.removeItem("role");
         return rejectWithValue("Token expired");
       }
 

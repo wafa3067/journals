@@ -9,7 +9,7 @@ import { fetchUserByEmail } from "@/app/api/slice/profileSlice";
 import { setProfileData } from "@/app/api/slice/profileStateSlice";
 
 const SecondHeader = () => {
-  const [selected, setSelected] = useState<string>();
+  const [selected, setSelected] = useState<string>("Home");
   const router = useRouter();
   const navigate = (route: string) => router.push(route);
   const { token } = useAppSelector((state) => state.token);
@@ -61,6 +61,19 @@ const SecondHeader = () => {
   return (
     <div className="w-full border-b bg-black p-4  justify-between items-center md:flex hidden">
       <div className="flex flex-wrap gap-3">
+        <CustomDropdown
+          selectedOption={selected || undefined}
+          starting="Home"
+          options={options}
+          is_optins={false}
+          onTap={() => {
+            navigate("/");
+            setSelected("Home");
+          }}
+          onChange={(value: string): void => {
+            setSelected(value);
+          }}
+        />
         <CustomDropdown
           starting="Submit an article"
           options={options}

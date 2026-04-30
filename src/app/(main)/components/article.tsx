@@ -13,9 +13,8 @@ type Props = {
 };
 
 const Articles = (props: Props) => {
-  const pdfUrlonline = `https://gracious-courtesy-production-48b6.up.railway.app${props.pdfUrl}`;
+  const pdfUrlonline = `https://generous-love-production-3a3d.up.railway.app${props.pdfUrl}`;
 
-  console.log("Article Props:", props); //' Debug log to check the received props
   return (
     <div className="p-5">
       {props.title1 && <CustomText style={props.style1} text={props.title1} />}

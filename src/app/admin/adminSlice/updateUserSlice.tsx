@@ -33,13 +33,12 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `https://gracious-courtesy-production-48b6.up.railway.app/admin/users/status/${id}`,
+      `https://generous-love-production-3a3d.up.railway.app/admin/users/status/${id}`,
       null,
       {
         params: { status },
       },
     );
-    console.log("Update response:", response.data);
     return { id, status, message: response.data.message };
   } catch (err: unknown) {
     let message = "Login failed";
@@ -61,7 +60,7 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `https://gracious-courtesy-production-48b6.up.railway.app/users/delete/${id}`,
+      `https://generous-love-production-3a3d.up.railway.app/users/delete/${id}`,
     );
     return { id, message: response.data.message };
   } catch (err: unknown) {

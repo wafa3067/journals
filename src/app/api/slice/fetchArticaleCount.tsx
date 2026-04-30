@@ -25,7 +25,7 @@ export const fetchTotalArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/total-article?email=${email}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/total-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ export const fetchPendingArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/pending-article?email=${email}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/pending-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export const fetchApprovedArticles = createAsyncThunk(
     const token = await localStorage.getItem("token");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/total-approved?email=${email}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/total-approved?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

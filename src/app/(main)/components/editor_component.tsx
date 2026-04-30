@@ -40,7 +40,7 @@ const EditorComponent = (props: Props) => {
       )}
       {props.email && (
         <div>
-          <Link href={`${props.link}`}>
+          <Link href={`mailto:${props.email}`}>
             <CustomText
               text={props.email ?? ""}
               style={"text-blue-300 pb-3 underline"}

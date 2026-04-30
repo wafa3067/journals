@@ -34,7 +34,7 @@ export const updateIdentity = createAsyncThunk<
     const email = await localStorage.getItem("email");
 
     const response = await axios.post(
-      `https://gracious-courtesy-production-48b6.up.railway.app/api/update/identity?email=${email}`,
+      `https://generous-love-production-3a3d.up.railway.app/api/update/identity?email=${email}`,
       updatedUser,
       {
         headers: {

@@ -51,7 +51,7 @@ export const fetchUserByEmail = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const response = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/find?email=${email}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/find?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // send token in header

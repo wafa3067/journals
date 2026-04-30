@@ -29,7 +29,6 @@ const Page = () => {
     const filteredArticles: GetSelectorArticle[] = articles
       .filter((article) => article.createdAt) // must have createdAt
       .filter((article) => {
-        console.log("Filtering article with createdAt:", article.createdAt);
         const [y, m] = article.createdAt!.split("-");
         return y === `${currentYear}` && m === `${currentMonth}`;
       })

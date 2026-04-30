@@ -77,7 +77,7 @@ export default function PublicPage() {
           <p className="mt-2 text-sm text-gray-600 align-middle justify-center items-center  bg-amber-100 ">
             {profile && fileName == null && (
               <Image
-                src={`https://gracious-courtesy-production-48b6.up.railway.app${profile}`}
+                src={`https://generous-love-production-3a3d.up.railway.app${profile}`}
                 alt="Profile picture"
                 width={50}
                 height={50}

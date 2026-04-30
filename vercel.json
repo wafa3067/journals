@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/proxy/:path*",
-      "destination": "https://gracious-courtesy-production-48b6.up.railway.app/:path*"
+      "destination": "https://generous-love-production-3a3d.up.railway.app/:path*"
     }
   ]
 }

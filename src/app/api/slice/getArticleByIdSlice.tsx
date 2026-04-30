@@ -63,7 +63,7 @@ export const fetchArticleById = createAsyncThunk(
   async (id: number, thunkAPI) => {
     try {
       const response = await axios.get<Article>(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/article/${id}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/article/${id}`,
       );
       return response.data;
     } catch (err: unknown) {

@@ -75,14 +75,14 @@ export const fetchArticlesByUser = createAsyncThunk<
     const email = localStorage.getItem("email");
 
     const response = await axios.get<GetArticle[]>(
-      `https://gracious-courtesy-production-48b6.up.railway.app/api/user/${email}`,
+      `https://generous-love-production-3a3d.up.railway.app/api/user/${email}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       },
     );
-    console.log("Fetched articles by user:", response.data);
+    //console.log("Fetched articles by user:", response.data);
     return response.data;
   } catch (err: unknown) {
     let message = "Login failed";
@@ -127,10 +127,10 @@ export const uploadFinalFile = createAsyncThunk<
       const formData = new FormData();
       formData.append("user", user.toString());
       formData.append("finalFile", finalFile);
-      console.log("the file is ", finalFile);
+      //console.log("the file is ", finalFile);
       const token = await localStorage.getItem("token");
       const response = await axios.post(
-        "https://gracious-courtesy-production-48b6.up.railway.app/api/uploadFinal",
+        "https://generous-love-production-3a3d.up.railway.app/api/uploadFinal",
         formData,
         {
           headers: {
@@ -140,7 +140,7 @@ export const uploadFinalFile = createAsyncThunk<
           withCredentials: true, // only if you use cookies/auth
         },
       );
-      console.log("Final file upload response:", response.data);
+      //console.log("Final file upload response:", response.data);
       return response.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -169,13 +169,13 @@ export const updatePdfAndComments = createAsyncThunk<
       if (userComments) formData.append("userComments", userComments);
 
       const response = await axios.post<UpdateArticle>(
-        "https://gracious-courtesy-production-48b6.up.railway.app/api/updatePdfAndComments",
+        "https://generous-love-production-3a3d.up.railway.app/api/updatePdfAndComments",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         },
       );
-      console.log("the data us ", response.data);
+      //console.log("the data us ", response.data);
 
       return response.data;
     } catch (err: unknown) {
@@ -199,7 +199,7 @@ export const updateUserComment = createAsyncThunk<
   async ({ userComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
           userComments,
         )}`,
       );
@@ -224,16 +224,12 @@ export const updateProductionComments = createAsyncThunk<
   "comments/productionComments",
   async ({ productionComments, articleId }, { rejectWithValue }) => {
     try {
-      console.log(
-        "Updating production comments for articleId:",
-        productionComments,
-      );
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           productionComments,
         )}`,
       );
-      console.log("result is ", res.data);
+      //console.log("result is ", res.data);
       return res.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -255,12 +251,12 @@ export const updateUserProductionComments = createAsyncThunk<
   async ({ userProductionComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           userProductionComments,
         )}`,
       );
 
-      console.log("result is ", res.data);
+      //console.log("result is ", res.data);
       return res.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -282,7 +278,7 @@ export const updateProductModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
           production,
         )}`,
       );
@@ -307,7 +303,7 @@ export const updateCopyModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
           production,
         )}`,
       );

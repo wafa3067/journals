@@ -75,13 +75,13 @@ export const uploadArticle = createAsyncThunk(
         formData.append(key, value);
       });
 
-      console.log(data.createdAt);
+      //console.log(data.createdAt);
 
       formData.append("pdfFile", pdfFile);
       formData.append("contributorsList", JSON.stringify(contributors));
 
       const response = await axios.post(
-        "https://gracious-courtesy-production-48b6.up.railway.app/api/upload",
+        "https://generous-love-production-3a3d.up.railway.app/api/upload",
         formData,
         {
           headers: {
@@ -123,7 +123,7 @@ export const uploadFinalFile = createAsyncThunk(
       formData.append("finalFile", finalFile);
 
       const response = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/upload/final/${articleId}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/upload/final/${articleId}`,
         formData,
         {
           headers: {

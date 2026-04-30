@@ -33,9 +33,19 @@ import adminAuthReducer from "../admin/adminSlice/adminAuthSlice";
 import getNotificationSlice from "../api/slice/getNotificationSlice";
 import archiveReducer from "../api/slice/archiveSlice";
 import articleReducer from "../api/reducers/articleReducer"; // Handle search state here
+import homePageSlice from "../admin/adminSlice/home/homePageSlice";
+import getHomeAboutSlice from "../admin/adminSlice/home/GetHomeAboutSlice";
+import addSideHomeSlice from "../admin/adminSlice/sideHomeSlice/addSideHomeSlice";
+import getSideHome from "../admin/adminSlice/sideHomeSlice/getHomeSideSlice";
+import addEditorHome from "../admin/adminSlice/editor/addEditorSlice";
+import getEditorHome from "../admin/adminSlice/editor/getEditorSlice";
+import addTeamPage from "../admin/adminSlice/team/addTeamSlice";
+import getTeam from "../admin/adminSlice/team/getTeamSlice";
+import addContactPage from "../admin/adminSlice/contact/addContactSlice";
+import getContactSlice from "../admin/adminSlice/contact/getContactSlice";
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
-console.log("🧠 Store is being created..."); // 👈 ADD THIS
+//console.log("🧠 Store is being created..."); // 👈 ADD THIS
 
 export function makeStore() {
   return configureStore({
@@ -74,6 +84,16 @@ export function makeStore() {
       adminAuth: adminAuthReducer,
       archive: archiveReducer,
       searching: articleReducer, // Handle search state here
+      homeAdd: homePageSlice,
+      homeGet: getHomeAboutSlice,
+      getSideHome: getSideHome,
+      addSideHome: addSideHomeSlice,
+      addEditorHome: addEditorHome,
+      getEditorHome: getEditorHome,
+      getTeam: getTeam,
+      addTeam: addTeamPage,
+      addContact: addContactPage,
+      getContact: getContactSlice,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

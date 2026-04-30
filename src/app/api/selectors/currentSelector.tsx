@@ -16,7 +16,7 @@ export const selectCurrentFlat = createSelector(
 
     articles.forEach((article) => {
       if (!article.createdAt) return;
-      console.log("Article createdAt:", article.createdAt);
+      //console.log("Article createdAt:", article.createdAt);
       // Split the date into year and month
       const [year, month] = article.createdAt.split("-");
 
@@ -37,5 +37,5 @@ export const selectCurrentFlat = createSelector(
       });
 
     return sorted;
-  }
+  },
 );

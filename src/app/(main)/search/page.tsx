@@ -38,7 +38,7 @@ const SearchPage: React.FC = () => {
     try {
       // Make the API call based on the user's inputs
       const response = await axios.get(
-        `https://gracious-courtesy-production-48b6.up.railway.app/api/search`,
+        `https://generous-love-production-3a3d.up.railway.app/api/search`,
         {
           params: {
             keyword: query,
@@ -55,7 +55,6 @@ const SearchPage: React.FC = () => {
 
       // Set results
       setResults(response.data);
-      console.log("Search results:", response.data);
     } catch (error) {
       setError(
         "Failed to fetch data. Please try again later. " +

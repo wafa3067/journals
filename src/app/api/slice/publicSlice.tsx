@@ -24,7 +24,7 @@ export const updatePublicProfile = createAsyncThunk<
     const token = await localStorage.getItem("token");
     const email = await localStorage.getItem("email");
     const res = await axios.post(
-      `https://gracious-courtesy-production-48b6.up.railway.app/api/update/public?email=${email}`,
+      `https://generous-love-production-3a3d.up.railway.app/api/update/public?email=${email}`,
       formData,
       {
         headers: {

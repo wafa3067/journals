@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import EditorComponent from "../components/editor_component";
+import { GetTeamThunk } from "@/app/admin/adminSlice/team/getTeamSlice";
+import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 
 const options = [
   {
@@ -226,64 +229,40 @@ const professors = [
 ];
 
 const Page = () => {
+  const dispatch = useAppDispatch();
+  const { getTeam, success, loading } = useAppSelector(
+    (state) => state.getTeam,
+  );
+
+  useEffect(() => {
+    dispatch(GetTeamThunk());
+  }, [dispatch]);
   return (
     <div className="w-[100%]   p-5">
-      <div className="columns-1 md:columns-2 gap-3">
-        <div className="flex flex-col w-full gap-3 break-inside-avoid ">
-          <EditorComponent heading={"EDITORIAL BOARD:"} />
-          {editorialBoard.map((value) => (
-            <EditorComponent
-              key={value.email}
-              style={"p-0"}
-              heading={""}
-              title={""}
-              name={value.name}
-              desc={value.affiliation}
-              email={value.email}
-              link={value.link}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col  gap-3 w-full   break-inside-avoid">
-          <EditorComponent heading={"EDITORIAL TEAM:"} />
-          {options.map((value) => (
-            <EditorComponent
-              key={value.email}
-              heading={""}
-              title={value.title}
-              name={value.name}
-              desc={value.desc}
-              email={value.email}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col w-full  gap-3 break-inside-avoid">
-          {association.map((value) => (
-            <EditorComponent
-              key={value.email}
-              heading={value.heading}
-              title={value.title}
-              name={value.name}
-              desc={value.desc}
-              email={value.email}
-            />
-          ))}
-        </div>
+      {/* <div className="w-[100%] columns-1 md:columns-2 gap-3 "> */}
+      <div className="w-full gap-3 columns-2 overflow-y-auto">
+        {loading == false &&
+          getTeam.map((value, index) => (
+            <div className="" key={index}>
+              <EditorComponent heading={value.title} />
 
-        <div className="flex flex-col  gap-3 w-full  break-inside-avoid">
-          <EditorComponent heading={"International Advisory Board:"} />
-          {professors.map((value) => (
-            <EditorComponent
-              key={value.email}
-              heading={""}
-              title={""}
-              name={value.name}
-              desc={value.uni}
-              email={value.email}
-              titleStyle="underline"
-            />
+              {value.team.map((team) => (
+                <div key={team.title}>
+                  <EditorComponent
+                    key={team.title}
+                    style={"p-0"}
+                    heading={""}
+                    title={team.heading}
+                    name={team.title}
+                    desc={team.uni}
+                    email={team.email}
+                    link={team.link}
+                  />
+                </div>
+              ))}
+            </div>
           ))}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );

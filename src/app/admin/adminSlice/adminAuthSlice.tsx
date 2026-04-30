@@ -33,7 +33,7 @@ export const adminLogin = createAsyncThunk(
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "https://gracious-courtesy-production-48b6.up.railway.app/admin/login/login",
+        "http://localhost:8080/admin/login/login",
         null,
         {
           params: {
@@ -42,9 +42,8 @@ export const adminLogin = createAsyncThunk(
           },
         },
       );
-      console.log("error is", res.data);
       if (res.status != 200) {
-        console.log("error", res.status);
+        return rejectWithValue("Invalid username or password ❌");
       }
 
       return res.data;
@@ -65,7 +64,7 @@ export const adminRegister = createAsyncThunk(
   async (data: RegisterData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "https://gracious-courtesy-production-48b6.up.railway.app/admin/login/register",
+        "http://localhost:8080/admin/login/register",
         null,
         {
           params: {

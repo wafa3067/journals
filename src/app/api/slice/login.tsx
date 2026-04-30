@@ -19,7 +19,7 @@ export const loginUser = createAsyncThunk(
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://gracious-courtesy-production-48b6.up.railway.app/api/login",
+        "https://generous-love-production-3a3d.up.railway.app/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

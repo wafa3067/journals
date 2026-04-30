@@ -34,7 +34,7 @@ export default function RolesPage() {
         ],
       }),
     ).then((v) => {
-      console.log("error is ", v.payload);
+      //console.log("error is ", v.payload);
       setSuccess(v.payload ? v.payload : "");
     });
   };

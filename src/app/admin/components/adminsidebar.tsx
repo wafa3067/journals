@@ -8,6 +8,7 @@ const AdminSidebar = () => {
   const pathname = usePathname();
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isArticlesOpen, setIsArticlesOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState("");
 
   const reviewStages = [
     {
@@ -40,15 +41,21 @@ const AdminSidebar = () => {
     { name: "Settings", href: "#", icon: "⚙️" },
   ];
 
+  const settingsStages = [
+    { name: "Home", icon: "🏠", href: "/admin/setting/home" },
+    { name: "Team", icon: "👥", href: "/admin/setting/team" },
+    { name: "Contact", icon: "📞", href: "/admin/setting/contact" },
+  ];
+
   const isReviewActive = reviewStages.some((stage) =>
-    pathname.includes(stage.href)
+    pathname.includes(stage.href),
   );
   const isArticlesActive = articleStages.some((stage) =>
-    pathname.includes(stage.href)
+    pathname.includes(stage.href),
   );
 
   return (
-    <div className="w-72 bg-white shadow-lg flex flex-col h-full">
+    <div className="w-72 bg-white shadow-lg flex flex-col h-full ">
       {/* Header */}
       <div className="p-6 border-b border-gray-200 flex items-center">
         <h2 className="text-2xl font-bold text-gray-900">Admin Portal</h2>
@@ -122,20 +129,81 @@ const AdminSidebar = () => {
 
           // Normal links
           return (
-            <Link
-              key={index}
-              href={item.href}
-              className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
-                isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-              } hover:bg-gray-100`}
-            >
-              <span className="mr-3 text-xl">{item.icon}</span>
-              {item.name}
-            </Link>
+            <div key={index}>
+              {item.name === "Settings" && (
+                <button
+                  onClick={(v) => {
+                    if (item.name === "Settings") {
+                      if (isSettingsOpen === "Settings") {
+                        setIsSettingsOpen("");
+                      } else {
+                        setIsSettingsOpen("Settings");
+                      }
+                    }
+                  }}
+                  className={`flex items-center justify-between w-full px-6 py-3 font-medium rounded-lg transition-all ${
+                    isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
+                  } hover:bg-gray-100`}
+                >
+                  <div className="flex items-center">
+                    <span className="mr-3 text-xl">{item.icon}</span>
+                    {item.name}
+                  </div>
+                  <span
+                    className={`transform transition-transform ${
+                      isSettingsOpen === "Settings" ? "rotate-180" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </button>
+              )}
+              {item.name === "User Management" && (
+                <Link
+                  onClick={(v) => {
+                    if (item.name === "Settings") {
+                      if (isSettingsOpen === "Settings") {
+                        setIsSettingsOpen("");
+                      } else {
+                        setIsSettingsOpen("Settings");
+                      }
+                    }
+                  }}
+                  key={index}
+                  href={item.href}
+                  className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
+                    isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
+                  } hover:bg-gray-100`}
+                >
+                  <span className="mr-3 text-xl">{item.icon}</span>
+                  {item.name}
+                </Link>
+              )}
+              {item.name === isSettingsOpen && (
+                <div className="ml-8 mt-1 space-y-1">
+                  {settingsStages.map((item, stageIndex) => {
+                    const isStageActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={stageIndex}
+                        href={item.href}
+                        className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
+                          isActive
+                            ? "bg-gray-200 text-gray-900"
+                            : "text-gray-700"
+                        } hover:bg-gray-100`}
+                      >
+                        <span className="mr-3 text-xl">{item.icon}</span>
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
         })}
 
-        {/* Divider */}
         <div className="my-4 border-t border-gray-200"></div>
       </nav>
     </div>

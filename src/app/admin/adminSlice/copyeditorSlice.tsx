@@ -44,9 +44,8 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://gracious-courtesy-production-48b6.up.railway.app/admin/copy-editor",
+        "https://generous-love-production-3a3d.up.railway.app/admin/copy-editor",
       );
-      console.log("editors", response.data);
       return response.data;
     } catch (err) {
       let message = "Failed to fetch copy editor articles";
@@ -73,14 +72,13 @@ export const assignToProduction = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://gracious-courtesy-production-48b6.up.railway.app/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );
       if (res.status !== 200) throw new Error("Failed to assign reviewer");
 
       // Automatically update status
-      console.log("Assign Copy Editor Response:", res.data);
       return res.data;
     } catch (err: unknown) {
       let message = "Failed to assign to production";

@@ -46,7 +46,7 @@ export const checkAllFieldsComplete = (state: metaData): boolean => {
         );
       })
     : false;
-  console.log("the ", allFieldsFilled, "and", contributorsValid);
+  //console.log("the ", allFieldsFilled, "and", contributorsValid);
   return allFieldsFilled && contributorsValid;
 };
 

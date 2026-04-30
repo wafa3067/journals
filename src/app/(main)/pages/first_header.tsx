@@ -95,7 +95,7 @@ const FirstHeader = () => {
     routes.forEach((route) => router.prefetch(route));
   }, [router]);
 
-  console.log("token in header", selected);
+  //console.log("token in header", selected);
   return (
     <div>
       <div

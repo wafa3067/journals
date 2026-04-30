@@ -38,7 +38,7 @@ export const updateContact = createAsyncThunk<
     const email = await localStorage.getItem("email");
 
     const res = await axios.post(
-      `https://gracious-courtesy-production-48b6.up.railway.app/api/update/contact?email=${email}`,
+      `https://generous-love-production-3a3d.up.railway.app/api/update/contact?email=${email}`,
       updatedUser,
       {
         headers: {
@@ -46,7 +46,7 @@ export const updateContact = createAsyncThunk<
         },
       },
     );
-    console.log("value is ", res.data);
+    //console.log("value is ", res.data);
     return res.data as string;
   } catch (error: unknown) {
     let message = "Failed to update contact";

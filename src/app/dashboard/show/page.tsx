@@ -312,13 +312,13 @@ const Page = () => {
                                     e.target.files &&
                                     e.target.files.length > 0
                                   ) {
-                                    console.log("file", e.target.files[0]);
+                                    //console.log("file", e.target.files[0]);
                                     setSelectedFileOuter(e.target.files[0]);
                                   }
                                 }}
                                 articleId={e.id}
                                 onConfirm={(val, reson, file) => {
-                                  console.log("the file in dialog is ", file);
+                                  //console.log("the file in dialog is ", file);
                                   if (val === true) {
                                     if (selectedFileOuter) {
                                       dispatch(

@@ -280,7 +280,7 @@ const Page = () => {
             onClick={() => {
               setActive(true);
               const isComplete = checkAllFieldsComplete(research);
-              console.log(isComplete);
+              //console.log(isComplete);
               if (isComplete === false) {
                 setError(
                   "Please fill all required fields and add at least one contributor!",

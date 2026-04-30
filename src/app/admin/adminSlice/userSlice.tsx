@@ -46,7 +46,7 @@ const initialState: UserState = {
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await axios.get(
-    "https://gracious-courtesy-production-48b6.up.railway.app/admin/users",
+    "https://generous-love-production-3a3d.up.railway.app/admin/users",
   );
   // ✅ since your backend returns an array directly
   // If backend returns a string, parse it

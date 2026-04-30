@@ -436,7 +436,7 @@ export default function Page() {
         ) : (
           <div className=" overflow-scroll h-[calc(100vh-50px)]">
             {CopyEditor.map((article) => {
-              console.log("data", article.modifyCopyEditor);
+              //console.log("data", article.modifyCopyEditor);
 
               return (
                 <div
