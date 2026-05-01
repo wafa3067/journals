@@ -9,7 +9,7 @@ export default function AdminLayout({
 }) {
   return (
     <div className="flex h-screen overflow-hidden font-inter bg-gray-50 text-gray-900 ">
-      <div className="max-h-max  w-[300px]">
+      <div className="md:max-h-max  md:w-[300px]">
         <AdminSidebar />
       </div>
       <div className="w-full  ">{children}</div>

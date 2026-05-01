@@ -20,11 +20,15 @@ import {
   deleteEditorData,
   editEditorData,
 } from "../../adminSlice/editor/addEditorSlice";
-import { CreateEditorHomeState } from "../../adminSlice/editor/getEditorSlice";
+import {
+  CreateEditorHomeState,
+  GetEditorHomeState,
+} from "../../adminSlice/editor/getEditorSlice";
 import ModelComponent from "@/app/(main)/components/model_component";
 import DeleteModel from "@/app/(main)/components/deleteModel";
 import EditorModelComponent from "@/app/(main)/components/model_editor";
 import EditorCard from "@/app/(main)/components/EditorCard";
+import Carousel from "@/app/(main)/components/mini_crasual";
 
 interface HomeData {
   id: number;
@@ -120,6 +124,8 @@ function Page() {
     setOpenModal(null);
   };
 
+  const length = 3;
+  const totalPages = Math.ceil(editor.length / length);
   const handleSaveSidebar = () => {
     dispatch(createSideHomeSlice(newSidebarItem));
     setOpenModal(null);
@@ -165,6 +171,15 @@ function Page() {
       dispatch(CreateEditorHomeState());
     });
   };
+
+  const data = [
+    { title: "1" },
+    { title: "2" },
+    { title: "3" },
+    { title: "4" },
+    { title: "5" },
+    { title: "6" },
+  ];
 
   useEffect(() => {
     dispatch(AboutHomeGetPage());
@@ -507,95 +522,45 @@ function Page() {
           <h2 className="text-2xl font-bold text-center mb-8 text-white">
             Editors
           </h2>
-          <div className="flex justify-center gap-8 flex-wrap items-center relative">
-            {/* Carousel Container */}
-            <div className="flex overflow-hidden relative">
-              <div
-                className="flex transition-transform duration-300"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                <div className="  grid grid-cols-1 md:grid-cols-3 ">
-                  {editor.length > 0 &&
-                    editor.map((editor, index) => (
-                      <div key={index}>
-                        <EditorCard
-                          key={index}
-                          name={editor.title}
-                          institution={editor.descriptions}
-                          location={""}
-                          imageUrl={editor.image}
-                        />
-                        <div className="flex flex-row gap-2">
-                          <button
-                            onClick={() => {
-                              setOpenModal("editorEdit");
-                              setEditorFormData({
-                                title: editor.title,
-                                descriptions: editor.descriptions || "",
-                                id: editor.id,
-                              });
-                            }}
-                            className="mt-2 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => {
-                              setId(editor.id);
-                              setEditDelete("deleteSide");
-                            }}
-                            className="mt-2 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+
+          <Carousel
+            items={editor}
+            itemsPerPage={3}
+            renderItem={(editor: GetEditorHomeState) => (
+              <div className=" m-2  w-[30%]">
+                <EditorCard
+                  name={editor.title}
+                  institution={editor.descriptions}
+                  location={""}
+                  imageUrl={editor.image}
+                />
+                <div className="flex flex-row gap-2 justify-center">
+                  <button
+                    onClick={() => {
+                      setOpenModal("editorEdit");
+                      setEditorFormData({
+                        title: editor.title,
+                        descriptions: editor.descriptions || "",
+                        id: editor.id,
+                      });
+                    }}
+                    className="mt-2 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      setId(editor.id);
+                      setEditDelete("deleteEditor");
+                    }}
+                    className="mt-2 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Navigation Dots with Buttons on Each Side */}
-          <div className="flex  flex-row justify-center items-center content-center     gap-2 mt-4 relative ">
-            {/* Left Button */}
-            <div className="flex justify-center items-center w-64 mx-auto relative">
-              <button
-                className="absolute left-0 z-10 text-white  p-3 rounded-full text-3xl"
-                onClick={prevEditor}
-              >
-                &#8249;
-              </button>
-
-              {/* Dots */}
-              <div className="flex gap-2">
-                {editor.map(
-                  (_, index) =>
-                    index === 1 && (
-                      <button
-                        key={index}
-                        className={`w-3 h-3 rounded-full ${
-                          index === currentIndex ? "bg-white" : "bg-gray-400"
-                        }`}
-                        onClick={() => {
-                          if (totalEditors > 1) {
-                            setCurrentIndex(index);
-                          }
-                        }}
-                      />
-                    ),
-                )}
-              </div>
-
-              {/* Right Button */}
-              <button
-                className="absolute right-0 z-10 text-white  p-3 rounded-full text-3xl"
-                onClick={nextEditor}
-              >
-                &#8250;
-              </button>
-            </div>
-          </div>
+            )}
+          />
         </div>
       </div>
     </div>
