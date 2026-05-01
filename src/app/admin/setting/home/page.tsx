@@ -59,8 +59,8 @@ const homeData: HomeData = {
 const editorData: EditorData = {
   id: 0,
 
-  title: "Editor Title",
-  descriptions: "Editor description",
+  title: "",
+  descriptions: "",
 };
 
 function Page() {
@@ -117,6 +117,7 @@ function Page() {
   // Track file
   const handleEditor = () => {
     dispatch(createEditorHome({ ...editorFormData, image: selectedFile! }));
+    setOpenModal(null);
   };
   const handleSaveAboutData = () => {
     // Dispatch the AboutHomePage action with the form data
