@@ -30,7 +30,7 @@ export const updateRole = createAsyncThunk(
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.post(
-        `http://localhost:8080/api/update/role?email=${email}`,
+        `https://generous-love-production-3a3d.up.railway.app/api/update/role?email=${email}`,
         { review: review, role: roles },
         {
           headers: {

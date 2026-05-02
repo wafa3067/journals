@@ -10,12 +10,15 @@ export const CreateGetSideHome = createAsyncThunk(
   "home/side",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:8080/home/side/get", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://generous-love-production-3a3d.up.railway.app/home/side/get",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         const sideerrorData = await res.json();
