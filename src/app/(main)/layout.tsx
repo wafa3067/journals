@@ -132,14 +132,14 @@ export default function MainLayout({
   }
   useEffect(() => {
     dispatch(AboutHomeGetPage()).then((v) => {
-      // if (v.payload.length == 0) {
-      //   addTypeOfTeams();
-      //   aboutDataHome();
-      //   SidebarHome();
-      //   EditorHome();
-      //   addContact();
-      handleAddTeam();
-      // }
+      if (v.payload.length == 0) {
+        addTypeOfTeams();
+        aboutDataHome();
+        SidebarHome();
+        EditorHome();
+        addContact();
+        handleAddTeam();
+      }
     });
   }, [AboutHomeGetPage]);
 

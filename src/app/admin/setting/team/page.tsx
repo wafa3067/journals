@@ -8,6 +8,7 @@ import CategoryDropdown from "@/app/(main)/components/category_dropdown";
 import {
   addCategory,
   addTeamPage,
+  deleteCategory,
   deleteTeam,
   editCategory,
   editTeam,
@@ -371,7 +372,7 @@ const Page = () => {
       )}
       {openModel == "addCat" && (
         <div className="fixed inset-0  bg-transparent bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-120 max-h-full overflow-y-scroll">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80 max-h-full overflow-y-scroll">
             <p className="p-2">Add type for members </p>
             <div>
               <input
@@ -412,11 +413,11 @@ const Page = () => {
                       key={cat.id}
                     >
                       <p key={cat.id} className="mb-1">
-                        {cat.assignOrder + "  " + cat.title}
+                        {cat.title}
                       </p>
                       <div className="flex flex-row gap-2">
                         <button
-                          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                          className="bg-blue-500 text-white px-2 py-2 text-sm rounded-md hover:bg-blue-600 transition-colors"
                           onClick={() => {
                             setCat(cat.title);
                             setCatId(cat.id);
@@ -427,7 +428,7 @@ const Page = () => {
                         </button>
 
                         <button
-                          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                          className="bg-blue-500 text-white px-2 text-sm py-2 rounded-md hover:bg-blue-600 transition-colors"
                           onClick={() => {
                             setCatData({
                               id: cat.id,
@@ -438,6 +439,16 @@ const Page = () => {
                           }}
                         >
                           Change Order
+                        </button>
+                        <button
+                          onClick={() =>
+                            dispatch(deleteCategory({ id: cat.id })).then((v) =>
+                              dispatch(GetTeamThunk()),
+                            )
+                          }
+                          className="bg-red-500 text-white px-2 py-2 text-sm rounded-md hover:bg-gray-600 transition-colors"
+                        >
+                          Delete
                         </button>
                       </div>
                     </div>

@@ -90,6 +90,35 @@ export const editTeam = createAsyncThunk(
   },
 );
 
+export const deleteCategory = createAsyncThunk(
+  "home/about",
+  async (aboutData: EditTeam & { id: number }, { rejectWithValue }) => {
+    try {
+      const res = await fetch(
+        `https://generous-love-production-3a3d.up.railway.app/category/del?id=${aboutData.id}`,
+        {
+          method: "Delete",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        return rejectWithValue(
+          errorData.message || "Failed to save about data",
+        );
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      return rejectWithValue("An error occurred while saving about data");
+    }
+  },
+);
+
 export const updateOrder = createAsyncThunk(
   "home/about",
   async (
