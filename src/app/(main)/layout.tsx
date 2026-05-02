@@ -22,7 +22,7 @@ import {
   addCategoryIntial,
   addTeamPage,
 } from "../admin/adminSlice/team/addTeamSlice";
-import { GetTeamThunk } from "../admin/adminSlice/team/getTeamSlice";
+import { GetTeam, GetTeamThunk } from "../admin/adminSlice/team/getTeamSlice";
 import { addContactPage } from "../admin/adminSlice/contact/addContactSlice";
 export default function MainLayout({
   children,
@@ -132,13 +132,13 @@ export default function MainLayout({
   }
   useEffect(() => {
     dispatch(AboutHomeGetPage()).then((v) => {
-      if (v.payload.length == 0) {
-        // addTypeOfTeams();
-        // aboutDataHome();
-        // SidebarHome();
-        // EditorHome();
-        // addContact();
-      }
+      // if (v.payload.length == 0) {
+      //   addTypeOfTeams();
+      //   aboutDataHome();
+      //   SidebarHome();
+      //   EditorHome();
+      //   addContact();
+      // }
       handleAddTeam();
     });
   }, [AboutHomeGetPage]);
@@ -417,74 +417,76 @@ export default function MainLayout({
   const handleAddTeam = () => {
     dispatch(GetTeamThunk()).then((element) => {
       console.log(element.payload["title"]);
-      // if (element.payload[0]["title"] === "Editorial Team") {
-      //   EditorTeam.forEach((e) => {
-      //     dispatch(
-      //       addTeamPage({
-      //         id: 0,
-      //         title: e.name,
-      //         descriptions: "",
-      //         heading: e.title,
-      //         email: e.email,
-      //         link: "",
-      //         affiliation: "",
-      //         uni: e.desc,
-      //         category: element.payload[0]["id"],
-      //       }),
-      //     );
-      //   });
-      // }
-      if (element.payload[1]["title"] === "Associate Editorial Board") {
-        ASSOCIATE_EDITORIAL_BOARD.forEach((e) => {
-          dispatch(
-            addTeamPage({
-              id: 0,
-              title: e.name,
-              descriptions: "",
-              heading: e.title,
-              email: e.email,
-              link: "",
-              affiliation: "",
-              uni: e.desc,
-              category: element.payload[1]["id"],
-            }),
-          );
-        });
-      }
-      // if (element.payload[2]["title"] === "Editorial Board") {
-      //   editorialBoard.forEach((e) => {
-      //     dispatch(
-      //       addTeamPage({
-      //         id: 0,
-      //         title: e.name,
-      //         descriptions: "",
-      //         heading: "",
-      //         email: e.email,
-      //         link: "",
-      //         affiliation: "",
-      //         uni: e.affiliation,
-      //         category: element.payload[2]["id"],
-      //       }),
-      //     );
-      //   });
-      // }
-      if (element.payload[3]["title"] === "International Advisory Board") {
-        International_Advisory_Board.forEach((e) => {
-          dispatch(
-            addTeamPage({
-              id: 0,
-              title: e.name,
-              descriptions: "",
-              heading: "",
-              email: "",
-              link: "",
-              affiliation: "",
-              uni: e.uni,
-              category: element.payload[3]["id"],
-            }),
-          );
-        });
-      }
+      element.payload.foreach((v: GetTeam) => {
+        if (v.title === "Editorial Team") {
+          EditorTeam.forEach((e) => {
+            dispatch(
+              addTeamPage({
+                id: 0,
+                title: e.name,
+                descriptions: "",
+                heading: e.title,
+                email: e.email,
+                link: "",
+                affiliation: "",
+                uni: e.desc,
+                category: element.payload[0]["id"],
+              }),
+            );
+          });
+        }
+        if (v.title === "Associate Editorial Board") {
+          ASSOCIATE_EDITORIAL_BOARD.forEach((e) => {
+            dispatch(
+              addTeamPage({
+                id: 0,
+                title: e.name,
+                descriptions: "",
+                heading: e.title,
+                email: e.email,
+                link: "",
+                affiliation: "",
+                uni: e.desc,
+                category: element.payload[1]["id"],
+              }),
+            );
+          });
+        }
+        if (v.title === "Editorial Board") {
+          editorialBoard.forEach((e) => {
+            dispatch(
+              addTeamPage({
+                id: 0,
+                title: e.name,
+                descriptions: "",
+                heading: "",
+                email: e.email,
+                link: "",
+                affiliation: "",
+                uni: e.affiliation,
+                category: element.payload[2]["id"],
+              }),
+            );
+          });
+        }
+        if (v.title === "International Advisory Board") {
+          International_Advisory_Board.forEach((e) => {
+            dispatch(
+              addTeamPage({
+                id: 0,
+                title: e.name,
+                descriptions: "",
+                heading: "",
+                email: "",
+                link: "",
+                affiliation: "",
+                uni: e.uni,
+                category: element.payload[3]["id"],
+              }),
+            );
+          });
+        }
+      });
     });
     // dispatch(addTeamPage());
     // Logic to add a new team member
