@@ -81,7 +81,7 @@ export const uploadArticle = createAsyncThunk(
       formData.append("contributorsList", JSON.stringify(contributors));
 
       const response = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/api/upload",
+        "http://localhost:8080/api/upload",
         formData,
         {
           headers: {
@@ -123,7 +123,7 @@ export const uploadFinalFile = createAsyncThunk(
       formData.append("finalFile", finalFile);
 
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/api/upload/final/${articleId}`,
+        `http://localhost:8080/api/upload/final/${articleId}`,
         formData,
         {
           headers: {

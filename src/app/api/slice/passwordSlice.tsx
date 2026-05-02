@@ -26,7 +26,7 @@ export const updatePassword = createAsyncThunk<
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.patch(
-        `https://generous-love-production-3a3d.up.railway.app/api/update/password?email=${email}`,
+        `http://localhost:8080/api/update/password?email=${email}`,
         null, // no body
         {
           params: { oldPassword, newPassword },

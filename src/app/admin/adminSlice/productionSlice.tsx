@@ -45,7 +45,7 @@ export const fetchProduction = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/get-production",
+        "http://localhost:8080/admin/get-production",
       );
       return response.data;
     } catch (err: unknown) {
@@ -74,8 +74,8 @@ export const assignApproved = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/production/${articleId}`,
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
+        `http://localhost:8080/admin/articles/production/${articleId}`,
+        `http://localhost:8080/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

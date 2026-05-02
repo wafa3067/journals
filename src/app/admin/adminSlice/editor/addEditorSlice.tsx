@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface editorHome {
-  image: File;
+  image: File | null;
   title: string;
   descriptions: string;
 }
@@ -12,13 +12,14 @@ export const createEditorHome = createAsyncThunk(
   async (aboutData: editorHome, { rejectWithValue }) => {
     try {
       const formData = new FormData();
-
-      formData.append("image", aboutData.image);
+      if (aboutData.image != null) {
+        formData.append("image", aboutData.image);
+      }
       formData.append("title", aboutData.title);
       formData.append("descriptions", aboutData.descriptions);
 
       const res = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/home/editor/add",
+        "http://localhost:8080/home/editor/add",
         formData,
         {
           headers: {
@@ -39,7 +40,7 @@ export const editEditorData = createAsyncThunk(
   async (editorData: editorHome & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/editor/update?id=${editorData.id}`,
+        `http://localhost:8080/home/editor/update?id=${editorData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -72,7 +73,7 @@ export const deleteEditorData = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/editor/del?id=${id}`,
+        `http://localhost:8080/home/editor/del?id=${id}`,
         {
           method: "DELETE",
           headers: {

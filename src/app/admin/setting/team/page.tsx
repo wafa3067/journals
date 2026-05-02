@@ -61,7 +61,6 @@ const Page = () => {
 
   const handleAddTeam = ({}) => {
     dispatch(addTeamPage(homeFormData)).then((res) => {
-      alert(`Team member added successfully! `); // Show the message from the response
       dispatch(GetTeamThunk()); // Refresh the team list after adding a new member
     });
     // Logic to add a new team member

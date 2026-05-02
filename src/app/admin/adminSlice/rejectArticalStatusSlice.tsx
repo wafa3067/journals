@@ -30,7 +30,7 @@ export const rejectArticleStatus = createAsyncThunk<
   async ({ id, status, comments }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/reject/${id}`,
+        `http://localhost:8080/admin/articles/reject/${id}`,
         null,
         {
           params: { status, comments },

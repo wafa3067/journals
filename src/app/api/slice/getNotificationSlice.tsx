@@ -32,7 +32,7 @@ export const fetchNotifications = createAsyncThunk(
     try {
       const email = localStorage.getItem("email");
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/get_notifications/${email}`,
+        `http://localhost:8080/notification/get_notifications/${email}`,
       );
       return res.data;
     } catch (err: unknown) {
@@ -54,7 +54,7 @@ export const fetchUnreadCount = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/count_unread/${email}`,
+        `http://localhost:8080/notification/count_unread/${email}`,
       );
       return res.data;
     } catch (err: unknown) {
@@ -75,7 +75,7 @@ export const markAllNotificationsRead = createAsyncThunk(
     const email = localStorage.getItem("email");
     try {
       const res = await axios.put(
-        `https://generous-love-production-3a3d.up.railway.app/notification/mark_all_read/${email}`,
+        `http://localhost:8080/notification/mark_all_read/${email}`,
       );
       return res.data; // "X notifications marked as read"
     } catch (err: unknown) {

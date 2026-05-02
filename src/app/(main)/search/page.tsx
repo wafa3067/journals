@@ -37,21 +37,18 @@ const SearchPage: React.FC = () => {
 
     try {
       // Make the API call based on the user's inputs
-      const response = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/search`,
-        {
-          params: {
-            keyword: query,
-            startDate: `${publishedAfter.year}-${publishedAfter.month || "01"}-${
-              publishedAfter.day || "01"
-            }`,
-            endDate: `${publishedBefore.year}-${publishedBefore.month || "12"}-${
-              publishedBefore.day || "31"
-            }`,
-            author: author,
-          },
+      const response = await axios.get(`http://localhost:8080/api/search`, {
+        params: {
+          keyword: query,
+          startDate: `${publishedAfter.year}-${publishedAfter.month || "01"}-${
+            publishedAfter.day || "01"
+          }`,
+          endDate: `${publishedBefore.year}-${publishedBefore.month || "12"}-${
+            publishedBefore.day || "31"
+          }`,
+          author: author,
         },
-      );
+      });
 
       // Set results
       setResults(response.data);

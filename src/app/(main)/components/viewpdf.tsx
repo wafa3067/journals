@@ -19,7 +19,7 @@ const ViewPDF: React.FC = () => {
     return <p>Loading PDF...</p>;
   }
   // data:application/pdf;base64,${pdf} -< offlince
-  const pdfUrlonline = `https://generous-love-production-3a3d.up.railway.app/${pdf}`;
+  const pdfUrlonline = `http://localhost:8080/${pdf}`;
   return (
     <div>
       <h1>PDF Viewer</h1>

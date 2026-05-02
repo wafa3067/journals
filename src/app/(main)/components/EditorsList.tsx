@@ -46,8 +46,8 @@ const EditorsList: React.FC<{ options: Array<Editor> }> = ({ options }) => {
       <Carousel
         items={options}
         itemsPerPage={3}
-        renderItem={(editor) => (
-          <div className=" m-2  w-[30%]">
+        renderItem={(editor, index) => (
+          <div className=" m-2  w-[30%]" key={index}>
             <EditorCard
               name={editor.title}
               institution={editor.descriptions}

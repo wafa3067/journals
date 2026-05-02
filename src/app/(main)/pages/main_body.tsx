@@ -27,6 +27,10 @@ const MainBody = () => {
   useEffect(() => {
     dispatch(CreateGetSideHome());
   }, [CreateGetSideHome, dispatch]);
+
+  if (!about || about.length === 0) {
+    return <p>No data</p>;
+  }
   return (
     <div className="" style={{ width: "100%" }}>
       <div className=" h-fit  ">
@@ -35,7 +39,7 @@ const MainBody = () => {
             <div className="   space-y-8  ">
               {success === false ? (
                 <p>Loading...</p>
-              ) : (
+              ) : Array.isArray(about) && about.length > 0 ? (
                 about.map((item, index) => (
                   <div key={index}>
                     <h2 className="text-2xl font-semibold text-gray-900 mb-3">
@@ -44,6 +48,8 @@ const MainBody = () => {
                     <p>{item.descriptions}</p>
                   </div>
                 ))
+              ) : (
+                <p>No Data</p>
               )}
             </div>
           </div>

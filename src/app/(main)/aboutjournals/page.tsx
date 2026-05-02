@@ -21,7 +21,7 @@ const AboutPage = () => {
           <p>Loading...</p>
         ) : (
           about.map((item, index) => (
-            <div>
+            <div key={index}>
               <h2 className="text-2xl font-semibold text-gray-900 mb-3">
                 {item.title}
               </h2>

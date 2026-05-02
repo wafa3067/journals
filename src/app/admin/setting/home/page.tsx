@@ -121,14 +121,18 @@ function Page() {
   };
   const handleSaveAboutData = () => {
     // Dispatch the AboutHomePage action with the form data
-    dispatch(AboutHomePage(homeFormData));
+    dispatch(AboutHomePage(homeFormData)).then(() => {
+      dispatch(AboutHomeGetPage());
+    });
     setOpenModal(null);
   };
 
   const length = 3;
   const totalPages = Math.ceil(editor.length / length);
   const handleSaveSidebar = () => {
-    dispatch(createSideHomeSlice(newSidebarItem));
+    dispatch(createSideHomeSlice(newSidebarItem)).then(() => {
+      dispatch(AboutHomeGetPage());
+    });
     setOpenModal(null);
   };
 
@@ -172,15 +176,6 @@ function Page() {
       dispatch(CreateEditorHomeState());
     });
   };
-
-  const data = [
-    { title: "1" },
-    { title: "2" },
-    { title: "3" },
-    { title: "4" },
-    { title: "5" },
-    { title: "6" },
-  ];
 
   useEffect(() => {
     dispatch(AboutHomeGetPage());
@@ -527,8 +522,8 @@ function Page() {
           <Carousel
             items={editor}
             itemsPerPage={3}
-            renderItem={(editor: GetEditorHomeState) => (
-              <div className=" m-2  w-[30%]">
+            renderItem={(editor: GetEditorHomeState, index) => (
+              <div className=" m-2  w-[30%]" key={index}>
                 <EditorCard
                   name={editor.title}
                   institution={editor.descriptions}
