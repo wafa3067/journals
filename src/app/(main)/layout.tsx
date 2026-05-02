@@ -138,8 +138,8 @@ export default function MainLayout({
       //   SidebarHome();
       //   EditorHome();
       //   addContact();
-      // }
       handleAddTeam();
+      // }
     });
   }, [AboutHomeGetPage]);
 
@@ -416,8 +416,8 @@ export default function MainLayout({
   // add intial  data for editorial boards
   const handleAddTeam = () => {
     dispatch(GetTeamThunk()).then((element) => {
-      console.log(element.payload["title"]);
-      element.payload.foreach((v: GetTeam) => {
+      console.log(element.payload);
+      element.payload.map((v: GetTeam) => {
         if (v.title === "Editorial Team") {
           EditorTeam.forEach((e) => {
             dispatch(
