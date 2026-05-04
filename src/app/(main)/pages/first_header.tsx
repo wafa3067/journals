@@ -211,11 +211,11 @@ const FirstHeader = () => {
               style={"cursor-pointer"}
               onTap={() => {
                 if (token != null && token != "" && token != undefined) {
-                  navigate("/submissions/begin");
+                  navigate("/author");
                   setSelected("Submit an article");
                   return;
                 }
-                navigate("/dashboard/login");
+                navigate("/author");
                 // navigate("/aboutsubmissions");
                 setSelected("Submit an article");
 
