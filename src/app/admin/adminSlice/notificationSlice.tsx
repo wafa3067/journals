@@ -36,7 +36,7 @@ export const addNotification = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/notification/add/?title=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/notification/add/?title=${encodeURIComponent(
           title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
           email,

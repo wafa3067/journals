@@ -11,12 +11,15 @@ export const CreateEditorHomeState = createAsyncThunk(
   "home/editor",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:8080/home/editor/get", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://generous-love-production-3a3d.up.railway.app/home/editor/get",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         const editorerrorData = await res.json();
@@ -54,7 +57,7 @@ export const editAboutData = createAsyncThunk(
   async (aboutData: GetEditorHomeState, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/editor/update?id=${aboutData.id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/editor/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -87,7 +90,7 @@ export const deleteAboutData = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/editor/del?id=${id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/editor/del?id=${id}`,
         {
           method: "DELETE",
           headers: {

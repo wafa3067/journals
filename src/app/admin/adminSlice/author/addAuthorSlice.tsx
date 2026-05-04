@@ -16,13 +16,16 @@ export const addAuthorPage = createAsyncThunk(
     try {
       console.log("Data being sent to the server:", aboutData.descriptions); // Debug log to check the data being sent
       // Debug log to check the data being sent
-      const res = await fetch(`http://localhost:8080/home/author/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `https://generous-love-production-3a3d.up.railway.app/home/author/add`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: aboutData.descriptions,
         },
-        body: aboutData.descriptions,
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -44,7 +47,7 @@ export const editContact = createAsyncThunk(
   async (aboutData: EditAuthor & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/author/update?id=${aboutData.id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/author/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -76,7 +79,7 @@ export const deleteAuthor = createAsyncThunk(
   async (catId: number, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/author/del?id=${catId}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/author/del?id=${catId}`,
         {
           method: "DELETE",
           headers: {

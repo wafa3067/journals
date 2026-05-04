@@ -75,7 +75,7 @@ export const fetchArticlesByUser = createAsyncThunk<
     const email = localStorage.getItem("email");
 
     const response = await axios.get<GetArticle[]>(
-      `http://localhost:8080/api/user/${email}`,
+      `https://generous-love-production-3a3d.up.railway.app/api/user/${email}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -130,7 +130,7 @@ export const uploadFinalFile = createAsyncThunk<
       //console.log("the file is ", finalFile);
       const token = await localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:8080/api/uploadFinal",
+        "https://generous-love-production-3a3d.up.railway.app/api/uploadFinal",
         formData,
         {
           headers: {
@@ -169,7 +169,7 @@ export const updatePdfAndComments = createAsyncThunk<
       if (userComments) formData.append("userComments", userComments);
 
       const response = await axios.post<UpdateArticle>(
-        "http://localhost:8080/api/updatePdfAndComments",
+        "https://generous-love-production-3a3d.up.railway.app/api/updatePdfAndComments",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -199,7 +199,7 @@ export const updateUserComment = createAsyncThunk<
   async ({ userComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateComments?articleId=${articleId}&userComments=${encodeURIComponent(
           userComments,
         )}`,
       );
@@ -225,7 +225,7 @@ export const updateProductionComments = createAsyncThunk<
   async ({ productionComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           productionComments,
         )}`,
       );
@@ -251,7 +251,7 @@ export const updateUserProductionComments = createAsyncThunk<
   async ({ userProductionComments, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/updateUserProduction?articleId=${articleId}&productionComments=${encodeURIComponent(
           userProductionComments,
         )}`,
       );
@@ -278,7 +278,7 @@ export const updateProductModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/modify_production?articleId=${articleId}&production=${encodeURIComponent(
           production,
         )}`,
       );
@@ -303,7 +303,7 @@ export const updateCopyModification = createAsyncThunk<
   async ({ production, articleId }, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
+        `https://generous-love-production-3a3d.up.railway.app/api/modify_copy?articleId=${articleId}&copy=${encodeURIComponent(
           production,
         )}`,
       );
