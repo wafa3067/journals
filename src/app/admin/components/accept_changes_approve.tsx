@@ -77,7 +77,7 @@ export default function ArticleCheckDialogApprove({
           </AlertDialog.Description>
           <h1>Download Template File below </h1>
           <a
-            href="https://generous-love-production-3a3d.up.railway.app/uploads/IEEE_Conference_Template.pdf"
+            href="http://localhost:8080/uploads/IEEE_Conference_Template.pdf"
             className="text-blue-600 hover:underline"
             target="_blank"
             rel="noopener noreferrer"

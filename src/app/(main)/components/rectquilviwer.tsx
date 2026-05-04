@@ -1,14 +1,40 @@
 import dynamic from "next/dynamic";
-import "react-quill-new/dist/quill.snow.css"; // optional, if you didn’t import globally
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function QuillViewer({ value }: { value: string }) {
   return (
-    <ReactQuill
-      value={value}
-      readOnly={true}
-      theme="bubble" // bubble = clean viewer theme
-    />
+    <div className="quill-viewer">
+      {/* Inline styles */}
+      <style>
+        {`
+          .quill-viewer {
+          
+            margin: 0 auto;
+          }
+
+          .quill-viewer .ql-toolbar {
+            display: none !important;
+          }
+
+          .quill-viewer .ql-container {
+            border: none !important;
+          }
+
+
+      
+
+
+    
+
+
+        
+          
+
+        `}
+      </style>
+
+      <ReactQuill value={value} readOnly={true} theme="snow" />
+    </div>
   );
 }

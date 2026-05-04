@@ -27,7 +27,7 @@ const CustomButton = ({
     <div className={`${width}`}>
       <button
         onClick={onClick}
-        className={`${textColor}  ${bgColor} ${rounded} ${fontSize} ${fontStyle} ${hoverEffect} py-2 px-4  ${width} `}
+        className={`${textColor}  ${bgColor}  ${rounded} ${fontSize} ${fontStyle} ${hoverEffect} py-2 px-4  ${width} `}
         style={{
           color: textColor,
           backgroundColor: bgColor,

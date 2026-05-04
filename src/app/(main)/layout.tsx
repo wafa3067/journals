@@ -529,16 +529,13 @@ export default function MainLayout({
         </div>
       ) : (
         <div>
-          <header>
+          <header className="sticky top-0 z-50">
             <FirstHeader />
             <SecondHeader />
           </header>
 
-          <main className="flex-1 bg-gray-50">
-            <div style={{ display: "flex" }} className="pl-5 pr-5 ">
-              {children}
-              {/* <SideBar /> */}
-            </div>
+          <main className="relative z-0 flex-1 bg-gray-50">
+            <div className="flex pl-5 pr-5">{children}</div>
           </main>
 
           <footer>

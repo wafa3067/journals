@@ -28,7 +28,7 @@ export const addTeamPage = createAsyncThunk(
     try {
       console.log("Adding team member with data:", aboutData); // Debug log to check the data being sent
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/add?title=${aboutData.title}&heading=${aboutData.heading}&email=${aboutData.email}&link=${aboutData.link}&affiliation=${aboutData.affiliation}&uni=${aboutData.uni}&cat=${aboutData.category}`,
+        `http://localhost:8080/team/add?title=${aboutData.title}&heading=${aboutData.heading}&email=${aboutData.email}&link=${aboutData.link}&affiliation=${aboutData.affiliation}&uni=${aboutData.uni}&cat=${aboutData.category}`,
         {
           method: "POST",
           headers: {
@@ -57,7 +57,7 @@ export const editTeam = createAsyncThunk(
   async (aboutData: EditTeam & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/update?id=${aboutData.id}`,
+        `http://localhost:8080/team/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -95,7 +95,7 @@ export const deleteCategory = createAsyncThunk(
   async (aboutData: EditTeam & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/del?id=${aboutData.id}`,
+        `http://localhost:8080/category/del?id=${aboutData.id}`,
         {
           method: "Delete",
           headers: {
@@ -132,7 +132,7 @@ export const updateOrder = createAsyncThunk(
   ) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/updateOrder?catId=${aboutData.catid}&catValue=${aboutData.catValue}&changeCatId=${aboutData.changeID}&changeValue=${aboutData.changeValue}`,
+        `http://localhost:8080/category/updateOrder?catId=${aboutData.catid}&catValue=${aboutData.catValue}&changeCatId=${aboutData.changeID}&changeValue=${aboutData.changeValue}`,
         {
           method: "PATCH",
           headers: {
@@ -161,15 +161,12 @@ export const deleteTeam = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       console.log("Attempting to delete team member with ID:", id); // Debug log to confirm the ID being deleted
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/del?id=${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`http://localhost:8080/team/del?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       console.log("Delete response status:", res); // Debug log to check the response status
 
@@ -187,19 +184,16 @@ export const addCategoryIntial = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/category/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: categoryData.name,
-            assignOrder: categoryData.assignOrder,
-          }),
+      const res = await fetch("http://localhost:8080/category/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: categoryData.name,
+          assignOrder: categoryData.assignOrder,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -220,18 +214,15 @@ export const addCategory = createAsyncThunk(
   "home/about",
   async (categoryData: { name: string }, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/category/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: categoryData.name,
-          }),
+      const res = await fetch("http://localhost:8080/category/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: categoryData.name,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -253,7 +244,7 @@ export const editCategory = createAsyncThunk(
   async (categoryData: { name: string; id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/update?id=${categoryData.id}&title=${categoryData.name}`,
+        `http://localhost:8080/category/update?id=${categoryData.id}&title=${categoryData.name}`,
         {
           method: "PATCH",
           headers: {

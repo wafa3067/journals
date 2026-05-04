@@ -43,6 +43,8 @@ import addTeamPage from "../admin/adminSlice/team/addTeamSlice";
 import getTeam from "../admin/adminSlice/team/getTeamSlice";
 import addContactPage from "../admin/adminSlice/contact/addContactSlice";
 import getContactSlice from "../admin/adminSlice/contact/getContactSlice";
+import addAuthorPage from "../admin/adminSlice/author/addAuthorSlice";
+import getAuthorSlice from "../admin/adminSlice/author/getAuthorSlice";
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 //console.log("🧠 Store is being created..."); // 👈 ADD THIS
@@ -94,6 +96,8 @@ export function makeStore() {
       addTeam: addTeamPage,
       addContact: addContactPage,
       getContact: getContactSlice,
+      addAuthorSlice: addAuthorPage,
+      getAuthorSlice: getAuthorSlice,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

@@ -77,9 +77,7 @@ export const fetchArchiveArticles = createAsyncThunk<
   { rejectValue: string }
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(
-      "https://generous-love-production-3a3d.up.railway.app/api/get",
-    );
+    const response = await axios.get("http://localhost:8080/api/get");
 
     return response.data;
   } catch (err: unknown) {

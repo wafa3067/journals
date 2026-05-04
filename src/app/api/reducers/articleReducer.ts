@@ -30,7 +30,7 @@ export const fetchArticles = createAsyncThunk(
   async (params: { keyword: string, startDate: string, endDate: string, author: string }) => {
     const { keyword, startDate, endDate, author } = params;
     const response = await axios.get(
-      `https://generous-love-production-3a3d.up.railway.app/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+      `http://localhost:8080/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
     );
     return response.data;  // Returning the data that we want to store
   }

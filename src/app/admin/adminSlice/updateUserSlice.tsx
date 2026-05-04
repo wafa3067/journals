@@ -33,7 +33,7 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `https://generous-love-production-3a3d.up.railway.app/admin/users/status/${id}`,
+      `http://localhost:8080/admin/users/status/${id}`,
       null,
       {
         params: { status },
@@ -60,7 +60,7 @@ export const deleteUser = createAsyncThunk<
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `https://generous-love-production-3a3d.up.railway.app/users/delete/${id}`,
+      `http://localhost:8080/users/delete/${id}`,
     );
     return { id, message: response.data.message };
   } catch (err: unknown) {
