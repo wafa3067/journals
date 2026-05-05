@@ -65,7 +65,7 @@ export default function UserMenu(props: Props) {
         <div className="flex items-center gap-2">
           {/* Avatar */}
           <div
-            className="w-8 h-8 rounded-full flex items-center justify-center font-bold"
+            className=" text-sm md:text-base w-8 h-8 rounded-full flex items-center justify-center font-bold"
             style={{
               backgroundColor: props.avatarBgColor ?? "#F3C5A0",
               color: props.avatarTextColor ?? "#671509",
@@ -76,10 +76,9 @@ export default function UserMenu(props: Props) {
 
           {/* Username */}
           <p
-            className={`font-semibold`}
+            className={`font-semibold text-sm md:text-base`}
             style={{
               color: props.textColor ?? "#fff",
-              fontSize: props.fontSize ?? "16px",
             }}
           >
             {displayName}

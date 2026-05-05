@@ -38,14 +38,11 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/api/sign-up",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-        },
-      );
+      const response = await fetch("http://localhost:8080/api/sign-up", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
       //console.log("response:", response);
       const data = await response.json();
 

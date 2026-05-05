@@ -17,7 +17,7 @@ const CheckText = ({ title, onChange, width, error, check }: Props) => {
       <div className={`${width} flex flex-row  gap-2 `}>
         {check === "yes" ? (
           <MdCheckBox
-            className="w-[20px] h-[20px] "
+            className="w-5  h-5  text-sm md:text-base"
             onClick={() => {
               if (onChange) onChange("");
             }}
@@ -27,10 +27,10 @@ const CheckText = ({ title, onChange, width, error, check }: Props) => {
             onClick={() => {
               if (onChange) onChange(title);
             }}
-            className="w-[20px] h-[20px]"
+            className="w-5 h-5 text-sm md:text-base"
           />
         )}
-        <span className="text-black w-[90%]">{title}</span>
+        <span className="text-black w-[90%] text-sm md:text-base">{title}</span>
       </div>
       {error && <span className="text-red-500">* {error}</span>}
     </div>

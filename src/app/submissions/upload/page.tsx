@@ -68,7 +68,9 @@ export default function Page() {
   return (
     <div className="bg-gray-50 w-full p-6">
       <div className="w-full max-w-5xl mx-auto md:shadow-lg md:rounded-lg md:bg-white p-6 ">
-        <h2 className="text-center font-bold md:text-xl">Add Document</h2>
+        <h2 className="text-center font-bold text-sm md:text-2xl">
+          Add Document
+        </h2>
 
         <div
           className="mt-5 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-600 text-center"
@@ -84,20 +86,20 @@ export default function Page() {
 
           {!research.file ? (
             <>
-              <div className="md:text-lg font-medium">
+              <div className="text-sm md:text-lg font-medium">
                 Add a document to your submission
               </div>
               <button
                 type="button"
                 onClick={openFileDialog}
-                className="mt-3 px-4 py-2 rounded border border-gray-500 bg-white hover:bg-gray-100 cursor-pointer"
+                className="mt-3 px-4 py-2 rounded border border-gray-500 bg-white hover:bg-gray-100 cursor-pointer text-sm md:text-base"
               >
                 Upload
               </button>
             </>
           ) : (
             <div
-              className="w-full p-3 text-gray-800 sm:text-[10px]"
+              className="w-full p-3 text-gray-800 text-[10px] md:text-2xl"
               onClick={openFileDialog}
             >
               <strong>{research.name}</strong> ({research.type || "unknown"},{" "}

@@ -58,7 +58,6 @@ const homeData: HomeData = {
 
 const editorData: EditorData = {
   id: 0,
-
   title: "",
   descriptions: "",
 };

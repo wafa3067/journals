@@ -23,7 +23,7 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/validate-token?token=${token}`,
+        `http://localhost:8080/api/validate-token?token=${token}`,
       );
       //console.log("Token check response:", res.data);
       if (!res.data.valid) {

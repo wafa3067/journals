@@ -1,5 +1,6 @@
 "use client";
 import AlertDialogDemo from "@/app/(main)/components/alerdialog";
+import CustomArea from "@/app/(main)/components/areaCustom";
 import CustomButton from "@/app/(main)/components/custom_button";
 import CustomInput from "@/app/(main)/components/custom_input";
 import CustomText from "@/app/(main)/components/custom_text";
@@ -60,7 +61,9 @@ const Page = () => {
     >
       <div className="flex flex-row gap-4 justify-center  ">
         <CustomText
-          style={"font-bold text-black border-b-2 border-b-slate-500 "}
+          style={
+            "font-bold text-black border-b-2 border-b-slate-500  text-sm md:text-base"
+          }
           text={"Meta Data Details"}
         />
       </div>
@@ -119,40 +122,40 @@ const Page = () => {
             : ""
         }
         value={research.abstracts}
-        style="lg:w-[740px] sm:w-[320px] h-[200px]"
+        style="lg:w-[740px] w-[290px] h-[200px] mb-10 md:mb-0"
         onChange={(v) => {
           dispatch(updateAbstracts(v));
         }}
       />
 
-      <div className="flex flex-col lg:w-[740px] w-[290px] ">
+      <div className="flex flex-col lg:w-185 w-[290px] ">
         <div className="mt-10 lg:w-[740px] w-[290px] justify-between items-center flex flex-row   ">
           <CustomText
             text={"List of Contributors"}
-            style={"font-bold text-sm"}
+            style={"font-bold text-sm md:text-base"}
           />
           <AlertDialogDemo />
         </div>
         <div className="flex flex-col border-2 mt-3  overflow-x-scroll">
-          <table className="table-auto border-collapse border border-gray-300 w-full max-w-[740px] text-sm ">
+          <table className="table-auto border-collapse border border-gray-300 w-full max-w-185 text-sm ">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border border-gray-300 px-3 py-2 text-left w-[120px]">
+                <th className="border border-gray-300 px-3 py-2 text-left w-30 text-sm md:text-base">
                   Name
                 </th>
-                <th className="border border-gray-300 px-3 py-2 text-left w-[180px]">
+                <th className="border border-gray-300 px-3 py-2 text-left w-45 text-sm md:text-base">
                   Email
                 </th>
-                <th className="border border-gray-300 px-3 py-2 text-left w-[100px]">
+                <th className="border border-gray-300 px-3 py-2 text-left w-25 text-sm md:text-base">
                   Role
                 </th>
-                <th className="border border-gray-300 px-3 py-2 text-center w-[120px]">
+                <th className="border border-gray-300 px-3 py-2 text-center w-30 text-sm md:text-base">
                   Primary
                 </th>
-                <th className="border border-gray-300 px-3 py-2 text-center w-[120px]">
+                <th className="border border-gray-300 px-3 py-2 text-center w-30 text-sm md:text-base">
                   Browser List
                 </th>
-                <th className="border border-gray-300 px-3 py-2 text-center w-[120px]">
+                <th className="border border-gray-300 px-3 py-2 text-center w-30 text-sm md:text-base ">
                   Actions
                 </th>
               </tr>
@@ -165,23 +168,23 @@ const Page = () => {
                     research.browser === index ? "bg-gray-100" : ""
                   }`}
                 >
-                  <td className="border border-gray-300 px-3 py-2 truncate">
+                  <td className="border border-gray-300 px-3 py-2 truncate text-sm md:text-base">
                     {val.publicName}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 truncate">
+                  <td className="border border-gray-300 px-3 py-2 truncate text-sm md:text-base">
                     {val.email}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2">
+                  <td className="border border-gray-300 px-3 py-2 text-sm md:text-base">
                     {val.role}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 text-center">
+                  <td className="border border-gray-300 px-3 py-2 text-center text-sm md:text-base">
                     {val.primaryContact ? (
                       <MdOutlineDone className="text-green-500 inline-block" />
                     ) : (
                       <IoIosClose className="text-red-500 inline-block" />
                     )}
                   </td>
-                  <td className="border border-gray-300 px-3 py-2 text-center">
+                  <td className="border border-gray-300 px-3 py-2 text-center text-sm md:text-base">
                     {val.inBrowserlist ? (
                       <MdOutlineDone className="text-green-500 inline-block" />
                     ) : (
@@ -223,7 +226,7 @@ const Page = () => {
         </div>
       </div>
       {/* // keywords section */}
-      <div className="flex flex-col justify-end mt-4 lg:w-[740px] w-[290px] ">
+      <div className="flex flex-col justify-end mt-4 lg:w-185 w-72.5 ">
         <CustomText
           text={"Keywords"}
           style={"lg:w-[740px] w-[290px] h-[30px] font-bold "}
@@ -243,12 +246,13 @@ const Page = () => {
         />
       </div>
       {/* // refresnce section */}
-      <div className="flex flex-col justify-end mt-4 lg:w-[740px] w-[290px] ">
+      <div className="flex flex-col justify-end mt-4 lg:w-185 w-72.5 ">
         <CustomText
           text={"References"}
           style={"lg:w-[740px] w-[290px] h-[30px] font-bold "}
         />
-        <CustomInput
+        <area className="w-full p-3 text-gray-800 text-[10px] md:text-base" />
+        <CustomArea
           error={
             active
               ? research.references.length == 0

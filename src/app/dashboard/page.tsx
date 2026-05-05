@@ -38,7 +38,7 @@ export default function Page() {
       <main style={styles.container} className="bg-gray-50">
         <header style={styles.header}>
           <div>
-            <p className="md:2xl text-sm" style={styles.title}>
+            <p className="text-sm md:text-2xl" style={styles.title}>
               Submissions Dashboard
             </p>
             <p style={styles.subtitle}>Create and manage your submissions</p>
@@ -48,7 +48,7 @@ export default function Page() {
         <div style={styles.actions}>
           <CustomText
             text={" New Submission"}
-            style="inline-block bg-[#000] text-white px-4 py-2 rounded-lg no-underline font-semibold cursor-pointer"
+            style="inline-block bg-[#000] text-white px-4 py-2 rounded-lg no-underline font-semibold cursor-pointer text-sm md:text-base"
             onTap={() => {
               route.push("/submissions/begin");
               dispatch(updateTab("initial-requirements"));
@@ -56,7 +56,7 @@ export default function Page() {
           />
           <CustomText
             text={" View Submission"}
-            style="inline-block bg-indigo-100 text-indigo-800 px-4 py-2.5 rounded-lg no-underline font-semibold cursor-pointer"
+            style="inline-block bg-indigo-100 text-indigo-800 px-4 py-2.5 rounded-lg no-underline font-semibold cursor-pointer text-sm md:text-base"
             onTap={() => {
               route.push("/dashboard/show");
             }}
@@ -153,7 +153,7 @@ const styles: { [k: string]: React.CSSProperties } = {
   },
   title: {
     margin: 0,
-    fontSize: 28,
+
     fontWeight: 700,
   },
   subtitle: {

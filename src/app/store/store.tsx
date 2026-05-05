@@ -45,6 +45,10 @@ import addContactPage from "../admin/adminSlice/contact/addContactSlice";
 import getContactSlice from "../admin/adminSlice/contact/getContactSlice";
 import addAuthorPage from "../admin/adminSlice/author/addAuthorSlice";
 import getAuthorSlice from "../admin/adminSlice/author/getAuthorSlice";
+import addNewsPage from "../admin/adminSlice/news/newsAddSlice";
+import getNews from "../admin/adminSlice/news/newsGetSlice";
+import addAnnouncement from "../admin/adminSlice/announcement/addAnnouncementSlice";
+import getAnnouncement from "../admin/adminSlice/announcement/getAnnouncementSlice";
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 //console.log("🧠 Store is being created..."); // 👈 ADD THIS
@@ -98,6 +102,10 @@ export function makeStore() {
       getContact: getContactSlice,
       addAuthorSlice: addAuthorPage,
       getAuthorSlice: getAuthorSlice,
+      addNews: addNewsPage,
+      getNews: getNews,
+      addAnnouncement: addAnnouncement,
+      getAnnouncement: getAnnouncement,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

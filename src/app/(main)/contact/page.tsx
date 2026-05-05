@@ -3,21 +3,31 @@
 import { GetContactThunk } from "@/app/admin/adminSlice/contact/getContactSlice";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import React, { useEffect } from "react";
+import CircularLoading from "../components/circular_loadinng";
 
 const ContactPage = () => {
   const dispatch = useAppDispatch();
-  const { getContact } = useAppSelector((state) => state.getContact);
+  const { getContact, success, loading } = useAppSelector(
+    (state) => state.getContact,
+  );
 
   useEffect(() => {
     dispatch(GetContactThunk());
     // Fetch contact data when the component mounts
   }, []);
+
+  if (success === false || loading) {
+    return <CircularLoading />;
+  }
+  if (getContact.length == 0) {
+    return <p>No Contact Information Found</p>;
+  }
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-12 w-[100%]">
       {/* Breadcrumb */}
 
       {/* Page Title */}
-      <h1 className="text-3xl font-bold text-gray-900 mb-10">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10">
         Contact Information:
       </h1>
 

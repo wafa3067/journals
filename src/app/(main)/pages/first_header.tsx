@@ -61,6 +61,13 @@ const FirstHeader = () => {
     } else if (v === "View Profile") {
       router.push("/profile/identity");
     } else {
+      router.push("/");
+      localStorage.removeItem("id");
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("name");
+      localStorage.removeItem("role");
+
       localStorage.clear(); // simpler way to remove all
       dispatch(getToken("")); // clear token in redux store
     }
@@ -211,11 +218,11 @@ const FirstHeader = () => {
               style={"cursor-pointer"}
               onTap={() => {
                 if (token != null && token != "" && token != undefined) {
-                  navigate("/author");
+                  navigate("/dashboard/begin");
                   setSelected("Submit an article");
                   return;
                 }
-                navigate("/author");
+                navigate("/dashboard/login");
                 // navigate("/aboutsubmissions");
                 setSelected("Submit an article");
 

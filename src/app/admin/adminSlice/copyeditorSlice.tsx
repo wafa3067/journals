@@ -44,7 +44,7 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/copy-editor",
+        "http://localhost:8080/admin/copy-editor",
       );
       return response.data;
     } catch (err) {
@@ -72,7 +72,7 @@ export const assignToProduction = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
+        `http://localhost:8080/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

@@ -53,7 +53,7 @@ const SecondHeader = () => {
       "/privacy-policy",
       "/contact",
       "/news",
-      "/author",
+      "/submissions/begin",
     ];
 
     routes.forEach((route) => router.prefetch(route));
@@ -82,11 +82,11 @@ const SecondHeader = () => {
           selectedOption={selected}
           onTap={() => {
             if (token != null && token != "" && token != undefined) {
-              navigate("/author");
+              navigate("/submissions/begin");
               setSelected("Submit an article");
               return;
             }
-            navigate("/author");
+            navigate("/dashboard/login");
             // navigate("/aboutsubmissions");
             setSelected("Submit an article");
           }}

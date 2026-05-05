@@ -64,14 +64,14 @@ export default function HorizontalBar({
             <li
               onClick={() => handleClick(step.key)}
               key={step.key}
-              className={`hb-item  text-[10px] md:text-2xl p-2 md:pl-3 md:pr-3 md:pt-2 md:pb-2  ${
+              className={`hb-item  text-[8px] md:text-2xl p-1 md:pl-3 md:pr-3 md:pt-2 md:pb-2  ${
                 current == step.key
                   ? "border-4 border-b-slate-500 bg-[#651404] bg-opacity-10 rounded-md"
                   : ""
               } `}
             >
               <button type="button" className="hb-button">
-                <span className="hb-text">
+                <span className="">
                   <span
                     className={`hb-title  ${
                       current == step.key ? "text-white" : "text-black"

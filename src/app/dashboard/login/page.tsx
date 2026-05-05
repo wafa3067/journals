@@ -43,8 +43,8 @@ const Page = () => {
   const displayError = errors ?? localError;
   return (
     <div className="w-full  min-h-screen justify-center flex items-center">
-      <div className="w-[300px] md:w-[550px] p:2 md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
-        <div className="h-[35px] flex flex-row gap-2 mb-3">
+      <div className="w-75 md:w-137.5 p:2 md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
+        <div className="h-8.75 flex flex-row gap-2 mb-3">
           <Image
             color="white"
             height={35}
@@ -69,17 +69,17 @@ const Page = () => {
         />
         <CustomInput
           type="password"
-          style="w-[250px] md:w-[500px] m-2"
+          style="w-62.5 md:w-125 m-2"
           placeholder="Password"
           onChange={(v) => setPassword(v.target.value)}
         />
         {displayError && (
-          <div className="flex flex-row gap-2 mb-5 mt-3 w-[250px] md:w-[500px]">
+          <div className="flex flex-row gap-2 mb-5 mt-3 w-62.5 md:w-125">
             <CustomText text={displayError} style={"text-red-500"} />
           </div>
         )}
-        <div className="flex flex-row gap-2 mb-5 mt-3 w-[280px] md:w-[500px]">
-          <CustomText text={"Dont have an account?"} />{" "}
+        <div className="flex flex-row gap-2 mb-5 mt-3 w-70 md:w-125 justify-center">
+          <CustomText text={"Dont have an account?"} style="text-sm" />
           <CustomText
             onTap={() => Navigate("/dashboard/register")}
             text={" Register"}

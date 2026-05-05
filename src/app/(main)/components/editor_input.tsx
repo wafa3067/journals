@@ -14,9 +14,9 @@ type EditorInputProps = {
 };
 const EditorInput = ({ style, onChange, value, error }: EditorInputProps) => {
   return (
-    <div className={`w-[290px] md:w-[500px]  ${style}`}>
+    <div className={`w-62.5 sm:w-75 lg:w-125  ${style}`}>
       <ReactQuill
-        className={` ${style ? style : "rounded-2xl outline-none md:h-[200px]"}`}
+        className={` ${style ? style : "rounded-2xl outline-none md:h-50"}`}
         theme="snow"
         style={{
           borderRadius: "1rem",

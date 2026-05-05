@@ -10,6 +10,7 @@ import { CreateEditorHomeState } from "@/app/admin/adminSlice/editor/getEditorSl
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { AboutHomeGetPage } from "@/app/admin/adminSlice/home/GetHomeAboutSlice";
 import { CreateGetSideHome } from "@/app/admin/adminSlice/sideHomeSlice/getHomeSideSlice";
+import CircularLoading from "../components/circular_loadinng";
 
 const MainBody = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const MainBody = () => {
   }, [CreateGetSideHome, dispatch]);
 
   if (!about || about.length === 0) {
-    return <p>No data</p>;
+    return <CircularLoading />;
   }
   return (
     <div className="" style={{ width: "100%" }}>

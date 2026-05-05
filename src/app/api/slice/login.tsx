@@ -18,14 +18,11 @@ export const loginUser = createAsyncThunk(
   "auth/register",
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/api/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-        },
-      );
+      const response = await fetch("http://localhost:8080/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
       const errorData = await response.json();
 
       if (!response.ok) {

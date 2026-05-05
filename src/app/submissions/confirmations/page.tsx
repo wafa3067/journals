@@ -45,16 +45,14 @@ const Page = () => {
 
   return (
     <main
-      className=" md:w-5xl   md:mx-auto flex flex-col  md:bg-white m-10 p-6 md:rounded-md justify-start items-center md:shadow-lg"
+      className=" md:w-5xl  md:p-5 gap-2 md:gap-5   md:mx-auto flex flex-col  md:bg-white m-1 md:m-10 p-6 md:rounded-md justify-start items-center md:shadow-lg"
       style={{
-        padding: 20,
         fontFamily: "system-ui, -apple-system, Roboto, 'Segoe UI', Arial",
         display: "flex",
-        gap: 24,
       }}
     >
       <CustomText
-        style={"font-normal text-black  "}
+        style={"font-normal text-black  text-sm md:text-base      "}
         text={
           "Your submission is prepared and ready to be uploaded. You can review or edit any details before proceeding. When you’re ready, click Finish Submission to continue."
         }
@@ -63,7 +61,7 @@ const Page = () => {
       <div className=" lg:w-[740px] w-[290px] flex justify-end mt-4 gap-2">
         <CustomButton
           text="Back"
-          rounded="rounded-[8px]"
+          rounded="rounded-[8px] text-sm md:text-base"
           bgColor={"bg-[#671509]"}
           onClick={() => goBack()}
         />
@@ -72,7 +70,7 @@ const Page = () => {
         ) : (
           <CustomButton
             text="Finish Submission"
-            rounded="rounded-[8px]"
+            rounded="rounded-[8px] text-sm md:text-base"
             bgColor={"bg-[#671509]"}
             onClick={async () => {
               const token = localStorage.getItem("token");
@@ -126,7 +124,7 @@ const Page = () => {
         <CustomButton
           text="Cancel"
           rounded="rounded-[8px]"
-          textColor="black"
+          textColor="black text-sm md:text-base"
           bgColor={"bg-[#cccccc]"}
         />
       </div>

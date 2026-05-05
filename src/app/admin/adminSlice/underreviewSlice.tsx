@@ -42,7 +42,7 @@ export const fetchUnderReview = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/under-review",
+        "http://localhost:8080/admin/under-review",
       );
       return response.data;
     } catch (err: unknown) {
@@ -74,7 +74,7 @@ export const assignCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
+        `http://localhost:8080/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
           copyeditor,
         )}&status=${encodeURIComponent(status)}&comments=${encodeURIComponent(
           comments,
@@ -108,7 +108,7 @@ export const modifyCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
+        `http://localhost:8080/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
           copy,
         )}`,
       );

@@ -20,7 +20,7 @@ export default function SubmissionsLayout({
   };
   return (
     <div className="md:min-h-screen bg-gray-50 ">
-      <div className="items-center justify-center flex flex-col h-[200px]">
+      <div className="items-center justify-center flex flex-col h-50">
         {/* dashboard header */}
         <div className=" p-5 flex flex-row justify-between items-center  pt-4 pb-4 border-b border-gray-300 bg-white mb-10 w-full">
           <div className="flex flex-row  items-center">
@@ -31,7 +31,7 @@ export default function SubmissionsLayout({
           </div>
           <CustomText
             text={" Submit a New Article "}
-            style={"md:text-3xl font-normal "}
+            style={" text-sm md:text-3xl font-normal "}
           />
           <TbLayoutDashboardFilled size={40} />
         </div>

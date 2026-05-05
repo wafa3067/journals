@@ -50,7 +50,7 @@ const Page = () => {
       <div className="w-full md:max-w-5xl md:bg-white/95 backdrop-blur-sm md:rounded-2xl md:shadow-lg md:border md:border-gray-100 p-8">
         <div className="flex items-center gap-3 mb-4">
           <Edit className="text-[#000] w-6 h-6" />
-          <h1 className="text-2xl font-semibold text-gray-800">
+          <h1 className="text-sm md:text-2xl font-semibold text-gray-800">
             New Submission
           </h1>
         </div>
@@ -58,7 +58,7 @@ const Page = () => {
         <div className="space-y-4">
           <CustomText
             text={"Choose a Section"}
-            style={"lg:w-[740px] sm:w-[300px]"}
+            style={"lg:w-[740px] sm:w-[300px] "}
           />
           <DropDownMenu
             onChange={(v) => dispatch(updateSection(v))}
@@ -83,7 +83,7 @@ const Page = () => {
           </div>
           <CustomText
             text={"Submission follows the journal's guidelines for authors."}
-            style={"w-full mt-2 font-bold "}
+            style={" text-sm md:text-2xl  w-full mt-2 font-bold "}
           />
 
           <CheckText

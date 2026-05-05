@@ -1,34 +1,37 @@
-// Example usage in a parent component
-
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import NewsCard from "../components/news_card";
 import CustomText from "../components/custom_text";
+import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
+import { getNewsData } from "@/app/admin/adminSlice/news/newsGetSlice";
+import CircularLoading from "../components/circular_loadinng";
 
-const NewsFeed: React.FC = () => {
-  const newsData = [
-    {
-      date: "3 February 2017",
-      title: "Join the Physics community on Mendeley!",
-      description:
-        "Exchange knowledge and resources with the Physics community by having deeper level conversations on the two new discussion forums on Mendeley.",
-    },
-    {
-      date: "5 February 2017",
-      title: "New Research in Quantum Physics Released!",
-      description:
-        "A groundbreaking paper on quantum entanglement and its implications on modern computing has just been released.",
-    },
-  ];
+const NewsFeed = () => {
+  const dispatch = useAppDispatch();
+  const { getNews, loading } = useAppSelector((state) => state.getNews);
+
+  useEffect(() => {
+    dispatch(getNewsData());
+  }, [dispatch]);
+
+  if (loading) {
+    return <CircularLoading />;
+  }
+
+  if (!getNews || getNews.length === 0) {
+    return <div className="text-center mt-10">No news available.</div>;
+  }
 
   return (
-    <div className="">
-      <CustomText text={"News"} style={"pl-5 text-2xl font-bold"} />
-      {newsData.map((news, index) => (
+    <div>
+      <CustomText text="News" style="pl-5 text-2xl font-bold" />
+      {getNews.map((news, index) => (
         <NewsCard
           key={index}
           date={news.date}
           title={news.title}
-          description={news.description}
+          link={news.link}
+          description={news.descriptions}
         />
       ))}
     </div>

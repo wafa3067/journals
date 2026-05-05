@@ -49,6 +49,8 @@ const AdminSidebar = () => {
     { name: "Home", icon: "🏠", href: "/admin/setting/home" },
     { name: "Team", icon: "👥", href: "/admin/setting/team" },
     { name: "Contact", icon: "📞", href: "/admin/setting/contact" },
+    { name: "News", icon: "📰", href: "/admin/setting/news" },
+    { name: "Announcements", icon: "📢", href: "/admin/setting/announcement" },
   ];
 
   const isReviewActive = reviewStages.some((stage) =>
