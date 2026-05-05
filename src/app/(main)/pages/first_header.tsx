@@ -218,7 +218,7 @@ const FirstHeader = () => {
               style={"cursor-pointer"}
               onTap={() => {
                 if (token != null && token != "" && token != undefined) {
-                  navigate("/dashboard/begin");
+                  navigate("/submissions/begin");
                   setSelected("Submit an article");
                   return;
                 }
