@@ -10,16 +10,19 @@ export const AboutHomePage = createAsyncThunk(
   "home/about",
   async (aboutData: HomeAbout, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:8080/home/about/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://generous-love-production-3a3d.up.railway.app/home/about/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: aboutData.title,
+            descriptions: aboutData.descriptions,
+          }),
         },
-        body: JSON.stringify({
-          title: aboutData.title,
-          descriptions: aboutData.descriptions,
-        }),
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -41,7 +44,7 @@ export const editAboutData = createAsyncThunk(
   async (aboutData: HomeAbout & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/about/update?id=${aboutData.id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/about/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -73,12 +76,15 @@ export const deleteAboutData = createAsyncThunk(
   "home/about",
   async (id: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:8080/home/about/del?id=${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `https://generous-love-production-3a3d.up.railway.app/home/about/del?id=${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();

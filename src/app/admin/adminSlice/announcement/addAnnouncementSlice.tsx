@@ -23,7 +23,7 @@ export const addAnnouncement = createAsyncThunk(
       }
 
       const res = await axios.post(
-        "http://localhost:8080/home/announcement/add",
+        "https://generous-love-production-3a3d.up.railway.app/home/announcement/add",
         formData,
       );
 
@@ -44,7 +44,7 @@ export const editAnnouncementData = createAsyncThunk(
   ) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/announcement/update?id=${announcementData.id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/announcement/update?id=${announcementData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -81,7 +81,7 @@ export const deleteAnnouncementData = createAsyncThunk(
   async (id: number, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:8080/home/announcement/del?id=${id}`,
+        `https://generous-love-production-3a3d.up.railway.app/home/announcement/del?id=${id}`,
         {
           method: "DELETE",
           headers: {

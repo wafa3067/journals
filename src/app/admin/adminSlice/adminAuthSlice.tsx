@@ -33,7 +33,7 @@ export const adminLogin = createAsyncThunk(
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/admin/login/login",
+        "https://generous-love-production-3a3d.up.railway.app/admin/login/login",
         null,
         {
           params: {
@@ -64,7 +64,7 @@ export const adminRegister = createAsyncThunk(
   async (data: RegisterData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "http://localhost:8080/admin/login/register",
+        "https://generous-love-production-3a3d.up.railway.app/admin/login/register",
         null,
         {
           params: {

@@ -15,12 +15,15 @@ export const getAnnouncementData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       console.log("Fetching announcement data..."); // Debug log
-      const res = await fetch("http://localhost:8080/home/announcement/get", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://generous-love-production-3a3d.up.railway.app/home/announcement/get",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();
