@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 interface ArticleStatsState {
   total: number | null;
@@ -25,7 +26,7 @@ export const fetchTotalArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/total-article?email=${email}`,
+        `${BACKEND_URL}/api/total-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +47,7 @@ export const fetchPendingArticles = createAsyncThunk(
     const email = await localStorage.getItem("email");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/pending-article?email=${email}`,
+        `${BACKEND_URL}/api/pending-article?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ export const fetchApprovedArticles = createAsyncThunk(
     const token = await localStorage.getItem("token");
     if (token != null && token !== "") {
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/total-approved?email=${email}`,
+        `${BACKEND_URL}/api/total-approved?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 export interface Role {
   name: string;
@@ -30,7 +31,7 @@ export const updateRole = createAsyncThunk(
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/api/update/role?email=${email}`,
+        `${BACKEND_URL}/api/update/role?email=${email}`,
         { review: review, role: roles },
         {
           headers: {

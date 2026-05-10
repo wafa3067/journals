@@ -27,7 +27,7 @@ function Page() {
       </div>
 
       <button
-        className="bg-green-700 m-10 p-2 rounded-sm text-white hover:bg-green-500 transition-colors duration-300"
+        className="bg-green-700 m-10 p-2 rounded-sm text-white hover:bg-[#00b4d8] transition-colors duration-300"
         onClick={handle}
       >
         Add Author Info

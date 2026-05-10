@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -36,7 +37,7 @@ export const addNotification = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/notification/add/?title=${encodeURIComponent(
+        `${BACKEND_URL}/notification/add/?title=${encodeURIComponent(
           title,
         )}&message=${encodeURIComponent(message)}&email=${encodeURIComponent(
           email,

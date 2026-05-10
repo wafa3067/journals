@@ -255,8 +255,8 @@ const Page = () => {
             ) : (
               <CustomButton
                 text="Next"
-                bgColor="bg-[#000]"
-                hoverEffect="hover:bg-[#f7bc49]"
+                bgColor="bg-[#00b4d8]"
+                hoverEffect="hover:bg-[#0096c7]"
                 rounded="8px"
                 onClick={() => {
                   dispatch(updateContinue(true));

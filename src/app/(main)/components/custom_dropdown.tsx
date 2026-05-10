@@ -27,7 +27,7 @@ export default function CustomDropdown({
       onClick={onTap}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      className="relative w-64 cursor-default"
+      className="relative w-64 cursor-default z-50"
     >
       <div className="flex items-center justify-between w-fit">
         <p
@@ -38,16 +38,22 @@ export default function CustomDropdown({
         >
           {starting}
         </p>
-        {is_optins && <MdOutlineKeyboardArrowDown />}
+        {is_optins && (
+          <MdOutlineKeyboardArrowDown
+            color="#ffffff"
+            size={25}
+            className="ml-2"
+          />
+        )}
       </div>
 
       {/* Menu */}
       {open && is_optins && (
-        <ul className="absolute w-full bg-gray-200 rounded-sm overflow-hidden">
+        <ul className="absolute w-full bg-gray-200 rounded-sm overflow-hidden z-50">
           {options.map((option) => (
             <li
               key={option.label}
-              className="px-4 py-2 text-black hover:bg-black hover:text-white"
+              className="px-4 py-2 text-black hover:bg-[#00b4d8] hover:text-white"
               onClick={() => {
                 // setSelected(option.label);
                 setOpen(false);

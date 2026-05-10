@@ -10,7 +10,7 @@ const Footer = () => {
         text={"ISSN: 2957-4083"}
         style={"text-2xl font-bold  w-fit pr-2 pb-10 "}
       />
-      <div className="h-[30] bg-[#000] w-full"></div>
+      <div className="h-[30] bg-[#00b4d8] w-full"></div>
     </div>
   );
 };

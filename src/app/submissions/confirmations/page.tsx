@@ -62,7 +62,7 @@ const Page = () => {
         <CustomButton
           text="Back"
           rounded="rounded-[8px] text-sm md:text-base"
-          bgColor={"bg-[#671509]"}
+          bgColor={"bg-[#00b4d8]"}
           onClick={() => goBack()}
         />
         {isLoading || isPending ? (
@@ -71,7 +71,7 @@ const Page = () => {
           <CustomButton
             text="Finish Submission"
             rounded="rounded-[8px] text-sm md:text-base"
-            bgColor={"bg-[#671509]"}
+            bgColor={"bg-[#00b4d8]"}
             onClick={async () => {
               const token = localStorage.getItem("token");
               const email = localStorage.getItem("email");

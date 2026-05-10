@@ -6,10 +6,6 @@ import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
 import { useRouter } from "next/navigation";
 import CustomText from "../(main)/components/custom_text";
 import { getToken, getUser } from "../api/slice/getTokenSlice";
-import SubmissionsPage from "../(main)/aboutsubmissions/page";
-import PublicationEthics from "../(main)/publications_ethics/page";
-import Manuscript from "../(main)/manuscript/page";
-import PrivacyPolicyPage from "../(main)/privacy-policy/page";
 
 export default function Page() {
   const route = useRouter();
@@ -35,7 +31,7 @@ export default function Page() {
 
   return (
     <>
-      <main style={styles.container} className="bg-gray-50">
+      <main style={styles.container} className="">
         <header style={styles.header}>
           <div>
             <p className="text-sm md:text-2xl" style={styles.title}>
@@ -48,7 +44,7 @@ export default function Page() {
         <div style={styles.actions}>
           <CustomText
             text={" New Submission"}
-            style="inline-block bg-[#000] text-white px-4 py-2 rounded-lg no-underline font-semibold cursor-pointer text-sm md:text-base"
+            style="inline-block text-[] bg-[#00b4d8] text-white px-4 py-2 rounded-lg no-underline font-semibold cursor-pointer text-sm md:text-base"
             onTap={() => {
               route.push("/submissions/begin");
               dispatch(updateTab("initial-requirements"));
@@ -92,45 +88,6 @@ export default function Page() {
         <div>
           {/* titles */}
           {/* submission guidlines,oublication ethics,manuscript,privacy statement */}
-          <div className="mt-8 bg-white rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-semibold mb-4">
-              Important Information
-            </h3>
-            <ul className="space-y-2">
-              <li>
-                <details className="cursor-pointer">
-                  <summary className="text-indigo-600 hover:text-indigo-800 font-medium">
-                    Submission Guidelines
-                  </summary>
-                  <SubmissionsPage />
-                </details>
-              </li>
-              <li>
-                <details className="cursor-pointer">
-                  <summary className="text-indigo-600 hover:text-indigo-800 font-medium">
-                    Publication Ethics
-                  </summary>
-                  <PublicationEthics />
-                </details>
-              </li>
-              <li>
-                <details className="cursor-pointer">
-                  <summary className="text-indigo-600 hover:text-indigo-800 font-medium">
-                    Manuscript
-                  </summary>
-                  <Manuscript />
-                </details>
-              </li>
-              <li>
-                <details className="cursor-pointer">
-                  <summary className="text-indigo-600 hover:text-indigo-800 font-medium">
-                    Privacy Statement
-                  </summary>
-                  <PrivacyPolicyPage />
-                </details>
-              </li>
-            </ul>
-          </div>
         </div>
       </main>
     </>

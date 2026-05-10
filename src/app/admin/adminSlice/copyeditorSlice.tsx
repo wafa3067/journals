@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 export interface Article {
@@ -43,9 +44,7 @@ export const fetchCopyEdit = createAsyncThunk<Article[]>(
   "pending/fetchUnderReview",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/copy-editor",
-      );
+      const response = await axios.get(`${BACKEND_URL}/admin/copy-editor`);
       return response.data;
     } catch (err) {
       let message = "Failed to fetch copy editor articles";
@@ -72,7 +71,7 @@ export const assignToProduction = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
+        `${BACKEND_URL}/admin/articles/production/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

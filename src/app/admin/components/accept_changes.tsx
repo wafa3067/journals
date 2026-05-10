@@ -68,7 +68,7 @@
 //       </AlertDialog.Trigger>
 
 //       <AlertDialog.Portal>
-//         <AlertDialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
+//         <AlertDialog.Overlay className="fixed inset-0 bg-[#00b4d8]/50 backdrop-blur-sm z-40" />
 //         <AlertDialog.Content
 //           onEscapeKeyDown={(e) => e.preventDefault()}
 //           className="fixed top-1/2 left-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2
@@ -119,7 +119,7 @@
 //             <div className="flex space-x-2">
 //               <button
 //                 onClick={handleAccept}
-//                 className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+//                 className="px-4 py-2 rounded-lg bg-[#00b4d8] text-white hover:bg-green-700"
 //               >
 //                 Accept
 //               </button>
@@ -139,6 +139,7 @@
 
 "use client";
 
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { useState } from "react";
 
@@ -197,7 +198,7 @@ export default function ArticleCheckDialog({
       </AlertDialog.Trigger>
 
       <AlertDialog.Portal>
-        <AlertDialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
+        <AlertDialog.Overlay className="fixed inset-0 bg-[#00b4d8]/50 backdrop-blur-sm z-40" />
         <AlertDialog.Content
           onEscapeKeyDown={(e) => e.preventDefault()}
           className="fixed top-1/2 left-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 
@@ -212,8 +213,8 @@ export default function ArticleCheckDialog({
           </AlertDialog.Description>
           <h1>Download Template File below </h1>
           <a
-            href="https://generous-love-production-3a3d.up.railway.app/uploads/IEEE_Conference_Template.pdf"
-            className="text-blue-600 hover:underline"
+            href={`${BACKEND_URL}/uploads/IEEE_Conference_Template.pdf`}
+            className="text-[#00b4d8] hover:underline"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -279,7 +280,7 @@ export default function ArticleCheckDialog({
             <div className="flex space-x-2">
               <button
                 onClick={handleAccept}
-                className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+                className="px-4 py-2 rounded-lg bg-[#00b4d8] text-white hover:bg-green-700"
               >
                 Accept
               </button>

@@ -15,7 +15,6 @@ export default function RootLayout({
           <AlertProvider>
             {" "}
             {/* 👈 Wrap your entire app here */}
-            <TokenChecker />
             {children}
           </AlertProvider>
         </StoreProvider>

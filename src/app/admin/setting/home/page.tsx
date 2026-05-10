@@ -199,7 +199,18 @@ function Page() {
     );
   };
   return (
-    <div className="p-8 ">
+    <div className="">
+      {/* Header */}
+      <header className="bg-[#00b4d8] shadow-sm p-6 flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-semibold text-white flex items-center gap-2 ">
+          Home Page Management
+        </h2>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+            A
+          </div>
+        </div>
+      </header>
       <div className="flex gap-4 mb-8">
         <button
           onClick={() => setOpenModal("about")}
@@ -223,7 +234,7 @@ function Page() {
 
       {/* About Modal */}
       {openModal === "about" && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Add About</h2>
             {/* <input
@@ -255,7 +266,7 @@ function Page() {
                   setOpenModal(null);
                   handleSaveAboutData();
                 }}
-                className="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="flex-1 px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
               >
                 Save
               </button>
@@ -272,7 +283,7 @@ function Page() {
 
       {/* Sidebar Modal */}
       {openModal === "sidebar" && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Add Sidebar Item</h2>
 
@@ -294,7 +305,7 @@ function Page() {
             <div className="flex gap-2">
               <button
                 onClick={handleSaveSidebar}
-                className="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="flex-1 px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
               >
                 Save
               </button>
@@ -311,7 +322,7 @@ function Page() {
 
       {/* Editor Modal */}
       {openModal === "editor" && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Add Editor</h2>
             <input
@@ -342,7 +353,7 @@ function Page() {
             <div className="flex gap-2">
               <button
                 onClick={() => handleEditor()}
-                className="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="flex-1 px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
               >
                 Save
               </button>
@@ -513,7 +524,7 @@ function Page() {
           </div>
         </div>
         {/* editor section */}
-        <div className="py-8 px-4 bg-[#000]  relative ">
+        <div className="py-8 px-4 bg-[#00b4d8]  relative ">
           <h2 className="text-2xl font-bold text-center mb-8 text-white">
             Editors
           </h2>

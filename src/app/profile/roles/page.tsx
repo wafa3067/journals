@@ -105,7 +105,7 @@ export default function RolesPage() {
           * Denotes required field
         </p>
         {success && (
-          <CustomText text={success.toString()} style={"text-green-500"} />
+          <CustomText text={success.toString()} style={"text-[#00b4d8]"} />
         )}
         <button
           className="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"

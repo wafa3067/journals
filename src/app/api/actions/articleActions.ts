@@ -1,5 +1,5 @@
 // import axios from 'axios';
-
+export const BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.echosquantum.com";
 // // Action Types
 // export const SEARCH_REQUEST = 'SEARCH_REQUEST';
 // export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
@@ -32,7 +32,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         `https://generous-love-production-3a3d.up.railway.app/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+//         `${BACKEND_URL}/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
 //       );
 //       dispatch(searchSuccess(response.data)); // Dispatch success action with the data
 //     } catch (error) {

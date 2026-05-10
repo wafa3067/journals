@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 // Define TypeScript type for Article
 export interface Contributor {
@@ -63,7 +64,7 @@ export const fetchArticleById = createAsyncThunk(
   async (id: number, thunkAPI) => {
     try {
       const response = await axios.get<Article>(
-        `https://generous-love-production-3a3d.up.railway.app/api/article/${id}`,
+        `${BACKEND_URL}/api/article/${id}`,
       );
       return response.data;
     } catch (err: unknown) {

@@ -26,20 +26,10 @@ const EditorsList: React.FC<{ options: Array<Editor> }> = ({ options }) => {
   >(null);
   const totalEditors = options.length / 3;
 
-  const nextEditor = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalEditors);
-  };
-
-  const prevEditor = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? totalEditors - 1 : prevIndex - 1,
-    );
-  };
-
   const [id, setId] = useState<number>(0);
 
   return (
-    <div className="py-8 px-4 bg-[#000]  relative ">
+    <div className="py-8 px-4 bg-[#00b4d8]  relative ">
       <h2 className="text-2xl font-bold text-center mb-8 text-white">
         Editors
       </h2>

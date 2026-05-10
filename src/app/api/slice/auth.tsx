@@ -1,5 +1,6 @@
 // lib/store/slices/authSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { BACKEND_URL } from "../actions/articleActions";
 
 export interface User {
   id: number;
@@ -38,14 +39,11 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async (userData: RegisterData, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/api/sign-up",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-        },
-      );
+      const response = await fetch(`${BACKEND_URL}/api/sign-up`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
       //console.log("response:", response);
       const data = await response.json();
 

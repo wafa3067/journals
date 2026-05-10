@@ -1,6 +1,7 @@
 import React from "react";
 import CustomText from "./custom_text";
 import { TbFileTypePdf } from "react-icons/tb";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 type Props = {
   title1?: string;
   title12?: string;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const Articles = (props: Props) => {
-  const pdfUrlonline = `https://generous-love-production-3a3d.up.railway.app${props.pdfUrl}`;
+  const pdfUrlonline = `${BACKEND_URL}${props.pdfUrl}`;
 
   return (
     <div className="p-5">
@@ -29,7 +30,7 @@ const Articles = (props: Props) => {
       <a href={pdfUrlonline} target="_blank" rel="noopener noreferrer">
         <div
           className="flex 
-      flex-row gap-1.5 items-center pl-2 pr-2 mt-2 bg-[#000] hover:bg-amber-500 text-white rounded-sm  w-fit"
+      flex-row gap-1.5 items-center pl-2 pr-2 mt-2 bg-[#00b4d8] hover:bg-[#00b4d8] text-white rounded-sm  w-fit"
         >
           <TbFileTypePdf width={50} height={50} />
           <CustomText text={"PDF"} />

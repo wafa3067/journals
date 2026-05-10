@@ -66,7 +66,7 @@ export default function HorizontalBar({
               key={step.key}
               className={`hb-item  text-[8px] md:text-2xl p-1 md:pl-3 md:pr-3 md:pt-2 md:pb-2  ${
                 current == step.key
-                  ? "border-4 border-b-slate-500 bg-[#651404] bg-opacity-10 rounded-md"
+                  ? "border-4 border-b-slate-500 bg-[#00b4d8] bg-opacity-10 rounded-md"
                   : ""
               } `}
             >

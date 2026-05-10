@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Author {
@@ -14,18 +15,15 @@ export const addAuthorPage = createAsyncThunk(
   "home/author/add",
   async (aboutData: { descriptions?: string }, { rejectWithValue }) => {
     try {
-      console.log("Data being sent to the server:", aboutData.descriptions); // Debug log to check the data being sent
       // Debug log to check the data being sent
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/author/add`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: aboutData.descriptions,
+      // Debug log to check the data being sent
+      const res = await fetch(`${BACKEND_URL}/home/author/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: aboutData.descriptions,
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -47,7 +45,7 @@ export const editContact = createAsyncThunk(
   async (aboutData: EditAuthor & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/author/update?id=${aboutData.id}`,
+        `${BACKEND_URL}/home/author/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -78,17 +76,12 @@ export const deleteAuthor = createAsyncThunk(
   "home/about",
   async (catId: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/author/del?id=${catId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/author/del?id=${catId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      console.log("Delete response status:", res); // Debug log to check the response status
+      });
 
       return res;
     } catch (err) {

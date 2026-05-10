@@ -1,6 +1,7 @@
 // src/app/api/slice/uploadSlice.ts
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 interface Contributor {
   name: string;
@@ -80,16 +81,12 @@ export const uploadArticle = createAsyncThunk(
       formData.append("pdfFile", pdfFile);
       formData.append("contributorsList", JSON.stringify(contributors));
 
-      const response = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/api/upload",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
+      const response = await axios.post(`${BACKEND_URL}/api/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-      );
+      });
 
       return response.data;
     } catch (err: unknown) {
@@ -123,7 +120,7 @@ export const uploadFinalFile = createAsyncThunk(
       formData.append("finalFile", finalFile);
 
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/api/upload/final/${articleId}`,
+        `${BACKEND_URL}/api/upload/final/${articleId}`,
         formData,
         {
           headers: {

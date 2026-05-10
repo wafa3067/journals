@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Announcement {
@@ -14,16 +15,12 @@ export const getAnnouncementData = createAsyncThunk(
   "announcement/get",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("Fetching announcement data..."); // Debug log
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/home/announcement/get",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/announcement/get`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -34,7 +31,7 @@ export const getAnnouncementData = createAsyncThunk(
 
       const data = await res.json();
       // Debug log
-      console.log("Fetched announcement data:", data); // Debug log
+
       return data;
     } catch (err) {
       return rejectWithValue("An error occurred while saving about data");

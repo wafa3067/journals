@@ -50,7 +50,7 @@ const ContactPage = () => {
                 {contact.type !== "None" && contact.type !== "" && (
                   <p className="text-gray-600 mb-4">
                     <a
-                      className=" text-blue-600 "
+                      className=" #00b4d8 "
                       href={
                         contact.type == "Email Address"
                           ? `mailto:${contact.descriptions}`

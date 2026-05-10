@@ -20,9 +20,9 @@ export default function SubmissionsLayout({
   };
   return (
     <div className="md:min-h-screen bg-gray-50 ">
-      <div className="items-center justify-center flex flex-col h-50">
+      <div className="flex flex-col h-50">
         {/* dashboard header */}
-        <div className=" p-5 flex flex-row justify-between items-center  pt-4 pb-4 border-b border-gray-300 bg-white mb-10 w-full">
+        <div className=" p-5 flex flex-row justify-between items-center   pb-4 border-b border-gray-300 bg-[#00b4d8] mb-10 w-full">
           <div className="flex flex-row  items-center">
             <MdOutlineArrowBack
               size={40}
@@ -35,12 +35,14 @@ export default function SubmissionsLayout({
           />
           <TbLayoutDashboardFilled size={40} />
         </div>
-        <HorizontalBar
-          className="md:w-full md:max-w-5xl rounded-2xl "
-          current={tab.selectedTab}
-        />
+        <div className="flex flex-row  items-center justify-center ">
+          <HorizontalBar
+            className="md:w-full md:max-w-5xl rounded-2xl "
+            current={tab.selectedTab}
+          />
+        </div>
       </div>
-      <div className="bg-gray-50">{children}</div>
+      <div className="bg-gray-50 items-center justify-center ">{children}</div>
     </div>
   );
 }

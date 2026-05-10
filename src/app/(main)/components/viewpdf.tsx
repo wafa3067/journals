@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Document, Page } from "react-pdf"; // from react-pdf
@@ -19,7 +20,7 @@ const ViewPDF: React.FC = () => {
     return <p>Loading PDF...</p>;
   }
   // data:application/pdf;base64,${pdf} -< offlince
-  const pdfUrlonline = `https://generous-love-production-3a3d.up.railway.app/${pdf}`;
+  const pdfUrlonline = `${BACKEND_URL}/${pdf}`;
   return (
     <div>
       <h1>PDF Viewer</h1>

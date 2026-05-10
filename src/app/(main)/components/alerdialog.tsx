@@ -113,7 +113,7 @@ export default function AddContributorDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="bg-[#671509] hover:bg-[#400000] text-white md:px-4 md:py-2 p-3  rounded-md ">
+        <button className="bg-[#00b4d8] hover:bg-[#0096c7] text-white md:px-4 md:py-2 p-3  rounded-md ">
           Add Contributor
         </button>
       </DialogTrigger>
@@ -295,7 +295,7 @@ export default function AddContributorDialog() {
           </DialogClose>
           <button
             onClick={handleSubmit}
-            className="bg-[#671509] hover:bg-[#400000] text-white px-4 py-2 rounded-md "
+            className="bg-[#00b4d8] hover:bg-[#0096c7] text-white px-4 py-2 rounded-md "
           >
             Save
           </button>

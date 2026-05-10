@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 interface PasswordState {
   loading: boolean;
@@ -26,7 +27,7 @@ export const updatePassword = createAsyncThunk<
       const token = await localStorage.getItem("token");
       const email = await localStorage.getItem("email");
       const response = await axios.patch(
-        `https://generous-love-production-3a3d.up.railway.app/api/update/password?email=${email}`,
+        `${BACKEND_URL}/api/update/password?email=${email}`,
         null, // no body
         {
           params: { oldPassword, newPassword },

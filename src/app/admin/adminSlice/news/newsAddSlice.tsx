@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -30,10 +31,7 @@ export const addNewsPage = createAsyncThunk(
         formData.append("image", news.image);
       }
 
-      const res = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/home/news/add",
-        formData,
-      );
+      const res = await axios.post(`${BACKEND_URL}/home/news/add`, formData);
 
       return res;
     } catch (err) {
@@ -49,7 +47,7 @@ export const editNews = createAsyncThunk(
   async (newsData: EditNews & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/news/update?id=${newsData.id}`,
+        `${BACKEND_URL}/home/news/update?id=${newsData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -78,17 +76,12 @@ export const deleteNews = createAsyncThunk(
   "home/news",
   async (newsId: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/news/del?id=${newsId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/news/del?id=${newsId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      console.log("Delete response status:", res); // Debug log to check the response status
+      });
 
       return res;
     } catch (err) {

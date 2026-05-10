@@ -70,7 +70,7 @@ export default function ArchivePage() {
                 />
                 <span
                   key={month}
-                  className="ml-2 cursor-pointer text-blue-600 hover:underline"
+                  className="ml-2 cursor-pointer #00b4d8 hover:underline"
                   onClick={() => handleClick(year, month)}
                 >
                   Vol {month} {year}

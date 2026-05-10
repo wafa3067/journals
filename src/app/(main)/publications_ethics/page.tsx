@@ -371,16 +371,6 @@ const PublicationEthics = () => {
         style={"text-black pb-2 "}
       />
 
-      {/* Instruction to the Editors */}
-      <CustomText
-        boldText="Instruction to the Editors"
-        style={"text-black pb-2 "}
-      />
-      <CustomText
-        text="The Editorial Board of ECHOS Quantum follows strict and transparent procedures to ensure the highest quality of published material and to maintain the integrity of the scholarly record. The editorial process is guided by internationally recognized standards of publication ethics."
-        style={"text-black pb-2 "}
-      />
-
       {/* 1. Editorial Independence and Decision-Making */}
       <CustomText
         boldText="1. Editorial Independence and Decision-Making"

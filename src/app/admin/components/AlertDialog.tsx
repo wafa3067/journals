@@ -60,7 +60,7 @@
 //           role="dialog"
 //           aria-modal="true"
 //           aria-labelledby="alert-dialog-title"
-//           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+//           className="fixed inset-0 z-50 flex items-center justify-center bg-[#00b4d8]/50"
 //         >
 //           <div className="bg-white rounded-2xl shadow-lg p-6 w-80 text-center animate-fadeIn">
 //             <h2 id="alert-dialog-title" className="text-lg font-semibold mb-2">
@@ -140,7 +140,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
           role="dialog"
           aria-modal="true"
           aria-labelledby="alert-dialog-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#00b4d8]/50"
         >
           <div className="bg-white rounded-2xl shadow-lg p-6 w-80 text-center animate-fadeIn">
             <h2 id="alert-dialog-title" className="text-lg font-semibold mb-2">

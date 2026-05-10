@@ -73,7 +73,7 @@ export default function CopyEditorPage() {
             onChange={() => setFileUploaded(true)}
           />
           {fileUploaded && (
-            <p className="mt-2 text-sm text-green-600">
+            <p className="mt-2 text-sm text-[#00b4d8]">
               ✅ File uploaded successfully!
             </p>
           )}

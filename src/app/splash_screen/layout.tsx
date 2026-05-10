@@ -23,7 +23,10 @@ const AdminSplash = () => {
   }, [router]);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-blue-600 to-purple-700 text-white">
+    <div
+      className="flex flex-col justify-center items-center min-h-screen
+     bg-gradient-to-br from-[#00b4d8] to-[#0077b6] text-white"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

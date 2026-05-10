@@ -89,8 +89,8 @@ const Page = () => {
 
         <CustomButton
           width="w-[250px] md:w-[500px]"
-          bgColor="bg-[#000]"
-          hoverEffect="hover:bg-[#f7bc49]"
+          bgColor="bg-[#00b4d8]"
+          hoverEffect="hover:bg-[#0096c7]"
           rounded="8px"
           text="Login"
           onClick={() => handleSubmit()}

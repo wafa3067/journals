@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 export interface Article {
@@ -41,9 +42,7 @@ export const fetchUnderReview = createAsyncThunk<Article[]>(
   "pending/fetchUnderReview",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/under-review",
-      );
+      const response = await axios.get(`${BACKEND_URL}/admin/under-review`);
       return response.data;
     } catch (err: unknown) {
       let message = "Login failed";
@@ -74,7 +73,7 @@ export const assignCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
+        `${BACKEND_URL}/admin/articles/copyeditor/${articleId}?copyEditor=${encodeURIComponent(
           copyeditor,
         )}&status=${encodeURIComponent(status)}&comments=${encodeURIComponent(
           comments,
@@ -108,7 +107,7 @@ export const modifyCopyEditor = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
+        `${BACKEND_URL}/admin/articles/modify-copy/${articleId}?copy=${encodeURIComponent(
           copy,
         )}`,
       );

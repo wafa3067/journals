@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Team } from "./addTeamSlice";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 
 export interface GetTeam {
   id: number;
@@ -12,15 +13,12 @@ export const GetTeamThunk = createAsyncThunk(
   "home/about",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/category/get",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/category/get`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -30,7 +28,6 @@ export const GetTeamThunk = createAsyncThunk(
       }
 
       const data = await res.json();
-      console.log("Fetched team data:", data); // Debug log
       return data;
     } catch (err) {
       return rejectWithValue("An error occurred while saving about data");

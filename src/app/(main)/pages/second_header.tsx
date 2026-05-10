@@ -34,9 +34,23 @@ const SecondHeader = () => {
   ];
 
   const about = [
-    { id: 1, label: "ABOUT THE JOURNALS" },
+    // { id: 1, label: "ABOUT THE JOURNALS" },
 
-    { id: 2, label: "CONTACT" },
+    // { id: 2, label: "CONTACT" },
+    { id: 1, label: "Aims and Scope" },
+    { id: 2, label: "Editorial Board" },
+    { id: 2, label: "Journal Insights" },
+    { id: 3, label: "News" },
+    { id: 4, label: "Announcements" },
+  ];
+  const publish = [
+    // { id: 1, label: "ABOUT THE JOURNALS" },
+
+    // { id: 2, label: "CONTACT" },
+    { id: 1, label: "Submit an article" },
+    { id: 2, label: "Authors Guidelines" },
+    { id: 2, label: "Publication Ethics" },
+    { id: 3, label: "Privacy Policy" },
   ];
 
   useEffect(() => {
@@ -60,7 +74,7 @@ const SecondHeader = () => {
   }, [router]);
 
   return (
-    <div className="w-full border-b bg-black p-4  justify-between items-center md:flex hidden">
+    <div className="w-full border-b bg-[#00b4d8] p-4  justify-between items-center md:flex hidden">
       <div className="flex flex-wrap gap-3">
         <CustomDropdown
           selectedOption={selected || undefined}
@@ -76,25 +90,42 @@ const SecondHeader = () => {
           }}
         />
         <CustomDropdown
-          starting="Submit an article"
-          options={options}
-          is_optins={false}
+          starting="publish"
+          options={publish}
+          is_optins={true}
           selectedOption={selected}
           onTap={() => {
-            if (token != null && token != "" && token != undefined) {
-              navigate("/submissions/begin");
+            // if (token != null && token != "" && token != undefined) {
+            //   navigate("/submissions/begin");
+            //   setSelected("Submit an article");
+            //   return;
+            // }
+            // navigate("/dashboard/login");
+            // // navigate("/aboutsubmissions");
+            // setSelected("Submit an article");
+          }}
+          onChange={(val) => {
+            const routes: Record<string, string> = {
+              "Submit an article": "/aboutsubmissions",
+              "Authors Guidelines": "/author",
+              "Publication Ethics": "/publications_ethics",
+              "Privacy Policy": "/privacy-policy",
+            };
+            if (val === "Submit an article") {
+              if (token != null && token != "" && token != undefined) {
+                navigate("/submissions/begin");
+                setSelected("Submit an article");
+                return;
+              }
+              navigate("/dashboard/login");
+              // navigate("/aboutsubmissions");
               setSelected("Submit an article");
               return;
             }
-            navigate("/dashboard/login");
-            // navigate("/aboutsubmissions");
-            setSelected("Submit an article");
-          }}
-          onChange={() => {
-            // setSelected("Submit an article");
+            navigate(routes[val]);
           }}
         />
-        <CustomDropdown
+        {/* <CustomDropdown
           selectedOption={selected || undefined}
           starting="Editorial Team"
           options={options}
@@ -106,7 +137,7 @@ const SecondHeader = () => {
           onChange={(value: string): void => {
             setSelected(value);
           }}
-        />
+        /> */}
 
         <CustomDropdown
           selectedOption={selected || undefined}
@@ -121,7 +152,7 @@ const SecondHeader = () => {
           }
         />
 
-        <CustomDropdown
+        {/* <CustomDropdown
           selectedOption={selected || undefined}
           starting="Announcement"
           options={announce}
@@ -137,7 +168,7 @@ const SecondHeader = () => {
             };
             navigate(routes[val]);
           }}
-        />
+        /> */}
 
         <CustomDropdown
           selectedOption={""}
@@ -149,8 +180,11 @@ const SecondHeader = () => {
           is_optins={true}
           onChange={(val) => {
             const routes: Record<string, string> = {
-              "ABOUT THE JOURNALS": "/aboutjournals",
-              CONTACT: "/contact",
+              "Editorial Board": "/editors",
+              "Aims and Scope": "/aims",
+              "Journal Insights": "/insights",
+              News: "/news",
+              Announcements: "/announce",
             };
             navigate(routes[val]);
           }}
@@ -158,7 +192,7 @@ const SecondHeader = () => {
       </div>
 
       <button
-        className="bg-[#000000] text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-[#000] transition"
+        className="bg-[#00b4d8] text-white px-4 py-2 rounded flex items-center gap-2 bg-[#00b4d8] transition"
         onClick={() => navigate("/search")}
       >
         <FaSearch className="text-sm" />

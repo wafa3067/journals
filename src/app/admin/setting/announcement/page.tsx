@@ -59,9 +59,14 @@ function Page() {
 
   return (
     <div>
+      <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
+        <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+          Announcement Page Management
+        </h1>
+      </header>
       {/* Editor Modal */}
       {openModal === "announcement" && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-xl font-bold mb-4">Add Announcement</h2>
             {/* <input
@@ -100,7 +105,7 @@ function Page() {
             <div className="flex gap-2">
               <button
                 onClick={() => handleAddAnnouncement()} // Debug log to check the data being sent
-                className="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="flex-1 px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
               >
                 Save
               </button>
@@ -117,7 +122,7 @@ function Page() {
       <div className="flex  m-4">
         <button
           onClick={() => setOpenModal("announcement")}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
         >
           Add Announcement
         </button>

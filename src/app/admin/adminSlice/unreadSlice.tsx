@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 interface modificationPayload {
@@ -30,7 +31,7 @@ export const fetchUnreadCount = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/count_unread/${email}`,
+        `${BACKEND_URL}/notification/count_unread/${email}`,
       );
       return response.data; // Long value (number)
     } catch (err: unknown) {
@@ -50,7 +51,7 @@ export const fetchUnNotifications = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/get_notifications/${email}`,
+        `${BACKEND_URL}/notification/get_notifications/${email}`,
       );
       return response.data;
     } catch (err: unknown) {

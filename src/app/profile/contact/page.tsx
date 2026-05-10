@@ -178,7 +178,7 @@ export default function ContactPage() {
           </div>
         </div>
         {success && (
-          <CustomText text={success.toString()} style={"text-green-500"} />
+          <CustomText text={success.toString()} style={"text-[#00b4d8]"} />
         )}
 
         <button

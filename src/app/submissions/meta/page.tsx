@@ -179,14 +179,14 @@ const Page = () => {
                   </td>
                   <td className="border border-gray-300 px-3 py-2 text-center text-sm md:text-base">
                     {val.primaryContact ? (
-                      <MdOutlineDone className="text-green-500 inline-block" />
+                      <MdOutlineDone className="text-[#00b4d8] inline-block" />
                     ) : (
                       <IoIosClose className="text-red-500 inline-block" />
                     )}
                   </td>
                   <td className="border border-gray-300 px-3 py-2 text-center text-sm md:text-base">
                     {val.inBrowserlist ? (
-                      <MdOutlineDone className="text-green-500 inline-block" />
+                      <MdOutlineDone className="text-[#00b4d8] inline-block" />
                     ) : (
                       <IoIosClose className="text-red-500 inline-block" />
                     )}
@@ -198,7 +198,7 @@ const Page = () => {
                           e.stopPropagation(); // prevent row toggle
                           // dispatch(updateBrowswe(val.publicName));
                         }}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="#00b4d8 hover:text-[#0096c7]"
                       >
                         <EditContributorDialog
                           key={index}
@@ -271,7 +271,7 @@ const Page = () => {
         <CustomButton
           text="Back"
           rounded="rounded-[8px]"
-          bgColor={"bg-[#671509]"}
+          bgColor={"bg-[#00b4d8]"}
           onClick={() => goBack()}
         />
         {isLoading || isPending ? (
@@ -280,7 +280,7 @@ const Page = () => {
           <CustomButton
             text="Next"
             rounded="rounded-[8px]"
-            bgColor={"bg-[#671509]"}
+            bgColor={"bg-[#00b4d8]"}
             onClick={() => {
               setActive(true);
               const isComplete = checkAllFieldsComplete(research);

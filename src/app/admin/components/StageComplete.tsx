@@ -14,7 +14,7 @@ const StageCompletedMessage: React.FC<StageCompletedMessageProps> = ({
 }) => {
   return (
     <div className="max-w-xl mx-auto mt-16 bg-white shadow-lg rounded-2xl p-8 text-center border border-gray-100">
-      <CheckCircle2 className="w-14 h-14 text-green-600 mx-auto mb-4" />
+      <CheckCircle2 className="w-14 h-14 text-[#00b4d8] mx-auto mb-4" />
       <h1 className="text-2xl font-bold text-gray-800 mb-2">
         {stage} Stage Completed
       </h1>

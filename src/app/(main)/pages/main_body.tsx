@@ -11,9 +11,11 @@ import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { AboutHomeGetPage } from "@/app/admin/adminSlice/home/GetHomeAboutSlice";
 import { CreateGetSideHome } from "@/app/admin/adminSlice/sideHomeSlice/getHomeSideSlice";
 import CircularLoading from "../components/circular_loadinng";
+import { useRouter } from "next/navigation";
 
 const MainBody = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { editor } = useAppSelector((state) => state.getEditorHome);
   const { side } = useAppSelector((state) => state.getSideHome);
   useEffect(() => {
@@ -69,13 +71,17 @@ const MainBody = () => {
         <EditorsList options={editor} />
         <CustomText
           style={
-            "text-gray-500 border-b-4 border-b-[#f7bc49] font-bold  text-2xl  m-2 w-fit mb-5 pt-8"
+            "text-gray-500 border-b-4 border-b-[#0096c7] font-bold  text-2xl  m-2 w-fit mb-5 pt-8"
           }
           text={"Current Issue"}
         />
         <CurrentMonthPage />
-        <div className="flex flex-row gap-1.5 rounded-sm items-center bg-[#000] text-white hover:bg-amber-500 w-fit pl-2 pr-2 pt-1 pb-1">
-          <CustomText text={"VIEW ALL ISSUES"} style={"text-white"} />
+        <div className="flex flex-row gap-1.5 rounded-sm items-center bg-[#00b4d8] text-white hover:bg-[#00b4d8] w-fit pl-2 pr-2 pt-1 pb-1">
+          <CustomText
+            text={"VIEW ALL ISSUES"}
+            style={"text-white cursor-pointer"}
+            onTap={() => router.push("/current")}
+          />
           <MdKeyboardArrowRight size={20} />
         </div>
       </div>

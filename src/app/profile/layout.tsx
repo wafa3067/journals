@@ -48,14 +48,17 @@ export default function ProfileLayout({
   return (
     <div>
       {/* Header */}
-      <div className="flex flex-row justify-between items-center mb-5 p-4 bg-[#f3f4f6]">
+      <div className="flex flex-row justify-between items-center mb-5 p-4 bg-[#00b4d8]">
         <div className="flex flex-row text-2xl gap-2">
           <IoArrowBackSharp
             onClick={() => router.push("/")}
-            className="text-3xl"
+            className="text-3xl text-white"
           />
 
-          <CustomText text={"Profile"} style={"font-bold text-2xl"} />
+          <CustomText
+            text={"Profile"}
+            style={"font-bold text-2xl text-white"}
+          />
         </div>
         <div className="flex flex-row gap-4 w-[220px]">
           <NotificationDropdown />
@@ -92,7 +95,7 @@ export default function ProfileLayout({
               href={tab.href}
               className={`pb-2 border-b-2 transition-colors ${
                 pathname === tab.href
-                  ? "border-blue-500 text-blue-600 font-medium"
+                  ? "border-blue-500 #00b4d8 font-medium"
                   : "border-transparent text-gray-600 hover:text-blue-500"
               }`}
             >

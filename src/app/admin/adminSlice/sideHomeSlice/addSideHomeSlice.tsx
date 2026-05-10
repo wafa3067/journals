@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface sideHome {
@@ -9,19 +10,16 @@ export const createSideHomeSlice = createAsyncThunk(
   "home/about",
   async (aboutData: sideHome, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/home/side/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: aboutData.title,
-            descriptions: aboutData.descriptions,
-          }),
+      const res = await fetch(`${BACKEND_URL}/home/side/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: aboutData.title,
+          descriptions: aboutData.descriptions,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -42,9 +40,8 @@ export const editSideData = createAsyncThunk(
   "home/side",
   async (sideData: sideHome & { id: number }, { rejectWithValue }) => {
     try {
-      //console.log("sideData in thunk is", sideData);
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/side/update?id=${sideData.id}`,
+        `${BACKEND_URL}/home/side/update?id=${sideData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -74,15 +71,12 @@ export const deleteSideData = createAsyncThunk(
   "home/side/delete",
   async (id: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/side/del?id=${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/side/del?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();

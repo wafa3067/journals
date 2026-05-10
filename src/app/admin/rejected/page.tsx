@@ -167,15 +167,15 @@ export default function Page() {
   return (
     <main className=" overflow-y-auto h-screen">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-white p-5 shadow-sm flex justify-between items-center ">
-          <h1 className="text-xl font-bold flex items-center gap-2">
+        <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
+          <h1 className="text-xl font-bold flex items-center gap-2 text-white">
             Rejected Articles management
           </h1>
         </header>
         {loading ? (
           <p>Loading...</p>
         ) : articles.length === 0 ? (
-          <div className="text-center p-4 bg-blue-100 text-blue-700 m-8 rounded">
+          <div className="text-center p-4 bg-[#00b4d8] text-white m-8 rounded">
             No Rejected articles found.
           </div>
         ) : (
@@ -186,7 +186,7 @@ export default function Page() {
                 className="bg-white rounded-xl shadow p-6 mb-6 m-8 transition-transform hover:-translate-y-1"
               >
                 <div className="flex justify-between items-center mb-3">
-                  <h5 className="text-lg font-semibold text-blue-800">
+                  <h5 className="text-lg font-semibold text-[#0096c7]">
                     {article.title}
                   </h5>
                   <span className="bg-yellow-400 text-black px-3 py-1 rounded-full font-bold">
@@ -206,7 +206,7 @@ export default function Page() {
                   className="mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
                   onClick={() => dispatch(toggleDetails(article.id))}
                 >
-                  {article.showDetails ? "🙈 Hide Details" : "👁 Show Details"}
+                  {article.showDetails ? " Hide Details" : " Show Details"}
                 </button>
 
                 {article.showDetails && (
@@ -231,7 +231,7 @@ export default function Page() {
                       <a
                         href={`/uploads/${article.pdf}`}
                         target="_blank"
-                        className="text-blue-600"
+                        className="#00b4d8"
                         rel="noreferrer"
                       >
                         View PDF
@@ -283,7 +283,7 @@ export default function Page() {
                           }
                         />
                         <button
-                          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                          className="bg-[#00b4d8] text-white px-3 py-1 rounded hover:bg-[#00b4d8]"
                           onClick={() => handleAssignReviewer(article)}
                         >
                           Assign Reviewer
@@ -300,7 +300,7 @@ export default function Page() {
                           defaultValue={article.copyeditor}
                         ></textarea>
                         <button
-                          className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                          className="bg-[#00b4d8] text-white px-3 py-1 rounded hover:bg-[#00b4d8]"
                           onClick={() =>
                             dispatch(
                               updateArticleStatus({

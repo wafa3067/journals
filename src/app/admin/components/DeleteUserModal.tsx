@@ -17,7 +17,7 @@ export default function DeleteUserModal({
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00b4d8]/40 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 animate-fadeScaleIn">
         <div className="flex justify-between items-center border-b pb-3 mb-4">
           <h2 className="text-xl font-semibold text-red-600">Confirm Delete</h2>

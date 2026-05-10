@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Articles from "../components/article";
 import router from "next/router";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 
 interface Article {
   id: number;
@@ -37,21 +38,18 @@ const SearchPage: React.FC = () => {
 
     try {
       // Make the API call based on the user's inputs
-      const response = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/search`,
-        {
-          params: {
-            keyword: query,
-            startDate: `${publishedAfter.year}-${publishedAfter.month || "01"}-${
-              publishedAfter.day || "01"
-            }`,
-            endDate: `${publishedBefore.year}-${publishedBefore.month || "12"}-${
-              publishedBefore.day || "31"
-            }`,
-            author: author,
-          },
+      const response = await axios.get(`${BACKEND_URL}/api/search`, {
+        params: {
+          keyword: query,
+          startDate: `${publishedAfter.year}-${publishedAfter.month || "01"}-${
+            publishedAfter.day || "01"
+          }`,
+          endDate: `${publishedBefore.year}-${publishedBefore.month || "12"}-${
+            publishedBefore.day || "31"
+          }`,
+          author: author,
         },
-      );
+      });
 
       // Set results
       setResults(response.data);
@@ -81,7 +79,7 @@ const SearchPage: React.FC = () => {
 
         <button
           onClick={handleSearch}
-          className="bg-[#000] text-white font-medium px-6 py-2 rounded-lg hover:bg-[#771509] transition mb-6"
+          className="bg-[#00b4d8] text-white font-medium px-6 py-2 rounded-lg hover:bg-[#771509] transition mb-6"
           disabled={loading}
         >
           {loading ? "Searching..." : "Search"}
@@ -174,7 +172,7 @@ const SearchPage: React.FC = () => {
 
         <button
           onClick={handleSearch}
-          className="bg-[#000] text-white font-medium px-6 py-2 rounded-lg hover:bg-[#771509] transition"
+          className="bg-[#00b4d8] text-white font-medium px-6 py-2 rounded-lg hover:bg-[#771509] transition"
           disabled={loading}
         >
           {loading ? "Searching..." : "Search"}

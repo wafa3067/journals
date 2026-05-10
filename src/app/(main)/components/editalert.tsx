@@ -143,7 +143,7 @@ export default function EditContributorDialog({
       <DialogTrigger asChild>
         <FaEdit />
 
-        {/* <button className="bg-[#671509] hover:bg-[#400000] text-white px-4 py-2 rounded-md">
+        {/* <button className="bg-[#00b4d8] hover:bg-[#0096c7] text-white px-4 py-2 rounded-md">
           {triggerLabel}
         </button> */}
       </DialogTrigger>
@@ -313,7 +313,7 @@ export default function EditContributorDialog({
           </DialogClose>
           <button
             onClick={handleSubmit}
-            className="bg-[#671509] hover:bg-[#400000] text-white px-4 py-2 rounded-md"
+            className="bg-[#00b4d8] hover:bg-[#0096c7] text-white px-4 py-2 rounded-md"
           >
             {editIndex !== undefined ? "Update" : "Save"}
           </button>

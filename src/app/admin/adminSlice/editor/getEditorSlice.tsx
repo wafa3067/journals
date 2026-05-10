@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface GetEditorHomeState {
@@ -11,15 +12,12 @@ export const CreateEditorHomeState = createAsyncThunk(
   "home/editor",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/home/editor/get",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/editor/get`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const editorerrorData = await res.json();
@@ -57,7 +55,7 @@ export const editAboutData = createAsyncThunk(
   async (aboutData: GetEditorHomeState, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/editor/update?id=${aboutData.id}`,
+        `${BACKEND_URL}/home/editor/update?id=${aboutData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -89,15 +87,12 @@ export const deleteAboutData = createAsyncThunk(
   "home/about",
   async (id: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/editor/del?id=${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/editor/del?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();

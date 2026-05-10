@@ -37,7 +37,7 @@ export default function MessageDialog({
       </AlertDialog.Trigger>
 
       <AlertDialog.Portal>
-        <AlertDialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
+        <AlertDialog.Overlay className="fixed inset-0 bg-[#00b4d8]/50 backdrop-blur-sm z-40" />
         <AlertDialog.Content
           className="fixed top-1/2 left-1/2 z-50 w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 
                      bg-white rounded-2xl shadow-lg p-6 space-y-4"

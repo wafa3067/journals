@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import EditorComponent from "../components/editor_component";
 import { GetTeamThunk } from "@/app/admin/adminSlice/team/getTeamSlice";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
-import { get } from "http";
+
 import CircularLoading from "../components/circular_loadinng";
 
 const Page = () => {

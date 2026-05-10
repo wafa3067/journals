@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -30,7 +31,7 @@ export const rejectArticleStatus = createAsyncThunk<
   async ({ id, status, comments }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/reject/${id}`,
+        `${BACKEND_URL}/admin/articles/reject/${id}`,
         null,
         {
           params: { status, comments },

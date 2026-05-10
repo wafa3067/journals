@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BACKEND_URL } from '../actions/articleActions';
 
 // Define the type for the Article and the initial state
 interface Article {
@@ -30,7 +31,7 @@ export const fetchArticles = createAsyncThunk(
   async (params: { keyword: string, startDate: string, endDate: string, author: string }) => {
     const { keyword, startDate, endDate, author } = params;
     const response = await axios.get(
-      `https://generous-love-production-3a3d.up.railway.app/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
+      `${BACKEND_URL}/api/search?keyword=${keyword}&startDate=${startDate}&endDate=${endDate}&author=${author}`
     );
     return response.data;  // Returning the data that we want to store
   }

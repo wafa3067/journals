@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -23,7 +24,7 @@ export const addAnnouncement = createAsyncThunk(
       }
 
       const res = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/home/announcement/add",
+        `${BACKEND_URL}/home/announcement/add`,
         formData,
       );
 
@@ -44,7 +45,7 @@ export const editAnnouncementData = createAsyncThunk(
   ) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/announcement/update?id=${announcementData.id}`,
+        `${BACKEND_URL}/home/announcement/update?id=${announcementData.id}`,
         {
           method: "PATCH",
           headers: {
@@ -80,15 +81,12 @@ export const deleteAnnouncementData = createAsyncThunk(
   "home/announcement",
   async (id: number, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/home/announcement/del?id=${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/announcement/del?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();

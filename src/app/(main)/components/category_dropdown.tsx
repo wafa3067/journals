@@ -51,7 +51,7 @@ export default function CategoryDropdown({
           {options.map((option) => (
             <li
               key={option.label}
-              className="px-4 py-2 text-black hover:bg-black hover:text-white"
+              className="px-4 py-2 text-black hover:bg-[#00b4d8] hover:text-white"
               onClick={() => {
                 setOpen(false);
                 onChange(option.label, option.id);

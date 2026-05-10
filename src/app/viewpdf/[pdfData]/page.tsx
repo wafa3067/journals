@@ -87,7 +87,7 @@
 //         <a
 //           href={pdfUrl}
 //           download
-//           className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+//           className="bg-[#00b4d8] text-white py-2 px-4 rounded hover:bg-[#00b4d8]"
 //         >
 //           Download PDF
 //         </a>
@@ -136,7 +136,7 @@ const ViewPDF = () => {
         <a
           href={pdfUrl}
           download
-          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+          className="bg-[#00b4d8] text-white py-2 px-4 rounded hover:bg-[#00b4d8]"
         >
           Download PDF
         </a>

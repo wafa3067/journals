@@ -64,10 +64,10 @@ const AdminSidebar = () => {
 
   return (
     <div className="h-full">
-      <div className="w-72 bg-white shadow-lg flex flex-col h-full hidden  md:block">
+      <div className="w-72 bg-[#00b4d8] shadow-lg  flex-col h-full hidden  md:block">
         {/* Header */}
         <div className="p-6 border-b border-gray-200 flex items-center">
-          <h2 className="    text-2xl font-bold text-gray-900">Admin Portal</h2>
+          <h2 className="    text-2xl font-bold text-white">Admin Portal</h2>
         </div>
 
         {/* Menu Items */}
@@ -94,12 +94,17 @@ const AdminSidebar = () => {
                 <div key={index} className="mb-2">
                   <button
                     onClick={toggleOpen}
-                    className={`flex items-center justify-between w-full px-6 py-3 font-medium rounded-lg transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                    className={`flex items-center justify-between w-full px-6 py-3 hover:text-black font-medium rounded-lg transition-all ${
+                      isActive ? "bg-white text-black" : "text-white"
+                    } hover:bg-white`}
                   >
-                    <div className="flex items-center">
-                      <span className="mr-3 text-xl">{item.icon}</span>
+                    <div className="flex items-center hover:text-black">
+                      <span
+                        className="mr-3 text-xl hover:color-white color-black "
+                        color={isActive ? "white" : "black"}
+                      >
+                        {item.icon}
+                      </span>
                       {item.name}
                     </div>
                     <span
@@ -119,10 +124,10 @@ const AdminSidebar = () => {
                           <Link
                             key={stageIndex}
                             href={stage.href}
-                            className={`flex items-center px-4 py-2 text-sm rounded-lg transition-all ${
+                            className={`flex items-center px-4 py-2 hover:text-black text-sm rounded-lg transition-all ${
                               isStageActive
-                                ? "bg-blue-100 text-blue-700 font-medium"
-                                : "text-gray-600 hover:bg-gray-100"
+                                ? "bg-blue-100 text-black font-medium"
+                                : "text-white hover:bg-white"
                             }`}
                           >
                             <span className="w-2 h-2 rounded-full bg-current mr-3"></span>
@@ -150,9 +155,9 @@ const AdminSidebar = () => {
                         }
                       }
                     }}
-                    className={`flex items-center justify-between w-full px-6 py-3 font-medium rounded-lg transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                    className={`flex items-center justify-between hover:text-black w-full px-6 py-3 font-medium rounded-lg transition-all ${
+                      isActive ? "bg-white text-black" : "text-white"
+                    } hover:bg-white`}
                   >
                     <div className="flex items-center">
                       <span className="mr-3 text-xl">{item.icon}</span>
@@ -180,9 +185,9 @@ const AdminSidebar = () => {
                     }}
                     key={index}
                     href={item.href}
-                    className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                    className={`flex items-center px-6 py-3 hover:text-black font-medium rounded-lg mb-2 transition-all ${
+                      isActive ? "bg-white text-black" : "text-white"
+                    } hover:bg-white`}
                   >
                     <span className="mr-3 text-xl">{item.icon}</span>
                     {item.name}
@@ -196,11 +201,9 @@ const AdminSidebar = () => {
                         <Link
                           key={stageIndex}
                           href={item.href}
-                          className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
-                            isActive
-                              ? "bg-gray-200 text-gray-900"
-                              : "text-gray-700"
-                          } hover:bg-gray-100`}
+                          className={`flex items-center px-6 py-3 hover:text-black font-medium rounded-lg mb-2 transition-all ${
+                            isActive ? "bg-white text-black" : "text-white"
+                          } hover:bg-white`}
                         >
                           <span className="mr-3 text-xl">{item.icon}</span>
                           {item.name}
@@ -218,7 +221,7 @@ const AdminSidebar = () => {
       </div>
       <button
         onClick={() => setOpen(true)}
-        className="lg:hidden p-3  text-gray-700 hover:text-gray-900 bg-white h-[68px] shadow block  md:hidden"
+        className="lg:hidden p-3  text-white hover:text-black bg-white h-[68px] shadow block  md:hidden"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +243,7 @@ const AdminSidebar = () => {
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/50 z-40"
+          className="fixed inset-0 bg-[#00b4d8]/50 z-40"
         />
       )}
 
@@ -280,11 +283,11 @@ const AdminSidebar = () => {
                   <button
                     onClick={toggleOpen}
                     className={`flex items-center justify-between w-full px-6 py-3 font-medium rounded-lg transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                      isActive ? "bg-white text-black" : "text-white"
+                    } hover:bg-white`}
                   >
-                    <div className="flex items-center">
-                      <span className="mr-3 text-xl">{item.icon}</span>
+                    <div className="flex items-center  hover:text-black">
+                      <span className="mr-3 text-xl ">{item.icon}</span>
                       {item.name}
                     </div>
                     <span
@@ -306,8 +309,8 @@ const AdminSidebar = () => {
                             href={stage.href}
                             className={`flex items-center px-4 py-2 text-sm rounded-lg transition-all ${
                               isStageActive
-                                ? "bg-blue-100 text-blue-700 font-medium"
-                                : "text-gray-600 hover:bg-gray-100"
+                                ? "bg-blue-100 text-black font-medium"
+                                : "text-white hover:bg-white"
                             }`}
                           >
                             <span className="w-2 h-2 rounded-full bg-current mr-3"></span>
@@ -335,12 +338,12 @@ const AdminSidebar = () => {
                         }
                       }
                     }}
-                    className={`flex items-center justify-between w-full px-6 py-3 font-medium rounded-lg transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                    className={`flex items-center justify-between    w-full px-6 py-3 font-medium rounded-lg transition-all ${
+                      isActive ? "bg-white text-green-200" : "text-white"
+                    } hover:bg-white`}
                   >
-                    <div className="flex items-center">
-                      <span className="mr-3 text-xl">{item.icon}</span>
+                    <div className="flex items-center  ">
+                      <span className="mr-3 text-xl ">{item.icon}</span>
                       {item.name}
                     </div>
                     <span
@@ -365,9 +368,9 @@ const AdminSidebar = () => {
                     }}
                     key={index}
                     href={item.href}
-                    className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
-                      isActive ? "bg-gray-200 text-gray-900" : "text-gray-700"
-                    } hover:bg-gray-100`}
+                    className={`flex items-center px-6 py-3  font-medium rounded-lg mb-2 transition-all ${
+                      isActive ? "bg-white text-black" : "text-white"
+                    } hover:bg-white hover:text-black`}
                   >
                     <span className="mr-3 text-xl">{item.icon}</span>
                     {item.name}
@@ -382,10 +385,8 @@ const AdminSidebar = () => {
                           key={stageIndex}
                           href={item.href}
                           className={`flex items-center px-6 py-3 font-medium rounded-lg mb-2 transition-all ${
-                            isActive
-                              ? "bg-gray-200 text-gray-900"
-                              : "text-gray-700"
-                          } hover:bg-gray-100`}
+                            isActive ? "bg-white text-black" : "text-white"
+                          } hover:bg-white`}
                         >
                           <span className="mr-3 text-xl">{item.icon}</span>
                           {item.name}

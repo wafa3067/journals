@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import CustomText from "../components/custom_text";
@@ -9,7 +10,6 @@ import { fetchUserByEmail } from "@/app/api/slice/profileSlice";
 import { setProfileData } from "@/app/api/slice/profileStateSlice";
 import { SlMenu } from "react-icons/sl";
 import { RxCross1 } from "react-icons/rx";
-
 import {
   fetchApprovedArticles,
   fetchPendingArticles,
@@ -20,13 +20,18 @@ import { FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 
 const FirstHeader = () => {
-  const { token } = useAppSelector((state) => state.token);
-
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const { token } = useAppSelector((state) => state.token);
   const result = useAppSelector((state) => state.profileData);
-  const Navigate = (route: string) => {
-    router.push(route);
-  };
+
+  const isLoggedIn = Boolean(token);
+
+  const [menu, setMenu] = useState(0);
+  const [show, setShow] = useState(0);
+
+  const navigate = (route: string) => router.push(route);
 
   const options = [
     { id: 1, label: "Dashboard" },
@@ -34,25 +39,19 @@ const FirstHeader = () => {
     { id: 3, label: "Logout" },
   ];
 
-  const [menu, setMenu] = useState(0);
-
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
     if (token) {
       dispatch(fetchUserByEmail())
-        .then((user) => {
-          dispatch(setProfileData(user));
-        })
+        .then((user) => dispatch(setProfileData(user)))
         .catch(console.error);
     }
   }, [dispatch, token]);
 
   const Navigating = (v: string) => {
-    const data = dispatch(fetchUserByEmail());
-    data.then((V) => {
+    dispatch(fetchUserByEmail()).then((V) => {
       dispatch(setProfileData(V));
     });
+
     if (v === "Dashboard") {
       dispatch(fetchTotalArticles());
       dispatch(fetchPendingArticles());
@@ -62,26 +61,10 @@ const FirstHeader = () => {
       router.push("/profile/identity");
     } else {
       router.push("/");
-      localStorage.removeItem("id");
-      localStorage.removeItem("token");
-      localStorage.removeItem("email");
-      localStorage.removeItem("name");
-      localStorage.removeItem("role");
-
-      localStorage.clear(); // simpler way to remove all
-      dispatch(getToken("")); // clear token in redux store
+      localStorage.clear();
+      dispatch(getToken(""));
     }
   };
-
-  useEffect(() => {
-    router.prefetch("/dashboard");
-    router.prefetch("/profile/identity");
-  }, [router]);
-
-  const [selected, setSelected] = useState<string>();
-  const [show, setShow] = useState<number>(0);
-
-  const navigate = (route: string) => router.push(route);
 
   useEffect(() => {
     const routes = [
@@ -98,299 +81,252 @@ const FirstHeader = () => {
       "/contact",
       "/news",
     ];
-
-    routes.forEach((route) => router.prefetch(route));
+    routes.forEach((r) => router.prefetch(r));
   }, [router]);
 
-  //console.log("token in header", selected);
-  return (
-    <div>
-      <div
-        className="h-[120px] flex-row md:justify-between items-center  hidden md:flex"
-        style={{
-          backgroundColor: "#ffffff",
+  // ---------------- UI ----------------
 
-          gap: 10,
-          padding: 20,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "start",
-            alignItems: "center",
-            gap: 10,
-            padding: 20,
-          }}
-        >
+  return (
+    <header className="w-full">
+      {/* ================= DESKTOP HEADER ================= */}
+      <div className="hidden md:flex items-center justify-between h-[110px] px-6 bg-white">
+        {/* Logo Section */}
+        <div className="flex items-center gap-4">
           <Image
-            className="h-[200px] w-[200px]"
-            src={"/images/logoos.png"}
-            height={100}
-            width={70}
-            objectFit="cover"
-            alt={"no image"}
+            src="/images/logoos.png"
+            width={90}
+            height={90}
+            alt="logo"
+            className="object-contain"
           />
-          <p className="text-2xl" style={{ color: "black" }}>
-            The International Science Journals
-          </p>
+
+          <div className="leading-tight">
+            <p className="text-xl font-semibold text-black">
+              The International Science Journals
+            </p>
+            <p className="text-sm text-gray-600">
+              Research • Innovation • Publication
+            </p>
+          </div>
         </div>
 
-        <div className="items-center justify-start gap-2.5 p-5  hidden md:flex ">
-          {token != null && token != "" ? (
+        {/* User Section */}
+        <div className="flex items-center gap-4">
+          {isLoggedIn ? (
             <UserMenu
               options={options}
               starting={result.username}
               is_optins={true}
-              selectedOpt={(v) => Navigating(v)}
-              onTap={() => console.log("Clicked UserMenu")}
-              textColor="#671509"
-              bgColor="#F5F5F5"
+              selectedOpt={Navigating}
+              textColor="#ffffff"
+              bgColor="#00b4d8"
               hoverBgColor="#0F2A44"
-              avatarBgColor="#F9D7B9"
-              avatarTextColor="#671509"
-              dropdownBgColor="#F9D7B9"
-              dropdownHoverBgColor="#E8B58D"
-              dropdownTextColor="#671509"
+              avatarBgColor="#ffffff"
+              avatarTextColor="#000000"
+              dropdownBgColor="#00b4d8"
+              dropdownHoverBgColor="#ffffff"
+              dropdownTextColor="#ffffff"
               dropdownHoverTextColor="#3F1005"
               arrowColor="#FFF8F0"
               fontSize="16px"
             />
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <CustomText
                 text="Log in"
-                style="text-black cursor-pointer"
-                onTap={() => Navigate("/dashboard/login")}
+                style="text-black cursor-pointer hover:opacity-70 transition"
+                onTap={() => navigate("/dashboard/login")}
               />
               <CustomText
                 text="Register"
-                style="text-black cursor-pointer"
-                onTap={() => Navigate("/dashboard/register")}
+                style="text-black cursor-pointer hover:opacity-70 transition"
+                onTap={() => navigate("/dashboard/register")}
               />
             </div>
           )}
         </div>
       </div>
-      {/* mobile view */}
-      <div className="h-[70px] flex-col   md:hidden flex bg-[#000000]  ">
-        <div
-          className="pl-2"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "start",
-            alignItems: "center",
-          }}
-        >
-          {show === 0 ? (
-            <SlMenu
-              className="text-2xl text-white "
-              onClick={() => setShow(1)}
-            />
-          ) : (
-            <RxCross1
-              className="text-2xl text-white "
-              onClick={() => setShow(0)}
-            />
-          )}
 
-          <Image
-            className="h-[70px] w-[70px]"
-            src={"/images/lg2-removebg-preview.png"}
-            height={50}
-            width={50}
-            objectFit="cover"
-            alt={"no image"}
-          />
-          <p className="text-2xl" style={{ color: "white" }}>
-            Echos Quantum
-          </p>
-        </div>
-        <div
-          className={`relative w-full border-b bg-[#000] pl-2 text-white ${
-            show === 1 ? "" : "hidden"
-          } `}
-        >
-          <div className="flex flex-col gap-3 text-white">
-            <CustomText
-              style={"cursor-pointer"}
-              onTap={() => {
-                if (token != null && token != "" && token != undefined) {
-                  navigate("/submissions/begin");
-                  setSelected("Submit an article");
-                  return;
-                }
-                navigate("/dashboard/login");
-                // navigate("/aboutsubmissions");
-                setSelected("Submit an article");
-
-                setShow(0);
-              }}
-              text={"Submit an article"}
-            />
-
-            <CustomText
-              style={"cursor-pointer"}
-              onTap={() => {
-                setShow(0);
-                navigate("/editors");
-                setSelected("Editorial Team");
-              }}
-              text={"Editorial Team"}
-            />
-
-            <div
-              className="flex  items-center gap-1"
-              onClick={() => {
-                if (menu === 1) {
-                  setMenu(0);
-                } else {
-                  setMenu(1);
-                }
-                setSelected("Issues");
-              }}
-            >
-              <CustomText style={"cursor-pointer"} text={"Issues"} />
-              <IoIosArrowDown className="text-white" />
-            </div>
-
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 1 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setSelected("CURRENT");
-                setShow(0);
-                navigate("/current");
-              }}
-              text={"Current"}
-            />
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 1 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setShow(0);
-                navigate("/archive");
-              }}
-              text={"Archive"}
-            />
-
-            <div
-              className="flex  items-center gap-1"
-              onClick={() => {
-                if (menu === 2) {
-                  setMenu(0);
-                } else {
-                  setMenu(2);
-                }
-                setSelected("Announcement");
-              }}
-            >
-              <CustomText style={"cursor-pointer"} text={"Announcement"} />
-              <IoIosArrowDown className="text-white" />
-            </div>
-
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 2 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setSelected("CURRENT");
-                setShow(0);
-                navigate("/announce");
-              }}
-              text={"Announcements"}
-            />
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 2 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setShow(0);
-                navigate("/news");
-              }}
-              text={"News"}
-            />
-
-            <div
-              className="flex  items-center gap-1"
-              onClick={() => {
-                if (menu === 3) {
-                  setMenu(0);
-                } else {
-                  setMenu(3);
-                }
-                setSelected("about");
-              }}
-            >
-              <CustomText style={"cursor-pointer"} text={"About"} />
-              <IoIosArrowDown className="text-white" />
-            </div>
-
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 3 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setShow(0);
-                setSelected("CURRENT");
-                navigate("/aboutjournals");
-              }}
-              text={"ABOUT THE JOURNALS"}
-            />
-
-            <CustomText
-              style={`cursor-pointer pl-5 ${menu === 3 ? "flex" : "hidden"}`}
-              onTap={() => {
-                setShow(0);
-                navigate("/contact");
-              }}
-              text={"CONTACT"}
-            />
-          </div>
-
-          <button
-            className="bg-[#000]  text-white  flex items-center gap-2 hover:bg-[#000] transition border-t-1 border-b-1 border-gray-300 pr-2 pt-2 mt-5 mb-2 pb-2 w-[99%]"
-            onClick={() => {
-              navigate("/search");
-              setShow(0);
-            }}
-          >
-            <FaSearch className="text-sm" />
-            Search
-          </button>
-
-          <div className="items-center justify-start gap-2.5 p-5   ">
-            {token != null && token != "" ? (
-              <UserMenu
-                options={options}
-                starting={result.username}
-                is_optins={true}
-                selectedOpt={(v) => Navigating(v)}
-                onTap={() => console.log("Clicked UserMenu")}
-                textColor="#671509"
-                bgColor="#F5F5F5"
-                hoverBgColor="#0F2A44"
-                avatarBgColor="#F9D7B9"
-                avatarTextColor="#671509"
-                dropdownBgColor="#F9D7B9"
-                dropdownHoverBgColor="#E8B58D"
-                dropdownTextColor="#671509"
-                dropdownHoverTextColor="#3F1005"
-                arrowColor="#FFF8F0"
-                fontSize="16px"
-              />
+      {/* ================= MOBILE HEADER ================= */}
+      <div className="md:hidden bg-[#00b4d8] text-white">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-3 h-[70px]">
+          <div className="flex items-center gap-2">
+            {show === 0 ? (
+              <SlMenu className="text-2xl" onClick={() => setShow(1)} />
             ) : (
-              <div className="flex items-center gap-4">
+              <RxCross1 className="text-2xl" onClick={() => setShow(0)} />
+            )}
+
+            <Image
+              src="/images/lg2-removebg-preview.png"
+              width={50}
+              height={50}
+              alt="logo"
+              className="object-contain"
+            />
+
+            <p className="text-lg font-medium">Echos Quantum</p>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {show === 1 && (
+          <div className="px-3 pb-4 flex flex-col gap-3 text-sm">
+            {/* Home */}
+            <div onClick={() => navigate("/")}>
+              <CustomText text="Home" style="cursor-pointer" />
+            </div>
+
+            {/* Publish */}
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={() => setMenu(menu === 2 ? 0 : 2)}
+            >
+              <span>Publish</span>
+              <IoIosArrowDown />
+            </div>
+
+            {menu === 2 && (
+              <div className="pl-4 flex flex-col gap-2">
                 <CustomText
-                  text="Log in"
-                  style="text-white cursor-pointer"
-                  onTap={() => Navigate("/dashboard/login")}
+                  text="Submit an article"
+                  style="cursor-pointer"
+                  onTap={() =>
+                    isLoggedIn
+                      ? navigate("/submissions/begin")
+                      : navigate("/dashboard/login")
+                  }
                 />
                 <CustomText
-                  text="Register"
-                  style="text-white cursor-pointer"
-                  onTap={() => Navigate("/dashboard/register")}
+                  text="Authors Guidelines"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/author")}
+                />
+                <CustomText
+                  text="Publication Ethics"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/publications_ethics")}
+                />
+                <CustomText
+                  text="Privacy Policy"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/privacy-policy")}
                 />
               </div>
             )}
+
+            {/* Issues */}
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={() => setMenu(menu === 1 ? 0 : 1)}
+            >
+              <span>Issues</span>
+              <IoIosArrowDown />
+            </div>
+
+            {menu === 1 && (
+              <div className="pl-4 flex flex-col gap-2">
+                <CustomText
+                  text="Current"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/current")}
+                />
+                <CustomText
+                  text="Archive"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/archive")}
+                />
+              </div>
+            )}
+
+            {/* About */}
+            <div
+              className="flex items-center gap-1 cursor-pointer"
+              onClick={() => setMenu(menu === 3 ? 0 : 3)}
+            >
+              <span>About</span>
+              <IoIosArrowDown />
+            </div>
+
+            {menu === 3 && (
+              <div className="pl-4 flex flex-col gap-2">
+                <CustomText
+                  text="Aims and Scope"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/aims")}
+                />
+                <CustomText
+                  text="Editorial Board"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/editors")}
+                />
+                <CustomText
+                  text="Journal Insights"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/insights")}
+                />
+                <CustomText
+                  text="News"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/news")}
+                />
+                <CustomText
+                  text="Announcements"
+                  style="cursor-pointer"
+                  onTap={() => navigate("/announce")}
+                />
+              </div>
+            )}
+
+            {/* Search */}
+            <button
+              className="flex items-center gap-2 mt-3 border-t border-b py-2"
+              onClick={() => navigate("/search")}
+            >
+              <FaSearch />
+              Search
+            </button>
+
+            {/* Auth */}
+            <div className="mt-2">
+              {isLoggedIn ? (
+                <UserMenu
+                  options={options}
+                  starting={result.username}
+                  is_optins={true}
+                  selectedOpt={Navigating}
+                  textColor="#00b4d8"
+                  bgColor="#ffffff"
+                  hoverBgColor="#0F2A44"
+                  avatarBgColor="#00b4d8"
+                  avatarTextColor="#ffffff"
+                  dropdownBgColor="#ffffff"
+                  dropdownHoverBgColor="#00b4d8"
+                  dropdownTextColor="#00b4d8"
+                  dropdownHoverTextColor="#ffffff"
+                  arrowColor="#FFF8F0"
+                  fontSize="16px"
+                />
+              ) : (
+                <div className="flex gap-4">
+                  <CustomText
+                    text="Log in"
+                    style="text-white"
+                    onTap={() => navigate("/dashboard/login")}
+                  />
+                  <CustomText
+                    text="Register"
+                    style="text-white"
+                    onTap={() => navigate("/dashboard/register")}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-    </div>
+    </header>
   );
 };
 

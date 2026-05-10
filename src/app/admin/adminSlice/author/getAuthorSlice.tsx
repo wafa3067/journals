@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Author } from "./addAuthorSlice";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 
 export interface GetAuthor {
   id: number;
@@ -10,15 +11,12 @@ export const GetAuthors = createAsyncThunk(
   "home/author/get",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/home/author/get",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/home/author/get`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -28,7 +26,6 @@ export const GetAuthors = createAsyncThunk(
       }
 
       const data = await res.json();
-      console.log("Fetched team data:", data); // Debug log
       return data;
     } catch (err) {
       return rejectWithValue("An error occurred while saving about data");

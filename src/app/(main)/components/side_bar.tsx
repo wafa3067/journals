@@ -23,7 +23,7 @@ const SideBar = () => {
     <div className="pl-10 gap-1 bg-gray-50 border-l-2 border-l-gray-200 ">
       <CustomText
         style={
-          "text-black border-b-4 border-b-[#f7bc49] font-bold  text-2xl  m-2"
+          "text-black border-b-4 border-b-[#0096c7] font-bold  text-2xl  m-2"
         }
         text={"INFORMATION"}
       />
@@ -32,7 +32,7 @@ const SideBar = () => {
       <CustomText style={"text-[#4b7d92] p-2"} text={"For Librarians"} />
       <CustomText
         style={
-          "text-[#4b7d92] p-1 bg-[#000] hover:bg-amber-500 text-white rounded-sm  w-fit mt-20 cursor-pointer"
+          "text-[#4b7d92] p-1 bg-[#00b4d8] hover:bg-[#00b4d8] text-white rounded-sm  w-fit mt-20 cursor-pointer"
         }
         onTap={() => {
           router.push("/dashboard");

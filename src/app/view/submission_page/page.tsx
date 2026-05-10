@@ -18,7 +18,7 @@ export default function SubmissionPage() {
       <div className="bg-white border rounded-lg shadow-sm mb-6">
         <div className="flex justify-between items-center border-b px-4 py-2">
           <h2 className="font-semibold text-gray-700">Submission Files</h2>
-          <button className="text-sm font-medium text-blue-600 hover:underline"></button>
+          <button className="text-sm font-medium #00b4d8 hover:underline"></button>
         </div>
 
         <div className="p-4 flex items-center justify-between border-b">
@@ -27,7 +27,7 @@ export default function SubmissionPage() {
             <span className="font-semibold text-gray-800">
               {article?.id.toString() || "N/A"}
             </span>
-            <span className="text-blue-600 hover:underline cursor-pointer">
+            <span className="#00b4d8 hover:underline cursor-pointer">
               {article?.pdf || "N/A"}
             </span>
           </div>
@@ -37,7 +37,7 @@ export default function SubmissionPage() {
         </div>
 
         <div className="flex justify-end px-4 py-2">
-          <button className="text-sm font-medium text-blue-600 hover:underline">
+          <button className="text-sm font-medium #00b4d8 hover:underline">
             Download All Files
           </button>
         </div>
@@ -49,7 +49,7 @@ export default function SubmissionPage() {
           <h2 className="font-semibold text-gray-700">
             Pre-Review Discussions
           </h2>
-          <button className="text-sm font-medium text-blue-600 hover:underline">
+          <button className="text-sm font-medium #00b4d8 hover:underline">
             Add discussion
           </button>
         </div>
@@ -67,7 +67,7 @@ export default function SubmissionPage() {
             </thead>
             <tbody>
               <tr className="hover:bg-gray-50 border-b">
-                <td className="py-2 text-blue-600 hover:underline cursor-pointer">
+                <td className="py-2 #00b4d8 hover:underline cursor-pointer">
                   {discussion.name}
                 </td>
                 <td className="py-2">{discussion.from}</td>

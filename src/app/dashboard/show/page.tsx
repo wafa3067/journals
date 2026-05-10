@@ -71,7 +71,7 @@ const Page = () => {
                   route.push("/dashboard");
                 }}
                 type="button"
-                className="inline-flex items-center gap-2 bg-[#000] text-white p-2  text-[12px] md:text-base rounded-lg shadow hover:[#000] transition"
+                className="inline-flex items-center gap-2 bg-[#00b4d8] text-white p-2  text-[12px] md:text-base rounded-lg shadow hover:[#000] transition"
                 aria-label="new submission"
               >
                 New Submission

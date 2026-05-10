@@ -14,14 +14,14 @@ pnpm dev
 bun dev
 ```
 
-Open [https://generous-love-production-3a3d.up.railway.app](https://generous-love-production-3a3d.up.railway.app) with your browser to see the result.
+Open [${BACKEND_URL}](${BACKEND_URL}) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 <!-- url -->
-<!-- https://generous-love-production-3a3d.up.railway.app -->
+<!-- ${BACKEND_URL} -->
 
 ## Learn More
 

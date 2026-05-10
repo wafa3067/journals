@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Team {
@@ -26,9 +27,8 @@ export const addTeamPage = createAsyncThunk(
   "home/about",
   async (aboutData: Team, { rejectWithValue }) => {
     try {
-      console.log("Adding team member with data:", aboutData); // Debug log to check the data being sent
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/add?title=${aboutData.title}&heading=${aboutData.heading}&email=${aboutData.email}&link=${aboutData.link}&affiliation=${aboutData.affiliation}&uni=${aboutData.uni}&cat=${aboutData.category}`,
+        `${BACKEND_URL}/team/add?title=${aboutData.title}&heading=${aboutData.heading}&email=${aboutData.email}&link=${aboutData.link}&affiliation=${aboutData.affiliation}&uni=${aboutData.uni}&cat=${aboutData.category}`,
         {
           method: "POST",
           headers: {
@@ -56,24 +56,21 @@ export const editTeam = createAsyncThunk(
   "home/about",
   async (aboutData: EditTeam & { id: number }, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/update?id=${aboutData.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: aboutData.title,
-            desc: aboutData.descriptions,
-            heading: aboutData.heading,
-            email: aboutData.email,
-            link: aboutData.link,
-            affiliation: aboutData.affiliation,
-            uni: aboutData.uni,
-          }),
+      const res = await fetch(`${BACKEND_URL}/team/update?id=${aboutData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: aboutData.title,
+          desc: aboutData.descriptions,
+          heading: aboutData.heading,
+          email: aboutData.email,
+          link: aboutData.link,
+          affiliation: aboutData.affiliation,
+          uni: aboutData.uni,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -95,7 +92,7 @@ export const deleteCategory = createAsyncThunk(
   async (aboutData: EditTeam & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/del?id=${aboutData.id}`,
+        `${BACKEND_URL}/category/del?id=${aboutData.id}`,
         {
           method: "Delete",
           headers: {
@@ -132,7 +129,7 @@ export const updateOrder = createAsyncThunk(
   ) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/updateOrder?catId=${aboutData.catid}&catValue=${aboutData.catValue}&changeCatId=${aboutData.changeID}&changeValue=${aboutData.changeValue}`,
+        `${BACKEND_URL}/category/updateOrder?catId=${aboutData.catid}&catValue=${aboutData.catValue}&changeCatId=${aboutData.changeID}&changeValue=${aboutData.changeValue}`,
         {
           method: "PATCH",
           headers: {
@@ -160,18 +157,12 @@ export const deleteTeam = createAsyncThunk(
   "home/about",
   async (id: number, { rejectWithValue }) => {
     try {
-      console.log("Attempting to delete team member with ID:", id); // Debug log to confirm the ID being deleted
-      const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/team/del?id=${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`${BACKEND_URL}/team/del?id=${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
-
-      console.log("Delete response status:", res); // Debug log to check the response status
+      });
 
       return res;
     } catch (err) {
@@ -187,19 +178,16 @@ export const addCategoryIntial = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/category/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: categoryData.name,
-            assignOrder: categoryData.assignOrder,
-          }),
+      const res = await fetch("${BACKEND_URL}/category/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: categoryData.name,
+          assignOrder: categoryData.assignOrder,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -220,18 +208,15 @@ export const addCategory = createAsyncThunk(
   "home/about",
   async (categoryData: { name: string }, { rejectWithValue }) => {
     try {
-      const res = await fetch(
-        "https://generous-love-production-3a3d.up.railway.app/category/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: categoryData.name,
-          }),
+      const res = await fetch("${BACKEND_URL}/category/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          title: categoryData.name,
+        }),
+      });
 
       if (!res.ok) {
         const errorData = await res.json();
@@ -253,7 +238,7 @@ export const editCategory = createAsyncThunk(
   async (categoryData: { name: string; id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `https://generous-love-production-3a3d.up.railway.app/category/update?id=${categoryData.id}&title=${categoryData.name}`,
+        `${BACKEND_URL}/category/update?id=${categoryData.id}&title=${categoryData.name}`,
         {
           method: "PATCH",
           headers: {

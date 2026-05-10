@@ -14,6 +14,7 @@ export interface AdminAuthState {
   success: boolean;
 }
 
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -32,16 +33,12 @@ export const adminLogin = createAsyncThunk(
   "admin/login",
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
-      const res = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/admin/login/login",
-        null,
-        {
-          params: {
-            username: credentials.username, // 👈 send as username
-            password: credentials.password,
-          },
+      const res = await axios.post(`${BACKEND_URL}/admin/login/login`, null, {
+        params: {
+          username: credentials.username, // 👈 send as username
+          password: credentials.password,
         },
-      );
+      });
       if (res.status != 200) {
         return rejectWithValue("Invalid username or password ❌");
       }
@@ -64,7 +61,7 @@ export const adminRegister = createAsyncThunk(
   async (data: RegisterData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/admin/login/register",
+        `${BACKEND_URL}/admin/login/register`,
         null,
         {
           params: {

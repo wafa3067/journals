@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -22,7 +23,7 @@ export const sendArticleEmail = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        "https://generous-love-production-3a3d.up.railway.app/admin/email",
+        `${BACKEND_URL}/admin/email`,
         null, // no body, using query params
         {
           params: { toEmail, authorName, status, articleTitle, body },

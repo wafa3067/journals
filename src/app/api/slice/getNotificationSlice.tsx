@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 interface Notification {
   id: number;
@@ -32,7 +33,7 @@ export const fetchNotifications = createAsyncThunk(
     try {
       const email = localStorage.getItem("email");
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/get_notifications/${email}`,
+        `${BACKEND_URL}/notification/get_notifications/${email}`,
       );
       return res.data;
     } catch (err: unknown) {
@@ -54,7 +55,7 @@ export const fetchUnreadCount = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/notification/count_unread/${email}`,
+        `${BACKEND_URL}/notification/count_unread/${email}`,
       );
       return res.data;
     } catch (err: unknown) {
@@ -75,7 +76,7 @@ export const markAllNotificationsRead = createAsyncThunk(
     const email = localStorage.getItem("email");
     try {
       const res = await axios.put(
-        `https://generous-love-production-3a3d.up.railway.app/notification/mark_all_read/${email}`,
+        `${BACKEND_URL}/notification/mark_all_read/${email}`,
       );
       return res.data; // "X notifications marked as read"
     } catch (err: unknown) {

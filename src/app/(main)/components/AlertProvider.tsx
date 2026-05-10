@@ -38,7 +38,7 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
       {children}
 
       {message && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00b4d8]/40">
           <div className="bg-white rounded-xl shadow-lg w-80 p-6 text-center animate-fadeIn">
             {/* <h2 className="text-lg font-semibold mb-3 text-red-600">Alert</h2> */}
             <p className="text-gray-700 mb-5">{message}</p>

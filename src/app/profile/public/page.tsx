@@ -14,6 +14,7 @@ import {
   setProfile,
   setProfileData,
 } from "@/app/api/slice/profileStateSlice";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 export default function PublicPage() {
   const { bio, homeurl, orcid_id, fileName, profile } = useAppSelector(
     (state) => state.profileData,
@@ -77,7 +78,7 @@ export default function PublicPage() {
           <p className="mt-2 text-sm text-gray-600 align-middle justify-center items-center  bg-amber-100 ">
             {profile && fileName == null && (
               <Image
-                src={`https://generous-love-production-3a3d.up.railway.app${profile}`}
+                src={`${BACKEND_URL}${profile}`}
                 alt="Profile picture"
                 width={50}
                 height={50}
@@ -149,7 +150,7 @@ export default function PublicPage() {
         * Denotes required field
       </p>
       {success && (
-        <CustomText text={success.toString()} style={"text-green-500"} />
+        <CustomText text={success.toString()} style={"text-[#00b4d8]"} />
       )}
       <button
         className="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"

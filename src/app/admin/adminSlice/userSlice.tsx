@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -45,9 +46,7 @@ const initialState: UserState = {
 };
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await axios.get(
-    "https://generous-love-production-3a3d.up.railway.app/admin/users",
-  );
+  const response = await axios.get(`${BACKEND_URL}/admin/users`);
   // ✅ since your backend returns an array directly
   // If backend returns a string, parse it
   if (typeof response.data === "string") {

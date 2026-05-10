@@ -76,7 +76,7 @@ const Page = () => {
     <div className="w-[100%]">
       <CustomText
         style={
-          "text-gray-500 border-b-4 border-b-[#f7bc49] font-bold  text-2xl  m-2 w-fit mb-5"
+          "text-gray-500 border-b-4 border-b-[#0096c7] font-bold  text-2xl  m-2 w-fit mb-5"
         }
         text={"Current Issue"}
       />

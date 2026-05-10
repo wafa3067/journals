@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 export interface Article {
@@ -44,9 +45,7 @@ export const fetchProduction = createAsyncThunk<Article[]>(
   "pending/fetchUnderReview",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/get-production",
-      );
+      const response = await axios.get(`${BACKEND_URL}/admin/get-production`);
       return response.data;
     } catch (err: unknown) {
       let message = "failed";
@@ -74,8 +73,8 @@ export const assignApproved = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/production/${articleId}`,
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
+        `${BACKEND_URL}/admin/articles/production/${articleId}`,
+        `${BACKEND_URL}/admin/articles/copyeditor/${articleId}?productionNotes=${encodeURIComponent(
           productionNotes,
         )}&status=${encodeURIComponent(status)}`,
       );

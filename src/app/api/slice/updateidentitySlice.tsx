@@ -1,6 +1,7 @@
 // src/redux/slices/userSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 export interface Identity {
   givenName?: string;
@@ -34,7 +35,7 @@ export const updateIdentity = createAsyncThunk<
     const email = await localStorage.getItem("email");
 
     const response = await axios.post(
-      `https://generous-love-production-3a3d.up.railway.app/api/update/identity?email=${email}`,
+      `${BACKEND_URL}/api/update/identity?email=${email}`,
       updatedUser,
       {
         headers: {

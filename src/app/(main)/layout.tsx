@@ -9,16 +9,11 @@ import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
 import { getToken } from "../api/slice/getTokenSlice";
 import { fetchUserByEmail } from "../api/slice/profileSlice";
 import { setProfileData } from "../api/slice/profileStateSlice";
-import {
-  AboutHomePage,
-  editAboutData,
-} from "../admin/adminSlice/home/homePageSlice";
+import { AboutHomePage } from "../admin/adminSlice/home/homePageSlice";
 import { createSideHomeSlice } from "../admin/adminSlice/sideHomeSlice/addSideHomeSlice";
-import { title } from "process";
 import { createEditorHome } from "../admin/adminSlice/editor/addEditorSlice";
 import { AboutHomeGetPage } from "../admin/adminSlice/home/GetHomeAboutSlice";
 import {
-  addCategory,
   addCategoryIntial,
   addTeamPage,
 } from "../admin/adminSlice/team/addTeamSlice";
@@ -37,7 +32,6 @@ export default function MainLayout({
 
   useEffect(() => {
     setLoading(true);
-
     // Only run on client side
     const storedToken = localStorage.getItem("token");
 
@@ -60,7 +54,7 @@ export default function MainLayout({
       // Simulate 3-second loading
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 3000);
+      }, 4000);
       return () => clearTimeout(timer);
     } else {
       setLoading(false);
@@ -106,6 +100,7 @@ export default function MainLayout({
 
     loadDefault();
   }, []);
+
   const editorIntial = [
     {
       name: "Dr. Farhan Saif",
@@ -151,6 +146,7 @@ export default function MainLayout({
       );
     });
   };
+
   const SidebarHome = () => {
     sideIntail.forEach((element) => {
       dispatch(
@@ -405,7 +401,6 @@ export default function MainLayout({
   ];
   const addTypeOfTeams = () => {
     addTeamTypes.forEach((el, index) => {
-      console.log(`${index + 1} === ${addTeamTypes.length}`);
       dispatch(addCategoryIntial({ name: el, assignOrder: index }));
       if (index + 1 == addTeamTypes.length) {
       }

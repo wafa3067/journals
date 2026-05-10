@@ -21,7 +21,7 @@ const UserManagement = () => {
   const handleSaveStatus = async () => {
     if (selectedUser) {
       await dispatch(
-        updateUserStatus({ id: selectedUser.id, status: selectedUser.status })
+        updateUserStatus({ id: selectedUser.id, status: selectedUser.status }),
       ).then(() => {
         dispatch(fetchUsers());
         showAlert("User status updated successfully.");
@@ -46,8 +46,8 @@ const UserManagement = () => {
       {/* Main */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white shadow-sm p-6 flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+        <header className="bg-[#00b4d8] shadow-sm p-6 flex justify-between items-center">
+          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
             👥 User Management
           </h2>
           <div className="flex items-center gap-3">
@@ -131,7 +131,7 @@ const UserManagement = () => {
 
       {/* Edit Modal */}
       {showEdit && selectedUser && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8]/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl w-96 p-6 shadow-lg">
             <h2 className="text-lg font-semibold mb-4 text-gray-800">
               Edit User Status
@@ -166,7 +166,7 @@ const UserManagement = () => {
 
       {/* Delete Modal */}
       {showDelete && selectedUser && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-[#00b4d8]/40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl w-96 p-6 shadow-lg">
             <h2 className="text-lg font-semibold mb-3 text-red-600">
               Confirm Deletion

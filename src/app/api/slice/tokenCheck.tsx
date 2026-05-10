@@ -1,6 +1,7 @@
 // store/slices/authSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 interface AuthState {
   tokenValid: boolean | null;
@@ -23,9 +24,9 @@ export const checkToken = createAsyncThunk(
       if (!token) return rejectWithValue("No token found");
 
       const res = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/validate-token?token=${token}`,
+        `${BACKEND_URL}/api/validate-token?token=${token}`,
       );
-      //console.log("Token check response:", res.data);
+
       if (!res.data.valid) {
         localStorage.removeItem("id");
         localStorage.removeItem("token");

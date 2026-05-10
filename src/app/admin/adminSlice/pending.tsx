@@ -1,3 +1,4 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 export interface Article {
@@ -38,9 +39,7 @@ export const fetchPendingArticles = createAsyncThunk<Article[]>(
   "pending/fetchPendingArticles",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "https://generous-love-production-3a3d.up.railway.app/admin/pending",
-      );
+      const response = await axios.get(`${BACKEND_URL}/admin/pending`);
 
       return response.data;
     } catch (err: unknown) {
@@ -63,7 +62,7 @@ export const updateArticleStatus = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/status/${id}?status=${status}`,
+        `${BACKEND_URL}/admin/articles/status/${id}?status=${status}`,
       );
       if (res.status !== 200) throw new Error("Failed to update status");
       return { id, status };
@@ -96,7 +95,7 @@ export const assignReviewer = createAsyncThunk(
   ) => {
     try {
       const res = await axios.post(
-        `https://generous-love-production-3a3d.up.railway.app/admin/articles/status/${articleId}`,
+        `${BACKEND_URL}/admin/articles/status/${articleId}`,
         null, // no body needed
         {
           params: {

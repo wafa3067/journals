@@ -18,7 +18,7 @@ const CustomButton = ({
   rounded,
   fontSize = "16px",
   fontStyle = "normal",
-  hoverEffect = "hover:bg-blue-800",
+  hoverEffect = "hover:bg-[#0096c7]",
   text = "Submit",
   width,
   onClick,

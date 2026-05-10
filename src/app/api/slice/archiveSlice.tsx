@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 export interface ArchiveArticle {
   id: number;
@@ -77,9 +78,7 @@ export const fetchArchiveArticles = createAsyncThunk<
   { rejectValue: string }
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(
-      "https://generous-love-production-3a3d.up.railway.app/api/get",
-    );
+    const response = await axios.get(`${BACKEND_URL}/api/get`);
 
     return response.data;
   } catch (err: unknown) {

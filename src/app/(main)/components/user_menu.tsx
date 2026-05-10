@@ -59,7 +59,7 @@ export default function UserMenu(props: Props) {
       <div
         className={`flex items-center justify-between w-full px-3 py-2 rounded-lg transition`}
         style={{
-          backgroundColor: props.bgColor ?? "#671509",
+          backgroundColor: props.bgColor ?? "#00b4d8",
         }}
       >
         <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function UserMenu(props: Props) {
             className=" text-sm md:text-base w-8 h-8 rounded-full flex items-center justify-center font-bold"
             style={{
               backgroundColor: props.avatarBgColor ?? "#F3C5A0",
-              color: props.avatarTextColor ?? "#671509",
+              color: props.avatarTextColor ?? "#00b4d8",
             }}
           >
             {initial}
@@ -111,19 +111,19 @@ export default function UserMenu(props: Props) {
               onClick={() => handleSelect(option.label)}
               className="px-4 py-2 cursor-pointer transition"
               style={{
-                color: props.dropdownTextColor ?? "#671509",
+                color: props.dropdownTextColor ?? "#00b4d8",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor =
                   props.dropdownHoverBgColor ?? "#E6B48C";
                 e.currentTarget.style.color =
-                  props.dropdownHoverTextColor ?? "#671509";
+                  props.dropdownHoverTextColor ?? "#00b4d8";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor =
                   props.dropdownBgColor ?? "#F3C5A0";
                 e.currentTarget.style.color =
-                  props.dropdownTextColor ?? "#671509";
+                  props.dropdownTextColor ?? "#00b4d8";
               }}
             >
               {option.label}

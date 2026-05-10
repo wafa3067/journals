@@ -1,4 +1,5 @@
 // store/userSlice.ts
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -33,7 +34,7 @@ export const updateUserStatus = createAsyncThunk<
 >("user/updateStatus", async ({ id, status }, { rejectWithValue }) => {
   try {
     const response = await axios.post(
-      `https://generous-love-production-3a3d.up.railway.app/admin/users/status/${id}`,
+      `${BACKEND_URL}/admin/users/status/${id}`,
       null,
       {
         params: { status },
@@ -59,9 +60,7 @@ export const deleteUser = createAsyncThunk<
   { rejectValue: { error: string } }
 >("user/deleteUser", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.post(
-      `https://generous-love-production-3a3d.up.railway.app/users/delete/${id}`,
-    );
+    const response = await axios.post(`${BACKEND_URL}/users/delete/${id}`);
     return { id, message: response.data.message };
   } catch (err: unknown) {
     let message = "Login failed";

@@ -43,7 +43,7 @@ export default function SubmissionsLayout({
 
   return (
     <div className="w-full ">
-      <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#f3f4f6]  ">
+      <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#00b4d8]  ">
         <div className="flex gap-2">
           <IoArrowBackSharp
             onClick={() => {
@@ -53,11 +53,11 @@ export default function SubmissionsLayout({
                 router.push("/");
               }
             }}
-            className="text-2xl md:text-3xl"
+            className="text-2xl md:text-3xl text-white"
           />
           <CustomText
             text={"Echos Quantum"}
-            style={"font-bold text-sm md:text-2xl"}
+            style={"font-bold text-sm md:text-2xl text-white"}
           />
         </div>
 

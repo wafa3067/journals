@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 
 export interface Language {
   id?: number;
@@ -51,7 +52,7 @@ export const fetchUserByEmail = createAsyncThunk(
       const email = localStorage.getItem("email");
 
       const response = await axios.get(
-        `https://generous-love-production-3a3d.up.railway.app/api/find?email=${email}`,
+        `${BACKEND_URL}/api/find?email=${email}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // send token in header

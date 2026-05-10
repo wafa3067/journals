@@ -47,13 +47,16 @@ export default function ViewLayout({
   //console.log("Current tab:", isPending);
   return (
     <div>
-      <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#f3f4f6] ">
+      <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#00b4d8] ">
         <div className="flex gap-2">
           <IoArrowBackSharp
             onClick={() => router.push("/")}
-            className="text-3xl"
+            className="text-3xl text-white"
           />
-          <CustomText text={"Echos Quantum"} style={"font-bold text-2xl"} />
+          <CustomText
+            text={"Echos Quantum"}
+            style={"font-bold text-2xl text-white"}
+          />
         </div>
 
         <div className=" flex flex-row gap-4 text-2xl">
@@ -69,7 +72,7 @@ export default function ViewLayout({
             className={`px-4 py-2 text-sm font-medium transition-colors duration-200
             ${
               tab === tb
-                ? "text-blue-600 border-b-2 border-blue-600"
+                ? "#00b4d8 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-gray-700"
             }`}
           >

@@ -79,7 +79,7 @@ const NotificationDropdown = () => {
                   <p className="text-sm text-gray-600">{n.message}</p>
                   <span
                     className={`text-xs mt-1 inline-block ${
-                      n.isRead ? "text-gray-400" : "text-blue-600 font-medium"
+                      n.isRead ? "text-gray-400" : "#00b4d8 font-medium"
                     }`}
                   >
                     {n.status}
