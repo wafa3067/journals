@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BACKEND_URL } from "../actions/articleActions";
 export interface Language {
   name: string;
 }
