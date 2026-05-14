@@ -1,5 +1,7 @@
 // import axios from 'axios';
-export const BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL || "https://api.echosquantum.com";
+export const BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL ||"https://api.echosquantum.com";
+export const FRONT=process.env.NEXT_PUBLIC_FRONT_URL ||"https://echosquantum.com";
+//  "https://api.echosquantum.com";
 // // Action Types
 // export const SEARCH_REQUEST = 'SEARCH_REQUEST';
 // export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';

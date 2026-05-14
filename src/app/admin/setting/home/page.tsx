@@ -29,6 +29,7 @@ import DeleteModel from "@/app/(main)/components/deleteModel";
 import EditorModelComponent from "@/app/(main)/components/model_editor";
 import EditorCard from "@/app/(main)/components/EditorCard";
 import Carousel from "@/app/(main)/components/mini_crasual";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 
 interface HomeData {
   id: number;
@@ -37,9 +38,7 @@ interface HomeData {
 }
 
 interface SidebarItem {
-  id: number;
-  title: string;
-  descriptions: string;
+  image: File;
 }
 
 interface EditorData {
@@ -67,11 +66,7 @@ function Page() {
   const [id, setId] = useState<number>(0);
   const [imageSelected, setimageSelected] = useState<File | null>(null);
   const [editorFormData, setEditorFormData] = useState<EditorData>(editorData);
-  const [newSidebarItem, setNewSidebarItem] = useState<SidebarItem>({
-    id: 0,
-    title: "",
-    descriptions: "",
-  });
+  const [newSidebarItem, setNewSidebarItem] = useState<File>();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [openModal, setOpenModal] = useState<string | null>(null);
@@ -97,8 +92,7 @@ function Page() {
   const handleSidebarChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setNewSidebarItem((prev) => ({ ...prev, [name]: value }));
+    // setNewSidebarItem();
   };
 
   // const addSidebarItem = () => {
@@ -129,7 +123,8 @@ function Page() {
   const length = 3;
   const totalPages = Math.ceil(editor.length / length);
   const handleSaveSidebar = () => {
-    dispatch(createSideHomeSlice(newSidebarItem)).then(() => {
+    dispatch(createSideHomeSlice({ image: newSidebarItem! })).then(() => {
+      dispatch(CreateGetSideHome());
       dispatch(AboutHomeGetPage());
     });
     setOpenModal(null);
@@ -148,15 +143,13 @@ function Page() {
   };
 
   const editSidePageData = (title: string, descriptions: string) => {
-    dispatch(
-      editSideData({
-        title: title,
-        descriptions: descriptions,
-        id: newSidebarItem.id,
-      }),
-    ).then(() => {
-      dispatch(CreateGetSideHome());
-    });
+    // dispatch(
+    //   editSideData({
+    //     title: title,
+    //   }),
+    // ).then(() => {
+    //   dispatch(CreateGetSideHome());
+    // });
   };
 
   const editEditorPageData = (
@@ -198,18 +191,14 @@ function Page() {
       prevIndex === 0 ? totalEditors - 1 : prevIndex - 1,
     );
   };
+
   return (
     <div className="">
       {/* Header */}
-      <header className="bg-[#00b4d8] shadow-sm p-6 flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold text-white flex items-center gap-2 ">
+      <header className="md:bg-[#00b4d8] p-5 flex justify-center items-center mb-4">
+        <h2 className="text-sm font-semibold text-black md:text-white flex items-center gap-2 ">
           Home Page Management
         </h2>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-            A
-          </div>
-        </div>
       </header>
       <div className="flex gap-4 mb-8">
         <button
@@ -219,7 +208,13 @@ function Page() {
           Add About
         </button>
         <button
-          onClick={() => setOpenModal("sidebar")}
+          onClick={() => {
+            if (side.length == 0) {
+              setOpenModal("sidebar");
+            } else {
+              alert("Delete Image First");
+            }
+          }}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           Add Sidebar
@@ -288,20 +283,15 @@ function Page() {
             <h2 className="text-xl font-bold mb-4">Add Sidebar Item</h2>
 
             <input
-              type="text"
-              name="title"
-              value={newSidebarItem.title}
-              onChange={handleSidebarChange}
-              placeholder="Title"
-              className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="file"
+              accept="image/png, image/jpeg, image/jpg, image/webp"
+              onChange={(e) => {
+                if (e.target.files && e.target.files.length > 0) {
+                  setNewSidebarItem(e.target.files[0]);
+                }
+              }}
             />
-            <textarea
-              name="descriptions"
-              value={newSidebarItem.descriptions}
-              onChange={handleSidebarChange}
-              placeholder="Descriptions"
-              className="w-full p-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+
             <div className="flex gap-2">
               <button
                 onClick={handleSaveSidebar}
@@ -392,13 +382,14 @@ function Page() {
 
       {/* side edit modal */}
       {openModal === "sideEdit" && (
-        <ModelComponent
-          heading="Edit Side Home"
-          setOpenModal={setOpenModal}
-          homeFormData={newSidebarItem}
-          handleHomeChange={handleSidebarChange}
-          handleSaveAbout={editSidePageData}
-        />
+        <p>edit</p>
+        // <ModelComponent
+        //   heading="Edit Side Home"
+        //   setOpenModal={setOpenModal}
+        //   homeFormData={newSidebarItem}
+        //   handleHomeChange={handleSidebarChange}
+        //   handleSaveAbout={editSidePageData}
+        // />
       )}
 
       {editDelete === "deleteSide" && (
@@ -491,24 +482,30 @@ function Page() {
             {side.length > 0 &&
               side.map((item, index) => (
                 <div key={index} className="mb-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                    {item.title}
-                  </h2>
-                  <p>{item.descriptions}</p>
+                  <img
+                    src={`${BACKEND_URL}` + item.image}
+                    alt={`Sidebar Image ${index + 1}`}
+                    className="w-full h-auto rounded-lg mb-2"
+                  />
+
                   <div className="flex flex-row gap-2">
                     <button
                       onClick={() => {
-                        setOpenModal("sideEdit");
-                        setNewSidebarItem({
-                          title: item.title,
-                          descriptions: item.descriptions || "",
-                          id: item.id,
-                        });
+                        alert(side.length);
+                        if (side.length == 0) {
+                          setOpenModal("sideEdit");
+                        } else {
+                          alert("Delete File First");
+                        }
+                        // setNewSidebarItem(
+                        //   item.image,
+                        // );
                       }}
                       className="mt-2 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                     >
                       Edit
                     </button>
+
                     <button
                       onClick={() => {
                         setId(item.id);

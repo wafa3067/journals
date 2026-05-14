@@ -64,7 +64,7 @@ const SearchPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 px-6 py-12 md:px-24 w-[100%]">
+    <div className="min-h-screen bg-white text-gray-900 px-2 py-8 md:px-24 w-full">
       <h1 className="text-4xl font-bold mb-10 text-gray-900">Search</h1>
 
       <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
@@ -98,7 +98,7 @@ const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setPublishedAfter({ ...publishedAfter, year: e.target.value })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2 w-20 md:w-24"
             />
             <input
               type="number"
@@ -107,7 +107,7 @@ const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setPublishedAfter({ ...publishedAfter, month: e.target.value })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2 w-20 md:w-24"
             />
             <input
               type="number"
@@ -116,7 +116,7 @@ const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setPublishedAfter({ ...publishedAfter, day: e.target.value })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2 w-20 md:w-24"
             />
           </div>
         </div>
@@ -132,7 +132,7 @@ const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setPublishedBefore({ ...publishedBefore, year: e.target.value })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2 w-20 md:w-24"
             />
             <input
               type="number"
@@ -144,7 +144,7 @@ const SearchPage: React.FC = () => {
                   month: e.target.value,
                 })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2   w-20 md:w-24"
             />
             <input
               type="number"
@@ -153,7 +153,7 @@ const SearchPage: React.FC = () => {
               onChange={(e) =>
                 setPublishedBefore({ ...publishedBefore, day: e.target.value })
               }
-              className="border border-gray-300 rounded-lg px-3 py-2 w-24"
+              className="border border-gray-300 rounded-lg px-3 py-2 w-20 md:w-24"
             />
           </div>
         </div>

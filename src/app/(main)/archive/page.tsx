@@ -53,6 +53,13 @@ export default function ArchivePage() {
     router.push(`/archive/${year}/${month}`);
   };
 
+  if (Object.keys(archive).length === 0) {
+    return (
+      <div className="flex items-center justify-center ">
+        <p className="text-gray-500 text-lg">No data available.</p>
+      </div>
+    );
+  }
   return (
     <div className="p-6 ">
       {Object.entries(archive).map(([year, months]) => (
@@ -63,7 +70,7 @@ export default function ArchivePage() {
               <div key={month}>
                 <Image
                   className=" rounded-sm"
-                  src="/images/logo1.jpg"
+                  src="/images/logoos.png"
                   alt="archive image"
                   width={200}
                   height={120}

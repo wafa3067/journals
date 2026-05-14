@@ -85,7 +85,7 @@ const Page = () => {
         text={`Vol. ${currentMonth} No. ${currentMonth} (${currentYear})`}
       />
       <Journals
-        img="/images/bg.jpg"
+        img="/images/logoos.png"
         date={`${currentMonth} (${currentYear})`}
         image_style={"w-[250px]"}
       />

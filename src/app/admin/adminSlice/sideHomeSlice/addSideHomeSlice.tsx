@@ -2,23 +2,19 @@ import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface sideHome {
-  title: string;
-  descriptions?: string;
+  image: File;
 }
 
 export const createSideHomeSlice = createAsyncThunk(
   "home/about",
-  async (aboutData: sideHome, { rejectWithValue }) => {
+  async (aboutData: { image: File }, { rejectWithValue }) => {
     try {
+      const form = new FormData();
+      form.append("image", aboutData.image);
       const res = await fetch(`${BACKEND_URL}/home/side/add`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: aboutData.title,
-          descriptions: aboutData.descriptions,
-        }),
+
+        body: form,
       });
 
       if (!res.ok) {
@@ -38,19 +34,16 @@ export const createSideHomeSlice = createAsyncThunk(
 
 export const editSideData = createAsyncThunk(
   "home/side",
-  async (sideData: sideHome & { id: number }, { rejectWithValue }) => {
+  async (sideData: { image: File } & { id: number }, { rejectWithValue }) => {
     try {
+      const form = new FormData();
+      form.append("image", sideData.image);
       const res = await fetch(
         `${BACKEND_URL}/home/side/update?id=${sideData.id}`,
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: sideData.title,
-            desc: sideData.descriptions,
-          }),
+
+          body: form,
         },
       );
 

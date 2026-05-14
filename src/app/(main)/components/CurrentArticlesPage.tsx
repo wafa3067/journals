@@ -70,10 +70,10 @@ export default function CurrentMonthPage() {
   if (!filtered.length)
     return <p className="p-6">No articles found for {datePath}</p>;
   return (
-    <div className="p-6">
-      <div className=" shadow-sm rounded-2xl p-5">
+    <div className="w-[70%] md:w-full p-6">
+      <div className=" md:w-[30%] shadow-sm rounded-2xl p-5">
         <Image
-          className="h-[200px] w-[200px]"
+          className="h-50 w-50 "
           src={"/images/logoos.png"}
           height={100}
           width={70}

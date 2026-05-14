@@ -1,5 +1,6 @@
 "use client";
 
+import CustomText from "@/app/(main)/components/custom_text";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -64,14 +65,14 @@ const AdminSidebar = () => {
 
   return (
     <div className="h-full">
-      <div className="w-72 bg-[#00b4d8] shadow-lg  flex-col h-full hidden  md:block">
+      <div className="w-72 bg-[#00b4d8]  shadow-lg  flex-col h-full hidden  md:block">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200 flex items-center">
-          <h2 className="    text-2xl font-bold text-white">Admin Portal</h2>
+        <div className="p-5 border-b border-gray-200 flex items-center">
+          <h2 className="    text-sm font-bold text-white">Admin Portal</h2>
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 flex flex-col mt-4 px-2">
+        <nav className="flex-1 flex flex-col p-2  h-screen px-2 overflow-x-scroll">
           {menuItems.map((item, index) => {
             const isActive =
               (item.hasDropdown &&
@@ -219,25 +220,29 @@ const AdminSidebar = () => {
           <div className="my-4 border-t border-gray-200"></div>
         </nav>
       </div>
-      <button
-        onClick={() => setOpen(true)}
-        className="lg:hidden p-3  text-white hover:text-black bg-white h-[68px] shadow block  md:hidden"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          className="w-6 h-6"
+      <div className="bg-[#00b4d8] flex flex-row items-center w-full">
+        <button
+          onClick={() => setOpen(true)}
+          className="lg:hidden p-3  text-white hover:text-black  h-16 block   md:hidden"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+
+        <CustomText text="Admin Panel" style="text-white" />
+      </div>
 
       {/* Overlay */}
       {open && (
@@ -249,17 +254,19 @@ const AdminSidebar = () => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300
+        className={`fixed top-0 left-0 h-full w-64 bg-[#00b4d8] shadow-lg z-50 transform transition-transform duration-300
         ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-lg font-semibold">Admin Portal</h2>
-          <button onClick={() => setOpen(false)}>✖</button>
+          <h2 className="text-lg text-white">Admin Portal</h2>
+          <button onClick={() => setOpen(false)} className="text-white">
+            ✖
+          </button>
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 flex flex-col mt-4 px-2">
+        <nav className="flex-1 p-2 flex flex-col  px-2  h-screen overflow-y-scroll">
           {menuItems.map((item, index) => {
             const isActive =
               (item.hasDropdown &&

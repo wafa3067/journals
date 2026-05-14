@@ -4,7 +4,7 @@ import React from "react";
 
 const SubmissionsPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-12 w-[100%]">
+    <div className="min-h-screen bg-gray-50  w-full">
       {/* Page Title */}
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Submissions</h1>
 
@@ -53,36 +53,6 @@ const SubmissionsPage = () => {
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">Articles</h2>
         <p className="text-gray-700 mb-4">
           Section default policy: Make a new submission to the Articles section.
-        </p>
-        <button className="px-5 py-2 bg-[#00b4d8] text-white rounded-lg bg-[#00b4d8]">
-          Make a New Submission
-        </button>
-      </section>
-
-      {/* Copyright Notice */}
-      <section className=" mb-10">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Copyright Notice
-        </h2>
-        <p className="text-gray-700">
-          Submission is an admission by the authors that the manuscript has
-          neither been previously published nor is being considered for
-          publication elsewhere. A statement transferring copyright from the
-          authors to Yarmouk University is required before acceptance.
-          Reproduction of any part of a published work is forbidden without
-          written permission from the Editor-in-Chief.
-        </p>
-      </section>
-
-      {/* Privacy Statement */}
-      <section className=" mb-10">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Privacy Statement
-        </h2>
-        <p className="text-gray-700">
-          The names and email addresses entered in this journal site will be
-          used exclusively for the stated purposes of this journal and will not
-          be made available for any other purpose or to any other party.
         </p>
       </section>
 

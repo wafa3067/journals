@@ -40,7 +40,6 @@ export const fetchPendingArticles = createAsyncThunk<Article[]>(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(`${BACKEND_URL}/admin/pending`);
-
       return response.data;
     } catch (err: unknown) {
       let message = "failed";

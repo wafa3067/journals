@@ -1,11 +1,9 @@
-// tailwind.config.js
 module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        arial: ["Arial", "sans-serif"],
+        sans: ["var(--font-open-sans)", "sans-serif"],
       },
     },
   },
-  plugins: [],
 };

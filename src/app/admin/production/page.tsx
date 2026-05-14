@@ -409,9 +409,9 @@ Editorial Office`);
   return (
     <main>
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-          <h1 className="text-xl font-bold flex items-center gap-2 text-white">
-            Copy Editor Articles management
+        <header className="md:bg-[#00b4d8] p-5 shadow-sm flex justify-center items-center ">
+          <h1 className="text-sm font-bold flex items-center gap-2 text-black md:text-white">
+            Production Articles management
           </h1>
         </header>
         {loading ? (

@@ -4,7 +4,6 @@ import { BACKEND_URL } from "../actions/articleActions";
 
 export interface ArchiveArticle {
   id: number;
-
   reviewerComment?: string;
   underReviewComments?: string;
   userComments?: string;
@@ -78,7 +77,7 @@ export const fetchArchiveArticles = createAsyncThunk<
   { rejectValue: string }
 >("archive/fetchByUser", async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/api/get`);
+    const response = await axios.get(`${BACKEND_URL}/admin/approved`);
 
     return response.data;
   } catch (err: unknown) {

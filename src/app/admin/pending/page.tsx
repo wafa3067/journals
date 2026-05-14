@@ -9,16 +9,18 @@ import {
   Article,
 } from "../adminSlice/pending";
 
-import { sendArticleEmail } from "../adminSlice/emailSlice";
+import { sendArticleEmail, sendReviewerEmail } from "../adminSlice/emailSlice";
 import { useAlert } from "@/app/(main)/components/AlertProvider";
 import { addNotification } from "../adminSlice/notificationSlice";
 import CustomText from "@/app/(main)/components/custom_text";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
+import { useRouter } from "next/navigation";
+import { FRONT } from "@/app/api/actions/articleActions";
 
 export default function PendingArticles() {
   const dispatch = useAppDispatch();
   const { articles, loading } = useAppSelector((state) => state.pending);
-
+  const [reviwerEmail, setReviwerEmail] = useState<string>();
   // Local state for reviewer inputs
   const [reviewInputs, setReviewInputs] = useState<
     Record<number, { reviewer: string; start: string; end: string }>
@@ -42,9 +44,14 @@ export default function PendingArticles() {
       },
     }));
   };
+
   const handleAssignReviewer = (article: Article) => {
     const input = reviewInputs[article.id] || {};
     if (!input.reviewer || !input.start || !input.end) {
+      alert("Please fill all fields");
+      return;
+    }
+    if (!reviwerEmail) {
       alert("Please fill all fields");
       return;
     }
@@ -113,14 +120,7 @@ export default function PendingArticles() {
                     <td width="35%" style="font-weight:bold;">Submission Date:</td>
                     <td>${article.createdAt?.toString()}</td>
                   </tr>
-                  ${
-                    input.reviewer
-                      ? `<tr>
-                          <td width="35%" style="font-weight:bold;">Assigned Copy Editor:</td>
-                          <td>${input.reviewer}</td>
-                        </tr>`
-                      : ""
-                  }
+                 
                 </table>
               </td>
             </tr>
@@ -166,13 +166,116 @@ export default function PendingArticles() {
       showAlert("Reviewer assigned successfully!");
       dispatch(fetchPendingArticles());
     });
+    sendEmailToReviewerArticles(article);
   };
 
+  const sendEmailToReviewerArticles = (article: Article) => {
+    const input = reviewInputs[article.id] || {};
+
+    dispatch(
+      sendReviewerEmail({
+        toEmail: reviwerEmail ?? "",
+        authorName: article.givenName,
+        articleTitle: article.title,
+        status: "Under Review",
+        body: `<html>
+  <body style="margin:0; padding:0; background-color:#f5f7fa; font-family:'Segoe UI', Arial, sans-serif;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
+      <tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); overflow:hidden;">
+            
+            <!-- Header -->
+            <tr>
+              <td align="center" style="background-color:#2563eb; padding:30px;">
+                <h1 style="margin:0; color:#ffffff; font-size:24px;">
+                  Reviewer Invitation
+                </h1>
+              </td>
+            </tr>
+
+            <!-- Greeting -->
+            <tr>
+              <td style="padding:25px 35px 10px 35px; font-size:16px; color:#111827;">
+                Hello <strong>${input.reviewer || "Reviewer"}</strong>,
+              </td>
+            </tr>
+
+            <!-- Message -->
+            <tr>
+              <td style="padding:10px 35px 20px 35px; font-size:15px; color:#374151; line-height:1.6;">
+                <p style="margin:0 0 12px 0;">
+                  You have been invited to review a submitted article for our journal.
+                </p>
+                <p style="margin:0;">
+                  Please confirm whether you are willing to accept this review assignment.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Article Details -->
+            <tr>
+              <td style="background-color:#f9fafb; padding:25px 35px;">
+                <h3 style="margin:0 0 15px 0; color:#2563eb;">Article Details</h3>
+                <table cellpadding="6" cellspacing="0" width="100%" style="color:#374151; font-size:14px;">
+                  <tr>
+                    <td style="font-weight:bold;">Title:</td>
+                    <td>${article.title}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold;">Author:</td>
+                    <td>${article.givenName} ${article.familyName}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold;">Submission Date:</td>
+                    <td>${article.createdAt?.toString()}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Buttons -->
+            <tr>
+              <td align="center" style="padding:30px;">
+              <!-- YES BUTTON -->
+<a href="${FRONT}/answer?id=${article.id}&answer=Yes"
+   style="background-color:#16a34a; color:#ffffff; padding:12px 24px; text-decoration:none; border-radius:8px; margin-right:10px; display:inline-block;">
+  Yes, I Accept
+</a>
+
+<!-- NO BUTTON -->
+<a href="${FRONT}/answer?id=${article.id}&answer=No"
+   style="background-color:#dc2626; color:#ffffff; padding:12px 24px; text-decoration:none; border-radius:8px; display:inline-block;">
+  No, I Decline
+</a>
+
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td align="center" style="padding:20px; font-size:12px; color:#9ca3af;">
+                © 2025 Journal System. All rights reserved.
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`,
+      }),
+    ).then(() => {
+      alert("Request Sent Successfully");
+    });
+  };
+  const router = useRouter();
   return (
     <main className="overflow-y-auto h-screen">
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-          <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+      <div className="flex-1 flex  flex-col overflow-hidden">
+        <header className=" md:bg-[#00b4d8] p-5 flex justify-center items-center ">
+          <h1 className="text-sm font-bold flex items-center gap-2 text-black md:text-white">
             Pending Articles management
           </h1>
         </header>
@@ -183,11 +286,11 @@ export default function PendingArticles() {
             No pending articles found.
           </div>
         ) : (
-          <div className=" overflow-scroll h-[calc(100vh-50px)]">
+          <div className=" overflow-scroll h-[calc(100vh-110px)]">
             {articles.map((article) => (
               <div
                 key={article.id}
-                className="bg-white rounded-xl shadow p-6 mb-6 transition-transform hover:-translate-y-1 m-8"
+                className="bg-white rounded-xl shadow p-6 mb-6 transition-transform hover:-translate-y-1 m-2 md:m-8"
               >
                 <div className="flex justify-between items-center mb-3">
                   <h5 className="text-lg font-semibold text-[#0096c7]">
@@ -233,10 +336,14 @@ export default function PendingArticles() {
                     <div>
                       <strong>PDF File:</strong>{" "}
                       <a
-                        href={`/uploads/${article.pdf}`}
+                        onClick={() => {
+                          const encodedPdfData = encodeURIComponent(
+                            article.pdf ?? "",
+                          ); // Encode the pdfData
+                          router.push(`/viewpdf/${encodedPdfData}`);
+                        }}
                         target="_blank"
-                        className="#00b4d8"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         View PDF
                       </a>
@@ -258,6 +365,14 @@ export default function PendingArticles() {
                             )
                           }
                         />
+
+                        <input
+                          type="email"
+                          placeholder="Reviewer Email"
+                          className="border rounded px-2 py-1 w-full"
+                          onChange={(e) => setReviwerEmail(e.target.value)}
+                        />
+
                         <CustomText
                           text={"Review start date:"}
                           style={"font-bold"}

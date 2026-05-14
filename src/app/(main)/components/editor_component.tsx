@@ -38,6 +38,23 @@ const EditorComponent = (props: Props) => {
       {props.desc && (
         <CustomText text={props.desc ?? ""} style={" text-gray-500"} />
       )}
+      {props.link && (
+        <div>
+          <Link
+            href={
+              props.link?.startsWith("http")
+                ? props.link
+                : `https://${props.link}`
+            }
+            target="_blank"
+          >
+            <CustomText
+              text={props.link ?? ""}
+              style={"text-blue-300  underline"}
+            />
+          </Link>
+        </div>
+      )}
       {props.email && (
         <div>
           <Link href={`mailto:${props.email}`}>

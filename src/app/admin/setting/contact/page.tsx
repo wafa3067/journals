@@ -57,8 +57,8 @@ function Page() {
 
   return (
     <div className="min-h-screen  w-full">
-      <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-        <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+      <header className="md:bg-[#00b4d8] p-5  flex justify-between items-center ">
+        <h1 className="text-sm font-semibold flex items-center gap-2 text-black md:text-white">
           Contact Page Management
         </h1>
       </header>

@@ -56,7 +56,7 @@ export default function HorizontalBar({
       data-current={current}
     >
       <ol
-        className="hb-list flex flex-row gap-1 md:gap-5 justify-center p-2 "
+        className="hb-list flex flex-row gap-1 shadow-2xl rounded md:gap-5 justify-center p-2 "
         role="list"
       >
         {steps.map((step, idx) => {
@@ -64,7 +64,7 @@ export default function HorizontalBar({
             <li
               onClick={() => handleClick(step.key)}
               key={step.key}
-              className={`hb-item  text-[8px] md:text-2xl p-1 md:pl-3 md:pr-3 md:pt-2 md:pb-2  ${
+              className={`hb-item  text-[8px] md:text-sm  p-1 md:pl-3 md:pr-3 md:pt-2 md:pb-2  ${
                 current == step.key
                   ? "border-4 border-b-slate-500 bg-[#00b4d8] bg-opacity-10 rounded-md"
                   : ""

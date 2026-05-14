@@ -19,7 +19,7 @@ const Page = () => {
           color="white"
           height={35}
           width={35}
-          src="/images/logo3.png"
+          src="/images/logoos.png"
           alt="Echos Quantum Logo"
         />
         <CustomText

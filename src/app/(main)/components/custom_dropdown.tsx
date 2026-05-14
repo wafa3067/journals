@@ -31,7 +31,7 @@ export default function CustomDropdown({
     >
       <div className="flex items-center justify-between w-fit">
         <p
-          className={`text-[#ffffff] font-bold hover:text-[#e8ebef]  ${
+          className={`text-[#ffffff]  hover:text-[#e8ebef]  ${
             selectedOption === starting ? "border-b-[#e8ebef] border-b-2" : ""
           }
            hover:border-b-2 hover:border-[#ffffff] `}

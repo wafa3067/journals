@@ -12,6 +12,7 @@ import { AboutHomeGetPage } from "@/app/admin/adminSlice/home/GetHomeAboutSlice"
 import { CreateGetSideHome } from "@/app/admin/adminSlice/sideHomeSlice/getHomeSideSlice";
 import CircularLoading from "../components/circular_loadinng";
 import { useRouter } from "next/navigation";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 
 const MainBody = () => {
   const dispatch = useAppDispatch();
@@ -35,17 +36,17 @@ const MainBody = () => {
     return <CircularLoading />;
   }
   return (
-    <div className="" style={{ width: "100%" }}>
-      <div className=" h-fit  ">
-        <div className=" flex md:flex-row flex-col gap-3 pt-8 pb-8 w-full">
-          <div className="md:w-[70%] bg-gray-100">
-            <div className="   space-y-8  ">
+    <div>
+      <div>
+        <div className="flex md:flex-row flex-col gap-3 pt-8 pb-8 ">
+          <div className=" md:w-full bg-gray-100">
+            <div className=" space-y-8 ">
               {success === false ? (
                 <p>Loading...</p>
               ) : Array.isArray(about) && about.length > 0 ? (
                 about.map((item, index) => (
                   <div key={index}>
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-3">
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-3 ">
                       {item.title}
                     </h2>
                     <p>{item.descriptions}</p>
@@ -56,19 +57,20 @@ const MainBody = () => {
               )}
             </div>
           </div>
-          <div className="md:w-[30%]">
+          <div className="w-auto  md:w-[30%] bg-gray-100 ">
             {side.map((item, index) => (
-              <div key={index} className="mb-6">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                  {item.title}
-                </h2>
-                <p>{item.descriptions}</p>
+              <div className=" w-full h-full" key={index}>
+                <img
+                  src={`${BACKEND_URL}${item.image}`}
+                  className="w-full h-full object-cover "
+                />
               </div>
             ))}
           </div>
         </div>
 
         <EditorsList options={editor} />
+
         <CustomText
           style={
             "text-gray-500 border-b-4 border-b-[#0096c7] font-bold  text-2xl  m-2 w-fit mb-5 pt-8"
@@ -76,7 +78,7 @@ const MainBody = () => {
           text={"Current Issue"}
         />
         <CurrentMonthPage />
-        <div className="flex flex-row gap-1.5 rounded-sm items-center bg-[#00b4d8] text-white hover:bg-[#00b4d8] w-fit pl-2 pr-2 pt-1 pb-1">
+        <div className="flex flex-row gap-1.5 mb-2 rounded-sm items-center bg-[#00b4d8] text-white hover:bg-[#00b4d8] w-fit pl-2 pr-2 pt-1 pb-1">
           <CustomText
             text={"VIEW ALL ISSUES"}
             style={"text-white cursor-pointer"}

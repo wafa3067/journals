@@ -178,7 +178,7 @@ export const addCategoryIntial = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const res = await fetch("${BACKEND_URL}/category/add", {
+      const res = await fetch(`${BACKEND_URL}/category/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -208,7 +208,7 @@ export const addCategory = createAsyncThunk(
   "home/about",
   async (categoryData: { name: string }, { rejectWithValue }) => {
     try {
-      const res = await fetch("${BACKEND_URL}/category/add", {
+      const res = await fetch(`${BACKEND_URL}/category/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

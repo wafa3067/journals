@@ -3,8 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface GetSideHomeState {
   id: number;
-  title: string;
-  descriptions?: string;
+  image: string;
 }
 
 export const CreateGetSideHome = createAsyncThunk(

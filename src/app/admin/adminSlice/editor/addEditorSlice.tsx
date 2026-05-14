@@ -37,7 +37,7 @@ export const editEditorData = createAsyncThunk(
   async (editorData: editorHome & { id: number }, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `${BACKEND_URL}/home/editor/update?id=${editorData.id}`,
+        `${BACKEND_URL}/home/editor/update?id=${editorData.id}&title=${editorData.title}&desc=${editorData.descriptions}`,
         {
           method: "PATCH",
           headers: {

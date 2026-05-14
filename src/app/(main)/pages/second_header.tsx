@@ -7,6 +7,7 @@ import CustomDropdown from "../components/custom_dropdown";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { fetchUserByEmail } from "@/app/api/slice/profileSlice";
 import { setProfileData } from "@/app/api/slice/profileStateSlice";
+import { Contact } from "lucide-react";
 
 const SecondHeader = () => {
   const [selected, setSelected] = useState<string>("Home");
@@ -34,19 +35,14 @@ const SecondHeader = () => {
   ];
 
   const about = [
-    // { id: 1, label: "ABOUT THE JOURNALS" },
-
-    // { id: 2, label: "CONTACT" },
     { id: 1, label: "Aims and Scope" },
     { id: 2, label: "Editorial Board" },
-    { id: 2, label: "Journal Insights" },
-    { id: 3, label: "News" },
-    { id: 4, label: "Announcements" },
+    { id: 3, label: "Journal Insights" },
+    { id: 4, label: "News" },
+    { id: 5, label: "Announcements" },
+    { id: 6, label: "Contact" },
   ];
   const publish = [
-    // { id: 1, label: "ABOUT THE JOURNALS" },
-
-    // { id: 2, label: "CONTACT" },
     { id: 1, label: "Submit an article" },
     { id: 2, label: "Authors Guidelines" },
     { id: 2, label: "Publication Ethics" },
@@ -185,6 +181,7 @@ const SecondHeader = () => {
               "Journal Insights": "/insights",
               News: "/news",
               Announcements: "/announce",
+              Contact: "/contact",
             };
             navigate(routes[val]);
           }}
@@ -192,7 +189,7 @@ const SecondHeader = () => {
       </div>
 
       <button
-        className="bg-[#00b4d8] text-white px-4 py-2 rounded flex items-center gap-2 bg-[#00b4d8] transition"
+        className=" text-white px-4 py-2 rounded flex items-center gap-2 bg-[#00b4d8] transition"
         onClick={() => navigate("/search")}
       >
         <FaSearch className="text-sm" />

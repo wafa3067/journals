@@ -25,15 +25,17 @@ export default function SubmissionsLayout({
         <div className=" p-5 flex flex-row justify-between items-center   pb-4 border-b border-gray-300 bg-[#00b4d8] mb-10 w-full">
           <div className="flex flex-row  items-center">
             <MdOutlineArrowBack
+              color="white"
               size={40}
               onClick={() => Navigate("/dashboard")}
             />
           </div>
           <CustomText
             text={" Submit a New Article "}
-            style={" text-sm md:text-3xl font-normal "}
+            style={" text-sm md:text-3xl font-normal text-white"}
           />
-          <TbLayoutDashboardFilled size={40} />
+
+          <TbLayoutDashboardFilled size={40} color="white" />
         </div>
         <div className="flex flex-row  items-center justify-center ">
           <HorizontalBar

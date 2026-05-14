@@ -46,15 +46,10 @@ const UserManagement = () => {
       {/* Main */}
       <main className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-[#00b4d8] shadow-sm p-6 flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
-            👥 User Management
+        <header className="md:bg-[#00b4d8] shadow-sm p-5 flex justify-center items-center">
+          <h2 className="text-sm font-semibold text-black md:text-white flex items-center gap-2">
+            User Management System
           </h2>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-              A
-            </div>
-          </div>
         </header>
 
         {/* Content */}

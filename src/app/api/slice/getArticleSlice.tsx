@@ -131,7 +131,7 @@ export const uploadFinalFile = createAsyncThunk<
       //console.log("the file is ", finalFile);
       const token = await localStorage.getItem("token");
       const response = await axios.post(
-        "${BACKEND_URL}/api/uploadFinal",
+        `${BACKEND_URL}/api/uploadFinal`,
         formData,
         {
           headers: {
@@ -170,7 +170,7 @@ export const updatePdfAndComments = createAsyncThunk<
       if (userComments) formData.append("userComments", userComments);
 
       const response = await axios.post<UpdateArticle>(
-        "${BACKEND_URL}/api/updatePdfAndComments",
+        `${BACKEND_URL}/api/updatePdfAndComments`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -14,7 +14,7 @@ export interface Article {
   reviewEndDate?: string;
   reviewStartDate?: string;
   reviewerAssigned?: string;
-
+  reviewerAnser?: string;
   keywords?: string;
   referenceText?: string;
   pdf?: string;

@@ -44,8 +44,9 @@ export default function SubmissionsLayout({
   return (
     <div className="w-full ">
       <div className=" flex flex-row justify-between items-center mb-5 p-4 bg-[#00b4d8]  ">
-        <div className="flex gap-2">
+        <div className="flex gap-2 bg-[#00b4d8] items-center">
           <IoArrowBackSharp
+            color="white"
             onClick={() => {
               if (pathname === "/dashboard/show") {
                 router.push("/dashboard");
@@ -53,11 +54,11 @@ export default function SubmissionsLayout({
                 router.push("/");
               }
             }}
-            className="text-2xl md:text-3xl text-white"
+            className="text-2xl md:text-3xl text-black"
           />
           <CustomText
             text={"Echos Quantum"}
-            style={"font-bold text-sm md:text-2xl text-white"}
+            style={" text-sm md:text-2xl text-white"}
           />
         </div>
 

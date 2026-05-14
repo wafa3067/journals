@@ -47,9 +47,10 @@ const Page = () => {
         <div className="h-8.75 flex flex-row gap-2 mb-3">
           <Image
             color="white"
-            height={35}
-            width={35}
-            src="/images/logo3.png"
+            height={55}
+            width={55}
+            className=" object-cover"
+            src="/images/logoos.png"
             alt="Echos Quantum Logo"
           />
           <CustomText

@@ -93,8 +93,8 @@ const Page = () => {
   };
   return (
     <div className="w-full ">
-      <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-        <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+      <header className="md:bg-[#00b4d8] p-5 flex justify-center items-center ">
+        <h1 className="text-sm font-semibold flex items-center gap-2 text-white">
           Team Page Management
         </h1>
       </header>
@@ -533,10 +533,6 @@ const Page = () => {
                         </button>
                         <button
                           onClick={() => {
-                            console.log(
-                              "Deleting team member with ID:",
-                              team.id,
-                            ); // Debug log to confirm the ID being deleted
                             setCatId(team.id);
 
                             dispatch(deleteTeam(team.id)).then((res) => {

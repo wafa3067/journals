@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 export interface Article {
   id: number;
+  pdfUrl?: string;
   title: string;
   givenName: string;
   familyName: string;

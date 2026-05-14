@@ -46,6 +46,49 @@ export const sendArticleEmail = createAsyncThunk(
   },
 );
 
+// Async thunk for sending email
+export const sendReviewerEmail = createAsyncThunk(
+  "email/sendArticleEmail",
+  async (
+    {
+      toEmail,
+      authorName,
+      status,
+      articleTitle,
+      body,
+    }: {
+      toEmail: string;
+      authorName: string;
+      articleTitle: string;
+      status: string;
+      body: string;
+    },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/admin/review`,
+        null, // no body, using query params
+        {
+          params: { toEmail, authorName, status, articleTitle, body },
+        },
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to send email");
+      }
+
+      return response.data; // { message: "Email sent successfully" }
+    } catch (err: unknown) {
+      let message = "failed";
+
+      if (axios.isAxiosError(err) && err.response) {
+        message = String(err.response.data.error);
+      }
+      return rejectWithValue(message);
+    }
+  },
+);
 interface EmailState {
   loading: boolean;
   successMessage: string | null;

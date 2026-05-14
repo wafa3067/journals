@@ -120,7 +120,7 @@ export default function MainLayout({
   ];
 
   async function getDefaultFile() {
-    const res = await fetch("/images/git.png");
+    const res = await fetch("/images/logoos.png");
     const blob = await res.blob();
 
     return new File([blob], "default.png", { type: blob.type });
@@ -130,7 +130,7 @@ export default function MainLayout({
       if (v.payload.length == 0) {
         addTypeOfTeams();
         aboutDataHome();
-        SidebarHome();
+        // SidebarHome();
         EditorHome();
         addContact();
         handleAddTeam();
@@ -147,16 +147,16 @@ export default function MainLayout({
     });
   };
 
-  const SidebarHome = () => {
-    sideIntail.forEach((element) => {
-      dispatch(
-        createSideHomeSlice({
-          title: element.title,
-          descriptions: element.desc,
-        }),
-      );
-    });
-  };
+  // const SidebarHome = () => {
+  //   sideIntail.forEach((element) => {
+  //     dispatch(
+  //       createSideHomeSlice({
+  //         title: element.title,
+  //         descriptions: element.desc,
+  //       }),
+  //     );
+  //   });
+  // };
   const EditorHome = () => {
     editorIntial.forEach((element) => {
       dispatch(
@@ -530,7 +530,7 @@ export default function MainLayout({
           </header>
 
           <main className="relative z-0 flex-1 bg-gray-50">
-            <div className="flex pl-5 pr-5">{children}</div>
+            <div className="w-full  mx-auto px-5">{children}</div>
           </main>
 
           <footer>

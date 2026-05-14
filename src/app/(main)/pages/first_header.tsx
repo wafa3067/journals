@@ -89,7 +89,7 @@ const FirstHeader = () => {
   return (
     <header className="w-full">
       {/* ================= DESKTOP HEADER ================= */}
-      <div className="hidden md:flex items-center justify-between h-[110px] px-6 bg-white">
+      <div className="hidden md:flex items-center justify-between h-27.5 px-6 bg-white">
         {/* Logo Section */}
         <div className="flex items-center gap-4">
           <Image
@@ -148,9 +148,9 @@ const FirstHeader = () => {
       </div>
 
       {/* ================= MOBILE HEADER ================= */}
-      <div className="md:hidden bg-[#00b4d8] text-white">
+      <div className="md:hidden bg-[#00b4d8] text-white ">
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-3 h-[70px]">
+        <div className="flex items-center justify-between px-3 h-17.5 w-full">
           <div className="flex items-center gap-2">
             {show === 0 ? (
               <SlMenu className="text-2xl" onClick={() => setShow(1)} />
@@ -174,7 +174,12 @@ const FirstHeader = () => {
         {show === 1 && (
           <div className="px-3 pb-4 flex flex-col gap-3 text-sm">
             {/* Home */}
-            <div onClick={() => navigate("/")}>
+            <div
+              onClick={() => {
+                navigate("/");
+                setShow(0);
+              }}
+            >
               <CustomText text="Home" style="cursor-pointer" />
             </div>
 
@@ -192,26 +197,36 @@ const FirstHeader = () => {
                 <CustomText
                   text="Submit an article"
                   style="cursor-pointer"
-                  onTap={() =>
+                  onTap={() => {
                     isLoggedIn
                       ? navigate("/submissions/begin")
-                      : navigate("/dashboard/login")
-                  }
+                      : navigate("/dashboard/login");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Authors Guidelines"
                   style="cursor-pointer"
-                  onTap={() => navigate("/author")}
+                  onTap={() => {
+                    navigate("/author");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Publication Ethics"
                   style="cursor-pointer"
-                  onTap={() => navigate("/publications_ethics")}
+                  onTap={() => {
+                    navigate("/publications_ethics");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Privacy Policy"
                   style="cursor-pointer"
-                  onTap={() => navigate("/privacy-policy")}
+                  onTap={() => {
+                    navigate("/privacy-policy");
+                    setShow(0);
+                  }}
                 />
               </div>
             )}
@@ -230,12 +245,18 @@ const FirstHeader = () => {
                 <CustomText
                   text="Current"
                   style="cursor-pointer"
-                  onTap={() => navigate("/current")}
+                  onTap={() => {
+                    navigate("/current");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Archive"
                   style="cursor-pointer"
-                  onTap={() => navigate("/archive")}
+                  onTap={() => {
+                    navigate("/archive");
+                    setShow(0);
+                  }}
                 />
               </div>
             )}
@@ -254,27 +275,50 @@ const FirstHeader = () => {
                 <CustomText
                   text="Aims and Scope"
                   style="cursor-pointer"
-                  onTap={() => navigate("/aims")}
+                  onTap={() => {
+                    navigate("/aims");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Editorial Board"
                   style="cursor-pointer"
-                  onTap={() => navigate("/editors")}
+                  onTap={() => {
+                    navigate("/editors");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Journal Insights"
                   style="cursor-pointer"
-                  onTap={() => navigate("/insights")}
+                  onTap={() => {
+                    navigate("/insights");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="News"
                   style="cursor-pointer"
-                  onTap={() => navigate("/news")}
+                  onTap={() => {
+                    navigate("/news");
+                    setShow(0);
+                  }}
                 />
                 <CustomText
                   text="Announcements"
                   style="cursor-pointer"
-                  onTap={() => navigate("/announce")}
+                  onTap={() => {
+                    navigate("/announce");
+                    setShow(0);
+                  }}
+                />
+                <CustomText
+                  text="Contact"
+                  style="cursor-pointer"
+                  onTap={() => {
+                    navigate("/contact");
+                    setShow(0);
+                  }}
                 />
               </div>
             )}

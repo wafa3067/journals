@@ -84,8 +84,8 @@ export default function PendingArticles() {
   return (
     <main className="overflow-y-auto h-screen">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-          <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+        <header className=" md:bg-[#00b4d8] p-5 flex justify-center items-center ">
+          <h1 className="text-sm font-bold flex items-center gap-2 text-black md:text-white">
             Approved Articles management
           </h1>
         </header>
@@ -96,7 +96,7 @@ export default function PendingArticles() {
             No Approved articles found.
           </div>
         ) : (
-          <div className=" overflow-scroll h-[calc(100vh-50px)]">
+          <div className=" overflow-scroll h-[calc(100vh-110px)]">
             {articles.map((article) => (
               <div
                 key={article.id}
@@ -146,7 +146,7 @@ export default function PendingArticles() {
                     <div>
                       <strong>PDF File:</strong>{" "}
                       <a
-                        href={`/uploads/${article.pdf}`}
+                        href={`/uploads/${article.pdfUrl}`}
                         target="_blank"
                         className="#00b4d8"
                         rel="noreferrer"

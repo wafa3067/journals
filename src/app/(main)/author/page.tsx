@@ -1,18 +1,10 @@
-"use client";
-import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
-import React, { useEffect } from "react";
-import QuillViewer from "../components/rectquilviwer";
-import { GetAuthors } from "@/app/admin/adminSlice/author/getAuthorSlice";
-import CustomButton from "../components/custom_button";
-import { useRouter } from "next/navigation";
-import Loading from "../loading";
-
+import React from "react";
 function Page() {
   return (
-    <div>
+    <div className="m-4 md:m-6">
       {/* Author Guidelines */}
-      <section className=" mb-10">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+      <section>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 ">
           Author Guidelines
         </h2>
         <div className="text-gray-700 space-y-4">

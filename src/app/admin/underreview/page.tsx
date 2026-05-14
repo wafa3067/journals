@@ -8,12 +8,13 @@ import {
   assignCopyEditor,
   fetchUnderReview,
 } from "../adminSlice/underreviewSlice";
-import { sendArticleEmail } from "../adminSlice/emailSlice";
+import { sendArticleEmail, sendReviewerEmail } from "../adminSlice/emailSlice";
 import AlertInputDialog from "../components/alert_input";
 import { rejectArticleStatus } from "../adminSlice/rejectArticalStatusSlice";
 import { useAlert } from "@/app/(main)/components/AlertProvider";
 import { addNotification } from "../adminSlice/notificationSlice";
 import QuillViewer from "@/app/(main)/components/rectquilviwer";
+import { FRONT } from "@/app/api/actions/articleActions";
 
 export default function UnderReviewPage() {
   const dispatch = useAppDispatch();
@@ -292,11 +293,208 @@ export default function UnderReviewPage() {
       dispatch(fetchUnderReview());
     });
   };
+
+  const [reviwerEmail, setReviwerEmail] = useState<string>();
+  const [reviwerName, setReviwerName] = useState<string>();
+
+  const sendForDownlpad = (article: Article) => {
+    const input = reviewInputs[article.id] || {};
+
+    dispatch(
+      sendReviewerEmail({
+        toEmail: reviwerEmail ?? "",
+        authorName: article.givenName,
+        articleTitle: article.title,
+        status: "Under Review",
+        body: `<html>
+    <body style="margin:0; padding:0; background-color:#f5f7fa; font-family:'Segoe UI', Arial, sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); overflow:hidden;">
+              
+              <!-- Header -->
+              <tr>
+                <td align="center" style="background-color:#2563eb; padding:30px;">
+                  <h1 style="margin:0; color:#ffffff; font-size:24px;">
+                    Reviewer Invitation
+                  </h1>
+                </td>
+              </tr>
+  
+              <!-- Greeting -->
+              <tr>
+                <td style="padding:25px 35px 10px 35px; font-size:16px; color:#111827;">
+                  Hello <strong>${reviwerName || "Reviewer"}</strong>,
+                </td>
+              </tr>
+  
+              <!-- Message -->
+              <tr>
+                <td style="padding:10px 35px 20px 35px; font-size:15px; color:#374151; line-height:1.6;">
+                  <p style="margin:0 0 12px 0;">
+                        Please download the manuscript using the link below and review it carefully before responding to this invitation.
+
+                  </p>
+                
+                </td>
+              </tr>
+  
+              <!-- Article Details -->
+              <tr>
+                <td style="background-color:#f9fafb; padding:25px 35px;">
+                  <h3 style="margin:0 0 15px 0; color:#2563eb;">Article Details</h3>
+                  <table cellpadding="6" cellspacing="0" width="100%" style="color:#374151; font-size:14px;">
+                    <tr>
+                      <td style="font-weight:bold;">Title:</td>
+                      <td>${article.title}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold;">Author:</td>
+                      <td>${article.givenName} ${article.familyName}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold;">Submission Date:</td>
+                      <td>${article.createdAt?.toString()}</td>
+                    </tr>
+                      <tr>
+                      <td style="font-weight:bold;">File:</td>
+                     <a href="${FRONT}${article.pdf}"
+                        style="background-color:#088F8F; color:#ffffff; padding:12px 24px; text-decoration:none; border-radius:8px; display:inline-block;">
+                      Download File
+                     </a>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+  
+           
+  
+              <!-- Footer -->
+              <tr>
+                <td align="center" style="padding:20px; font-size:12px; color:#9ca3af;">
+                  © 2025 Journal System. All rights reserved.
+                </td>
+              </tr>
+  
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>`,
+      }),
+    ).then(() => {
+      alert("Request Sent Successfully");
+    });
+  };
+
+  const sendEmailToReviewerArticles = (article: Article) => {
+    const input = reviewInputs[article.id] || {};
+
+    dispatch(
+      sendReviewerEmail({
+        toEmail: reviwerEmail ?? "",
+        authorName: article.givenName,
+        articleTitle: article.title,
+        status: "Under Review",
+        body: `<html>
+    <body style="margin:0; padding:0; background-color:#f5f7fa; font-family:'Segoe UI', Arial, sans-serif;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); overflow:hidden;">
+              
+              <!-- Header -->
+              <tr>
+                <td align="center" style="background-color:#2563eb; padding:30px;">
+                  <h1 style="margin:0; color:#ffffff; font-size:24px;">
+                    Reviewer Invitation
+                  </h1>
+                </td>
+              </tr>
+  
+              <!-- Greeting -->
+              <tr>
+                <td style="padding:25px 35px 10px 35px; font-size:16px; color:#111827;">
+                  Hello <strong>${reviwerName || "Reviewer"}</strong>,
+                </td>
+              </tr>
+  
+              <!-- Message -->
+              <tr>
+                <td style="padding:10px 35px 20px 35px; font-size:15px; color:#374151; line-height:1.6;">
+                  <p style="margin:0 0 12px 0;">
+                    You have been invited to review a submitted article for our journal.
+                  </p>
+                  <p style="margin:0;">
+                    Please confirm whether you are willing to accept this review assignment.
+                  </p>
+                </td>
+              </tr>
+  
+              <!-- Article Details -->
+              <tr>
+                <td style="background-color:#f9fafb; padding:25px 35px;">
+                  <h3 style="margin:0 0 15px 0; color:#2563eb;">Article Details</h3>
+                  <table cellpadding="6" cellspacing="0" width="100%" style="color:#374151; font-size:14px;">
+                    <tr>
+                      <td style="font-weight:bold;">Title:</td>
+                      <td>${article.title}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold;">Author:</td>
+                      <td>${article.givenName} ${article.familyName}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold;">Submission Date:</td>
+                      <td>${article.createdAt?.toString()}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+  
+              <!-- Buttons -->
+              <tr>
+                <td align="center" style="padding:30px;">
+                <!-- YES BUTTON -->
+  <a href="${FRONT}/answer?id=${article.id}&answer=Yes"
+     style="background-color:#16a34a; color:#ffffff; padding:12px 24px; text-decoration:none; border-radius:8px; margin-right:10px; display:inline-block;">
+    Yes, I Accept
+  </a>
+  
+  <!-- NO BUTTON -->
+  <a href="${FRONT}/answer?id=${article.id}&answer=No"
+     style="background-color:#dc2626; color:#ffffff; padding:12px 24px; text-decoration:none; border-radius:8px; display:inline-block;">
+    No, I Decline
+  </a>
+  
+                </td>
+              </tr>
+  
+              <!-- Footer -->
+              <tr>
+                <td align="center" style="padding:20px; font-size:12px; color:#9ca3af;">
+                  © 2025 Journal System. All rights reserved.
+                </td>
+              </tr>
+  
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>`,
+      }),
+    ).then(() => {
+      alert("Request Sent Successfully");
+    });
+  };
   return (
     <main>
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-[#00b4d8] p-5 shadow-sm flex justify-between items-center ">
-          <h1 className="text-xl font-bold flex items-center gap-2 text-white">
+        <header className=" md:bg-[#00b4d8] p-5 flex justify-center items-center ">
+          <h1 className="text-sm font-semibold flex items-center gap-2 text-black md:text-white">
             Under Review Articles management
           </h1>
         </header>
@@ -352,6 +550,60 @@ export default function UnderReviewPage() {
                     View PDF
                   </a>
                 </p>
+                <div>
+                  <p className="text-red-600">
+                    Note Reviewer Response Will shown below
+                  </p>
+                  {article.reviewerAnser && (
+                    <div>
+                      <p>
+                        {article.reviewerAnser == "Yes"
+                          ? "Reviewer Accepted Changes"
+                          : "Reviewer does not Accepted Changes"}
+                      </p>
+                      <input
+                        type="text"
+                        placeholder="Reviewer Name"
+                        className="border rounded px-2 py-1 w-full"
+                        onChange={(e) => setReviwerName(e.target.value)}
+                      />
+
+                      <input
+                        type="email"
+                        placeholder="Reviewer Email"
+                        className="border rounded px-2 py-1 w-full mb-2 mt-2"
+                        onChange={(e) => setReviwerEmail(e.target.value)}
+                      />
+                      {article.reviewerAnser == "Yes" ? (
+                        <button
+                          className="bg-[#00b4d8] text-white px-3 py-1 rounded hover:bg-[#00b4d8]"
+                          onClick={() => {
+                            if (reviwerEmail != null && reviwerName != null) {
+                              sendForDownlpad(article);
+                            } else {
+                              alert("Enter email address");
+                            }
+                          }}
+                        >
+                          Send Article
+                        </button>
+                      ) : (
+                        <button
+                          className="bg-[#00b4d8] text-white px-3 py-1 rounded hover:bg-[#00b4d8]"
+                          onClick={() => {
+                            if (reviwerEmail != null && reviwerName != null) {
+                              sendEmailToReviewerArticles(article);
+                            } else {
+                              alert("Enter email address");
+                            }
+                          }}
+                        >
+                          Assign Reviwer
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
 
                 {successMessage && (
                   <div className="mt-2 p-2 bg-green-100 text-green-700 rounded">

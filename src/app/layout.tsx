@@ -1,7 +1,13 @@
 import { AlertProvider } from "./(main)/components/AlertProvider";
-import TokenChecker from "./(main)/components/token_checker";
 import "./globals.css";
 import StoreProvider from "./providers/StoreProvider";
+import { Open_Sans } from "next/font/google";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-open-sans",
+});
 
 export default function RootLayout({
   children,
@@ -9,14 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" className={openSans.variable}>
+      <body className="min-h-screen flex flex-col font-sans">
         <StoreProvider>
-          <AlertProvider>
-            {" "}
-            {/* 👈 Wrap your entire app here */}
-            {children}
-          </AlertProvider>
+          <AlertProvider>{children}</AlertProvider>
         </StoreProvider>
       </body>
     </html>

@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditorCard from "./EditorCard";
 import { GetEditorHomeState } from "@/app/admin/adminSlice/editor/getEditorSlice";
 import Carousel from "./mini_crasual";
+import CarouselMobile from "./mini_card_mobile";
 interface Editor {
   image: string;
   title: string;
@@ -11,10 +12,6 @@ interface Editor {
   // image: string; // Add image property if needed
 }
 const EditorsList: React.FC<{ options: Array<Editor> }> = ({ options }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [editDelete, setEditDelete] = useState<
-    "deleteEdit" | "deleteSide" | "deleteEditor" | null
-  >(null);
   const [openModal, setOpenModal] = useState<
     | "about"
     | "sidebar"
@@ -24,29 +21,57 @@ const EditorsList: React.FC<{ options: Array<Editor> }> = ({ options }) => {
     | "editorEdit"
     | null
   >(null);
-  const totalEditors = options.length / 3;
 
-  const [id, setId] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+
+    check(); // initial check
+    window.addEventListener("resize", check);
+
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <div className="py-8 px-4 bg-[#00b4d8]  relative ">
+    <div className=" md:w-full p-2 md:py-8 md:px-4 bg-[#00b4d8]  relative ">
       <h2 className="text-2xl font-bold text-center mb-8 text-white">
         Editors
       </h2>
-      <Carousel
-        items={options}
-        itemsPerPage={3}
-        renderItem={(editor, index) => (
-          <div className=" m-2  w-[30%]" key={index}>
-            <EditorCard
-              name={editor.title}
-              institution={editor.descriptions}
-              location={""}
-              imageUrl={editor.image}
-            />
-          </div>
-        )}
-      />
+      {/* Carousel for desktop */}
+      {isMobile ? null : (
+        <Carousel
+          items={options}
+          itemsPerPage={3}
+          renderItem={(editor, index) => (
+            <div className=" m-2  w-[30%]" key={index}>
+              <EditorCard
+                name={editor.title}
+                institution={editor.descriptions}
+                location={""}
+                imageUrl={editor.image}
+              />
+            </div>
+          )}
+        />
+      )}
+      {/* Carousel for mobile */}
+      {isMobile && (
+        <CarouselMobile
+          items={options}
+          itemsPerPage={1}
+          renderItem={(editor, index) => (
+            <div className="" key={index}>
+              <EditorCard
+                name={editor.title}
+                institution={editor.descriptions}
+                location={""}
+                imageUrl={editor.image}
+              />
+            </div>
+          )}
+        />
+      )}
     </div>
   );
 };

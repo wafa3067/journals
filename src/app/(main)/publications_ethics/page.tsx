@@ -1,5 +1,6 @@
 import React from "react";
 import CustomText from "../components/custom_text";
+import SubmissionsPage from "../aboutsubmissions/page";
 
 const PublicationEthics = () => {
   const bulits = [
@@ -15,16 +16,14 @@ const PublicationEthics = () => {
         style={"text-2xl font-bold pb-3"}
       />
       <CustomText
-        text={"ECHOS Quantum-Publication: Ethics and Malpractice Statement"}
+        text={"ECHOS Quantum-Publication:  Statement"}
         style={"text-sm font-bold pb-2"}
       />
-
-      <CustomText text={"GENERAL STATEMENT"} style={"text-sm font-bold pb-2"} />
 
       <CustomText
         boldText="ECHOS Quantum "
         text={
-          "is an international, peer-reviewed research journal published biannually. ECHOS Quantum adheres to the highest standards of publication ethics to ensure full compliance with internationally recognized ethical practices in scholarly publishing. The journal actively implements all necessary measures to prevent publication misconduct in any form.ECHOS Quantum ensures that all parties involved in the publication process, including authors, editors, and reviewers, fully commit to maintaining ethical behavior and safeguarding the integrity of the scholarly record."
+          "is an international, peer-reviewed research journal published annually, with issues released in December each year. ECHOS Quantum adheres to the highest standards of publication ethics to ensure full compliance with internationally recognized ethical practices in scholarly publishing. The journal actively implements all necessary measures to prevent publication misconduct in any form.ECHOS Quantum ensures that all parties involved in the publication process, including authors, editors, and reviewers, fully commit to maintaining ethical behavior and safeguarding the integrity of the scholarly record."
         }
         style={" text-black pb-10"}
       />
@@ -61,136 +60,6 @@ const PublicationEthics = () => {
           "In cases where legitimate and undisputed changes in authorship arise, the Editor shall require written consent from all listed authors, including those whose names are being added or removed, before implementing any changes."
         }
         style={" text-black pb-10"}
-      />
-      <CustomText
-        text={"Instructions to the Authors"}
-        style={"text-sm font-bold pb-2"}
-      />
-      <CustomText
-        starting="Authors submitting manuscripts to"
-        boldText="ECHOS Quantum"
-        text={
-          "are expected to uphold the highest standards of scholarly integrity and ethical research practice. By submitting their work, authors affirm their commitment to the following responsibilities:"
-        }
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        boldText="1. Originality and Authenticity of Work"
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        starting="Authors must ensure that the submitted manuscript represents their"
-        boldText=" own original research, "
-        text={"presented accurately and honestly."}
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        text={
-          "The work should not contain fabricated, falsified, or plagiarized material. Any form of academic dishonesty is strictly prohibited."
-        }
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        boldText="2. Exclusive Submission"
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        starting="Manuscripts submitted to ECHOS Quantum must be"
-        boldText=" submitted exclusively"
-        text={
-          " to the journal.They must not be under review, accepted, or published elsewhere in any form. Authors are required to withdraw submissions from other outlets before submitting to this journal."
-        }
-        style={" text-black pb-2"}
-      />
-      <CustomText
-        boldText="3. Accuracy and Completeness of Content"
-        style={"text-black pb-2"}
-      />
-      <CustomText
-        starting="Authors are responsible for the"
-        boldText=" accuracy, clarity, and completeness"
-        text=" of the manuscript. The research presented must include sufficient methodological detail, data, and explanation to allow verification or replication by other scholars when appropriate."
-        style={"text-black pb-2"}
-      />
-
-      <CustomText
-        boldText="4. Proper Acknowledgment of Sources"
-        style={"text-black pb-2"}
-      />
-      <CustomText
-        starting="All relevant literature, data, methods, and earlier work that contributed to the manuscript must be"
-        boldText=" properly cited."
-        text=" Authors must acknowledge the intellectual contributions of others accurately and transparently."
-        style={"text-black pb-2 "}
-      />
-
-      <CustomText
-        boldText="5. Authorship Criteria"
-        style={"text-black pb-2 "}
-      />
-      <CustomText
-        starting="Authorship must reflect"
-        boldText=" substantial scholarly contribution."
-        text=" Each listed author must have contributed meaningfully to the conception, design, execution, analysis, interpretation, or writing of the research. All authors must review and approve the final manuscript before submission."
-        style={"text-black pb-2 "}
-      />
-
-      <CustomText
-        boldText="6. Copyright and Publication Agreement"
-        style={"text-black pb-2 "}
-      />
-      <CustomText
-        starting="All authors must read and sign the journal’s"
-        boldText=" copyright release form."
-        text=" By signing, authors confirm their rights to the work and grant ECHOS Quantum permission to publish it in accordance with journal policy."
-        style={"text-black pb-2 "}
-      />
-
-      <CustomText
-        boldText="7. Responsibilities of the Corresponding Author"
-        style={"text-black pb-2 "}
-      />
-      <CustomText
-        text="The corresponding author is responsible for:"
-        style={"text-black pb-2 "}
-      />
-      {bulits.map((e) => (
-        <div className="ml-5" key={e}>
-          <li className="">{e}</li>
-        </div>
-      ))}
-
-      {/* 8. Disclosure of Funding */}
-      <CustomText
-        boldText="8. Disclosure of Funding"
-        style={"text-black pb-2 pt-5 "}
-      />
-      <CustomText
-        starting="All sources of"
-        boldText=" financial support"
-        text=" institutional backing, or sponsorship must be clearly disclosed in the manuscript. Authors should specify the role of the funding agency in the research process, including study design, data collection, analysis, and manuscript preparation."
-        style={"text-black pb-2 "}
-      />
-
-      {/* 9. Ethical Compliance */}
-      <CustomText boldText="9. Ethical Compliance" style={"text-black pb-2 "} />
-      <CustomText
-        starting="Authors must ensure that their work complies with all relevant"
-        boldText=" ethical standards"
-        text=", including approvals for studies involving human participants, animals, or sensitive data, when applicable."
-        style={"text-black pb-2 "}
-      />
-
-      {/* 10. Correction of Errors */}
-      <CustomText
-        boldText="10. Correction of Errors"
-        style={"text-black pb-2 "}
-      />
-      <CustomText
-        starting="If authors discover a significant error or inaccuracy in their published or submitted manuscript, they must promptly notify the journal and cooperate in issuing a"
-        boldText=" correction, retraction, or amendment"
-        text=" as necessary."
-        style={"text-black pb-2 "}
       />
 
       {/* Instructions to the Reviewers */}
@@ -800,6 +669,7 @@ const PublicationEthics = () => {
         text="Copyright violations are treated as serious academic misconduct."
         style={"text-black pb-2 "}
       />
+      <SubmissionsPage />
     </div>
   );
 };

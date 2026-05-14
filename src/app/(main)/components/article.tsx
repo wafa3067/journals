@@ -27,7 +27,12 @@ const Articles = (props: Props) => {
           <CustomText style={props.citedstyle} text={props.cited ?? ""} />
         )}
       </div>
-      <a href={pdfUrlonline} target="_blank" rel="noopener noreferrer">
+      {/* <a
+        href={pdfUrlonline}
+        target="_blank"
+        rel="noopener noreferrer"
+        className=" disabled"
+      >
         <div
           className="flex 
       flex-row gap-1.5 items-center pl-2 pr-2 mt-2 bg-[#00b4d8] hover:bg-[#00b4d8] text-white rounded-sm  w-fit"
@@ -35,7 +40,7 @@ const Articles = (props: Props) => {
           <TbFileTypePdf width={50} height={50} />
           <CustomText text={"PDF"} />
         </div>
-      </a>
+      </a> */}
     </div>
   );
 };
