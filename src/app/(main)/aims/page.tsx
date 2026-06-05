@@ -1,34 +1,40 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import CustomText from "../components/custom_text";
+import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
+import { GetAims } from "@/app/admin/adminSlice/aims/getAims";
 
 function Aims() {
+  const dispatch = useAppDispatch();
+  const { aims, loading, success } = useAppSelector((state) => state.getAims);
+  useEffect(() => {
+    dispatch(GetAims());
+  }, [dispatch]);
+  if (loading && !success) {
+    return <div>Loading...</div>;
+  }
+  if (aims.length === 0) {
+    return (
+      <div style={{ width: "100%" }} className=" p-5">
+        <CustomText
+          text="No data found"
+          style="text-center text-lg font-bold"
+        />
+      </div>
+    );
+  }
   return (
     <div className=" p-8  ">
-      <CustomText text="Aims and Scope:" style="font-bold text-2xl mb-2" />
-      <CustomText
-        style="mb-2"
-        text="Quantum Journal is an open-access, peer-reviewed journal that publishes high-quality research in all areas of quantum science and technology. The journal aims to provide a platform for researchers to share their findings and insights with the global scientific community, fostering collaboration and advancing the field of quantum science."
-      />
-
-      <CustomText text="The scope of the journal includes, but not limited to:" />
-      <ul>
-        <li className="list-disc ml-5">Foundation of Quantum Mechanics</li>
-        <li className="list-disc ml-5">Quantum Computation</li>
-        <li className="list-disc ml-5">Quantum Information</li>
-        <li className="list-disc ml-5">
-          Cryptography and Quantum Communication
-        </li>
-        <li className="list-disc ml-5">Quantum Biology</li>
-        <li className="list-disc ml-5">Engineering Quantum Devices</li>
-        <li className="list-disc ml-5">Materials for Quantum Technologies</li>
-        <li className="list-disc ml-5">Metrology and Instrumentation</li>
-        <li className="list-disc ml-5">Quantum Machine Learning</li>
-        <li className="list-disc ml-5">Quantum Chemistry</li>
-        <li className="list-disc ml-5">Quantum Simulation</li>
-        <li className="list-disc ml-5">Quantum Gravity and Cosmology</li>
-        <li className="list-disc ml-5">Quantum Economics</li>
-        <li className="list-disc ml-5">Quantum Physics and Thermodynamics</li>
-      </ul>
+      {aims.map((contact) => (
+        <div key={contact.id}>
+          <CustomText text={contact.title} style="font-bold text-lg mb-2" />
+          {contact.bulletsPoints == true ? (
+            <li className="ml-5 mb-0 p-0">{contact.descriptions}</li>
+          ) : (
+            <CustomText style="mb-2" text={contact.descriptions} />
+          )}
+        </div>
+      ))}
     </div>
   );
 }

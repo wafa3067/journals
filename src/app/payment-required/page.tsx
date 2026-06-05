@@ -8,8 +8,6 @@ export default function PaymentRequired() {
     const res = await fetch(`${BACKEND_URL}/api/system/lock`, {
       method: "POST",
     });
-
-    console.log("the response is ", res.body?.locked);
   };
 
   useEffect(() => {

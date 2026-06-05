@@ -52,6 +52,31 @@ const AdminSidebar = () => {
     { name: "Contact", icon: "📞", href: "/admin/setting/contact" },
     { name: "News", icon: "📰", href: "/admin/setting/news" },
     { name: "Announcements", icon: "📢", href: "/admin/setting/announcement" },
+    {
+      name: "publication ethics",
+      icon: "⚖️", // Scales/Gavel to represent ethics, law, or fairness
+      href: "/admin/setting/publications",
+    },
+    {
+      name: "Aims and Scope",
+      icon: "🎯", // Bullseye to represent goals and scope
+      href: "/admin/setting/aims",
+    },
+    {
+      name: "Journal Insights",
+      icon: "📊", // Chart to represent data, analytics, and insights
+      href: "/admin/setting/insights",
+    },
+    {
+      name: "Contact info",
+      icon: "📞", // Telephone or Email (✉️) to represent communication
+      href: "/admin/setting/contact_info",
+    },
+    {
+      name: "Authors Guidelines", // Corrected spelling
+      icon: "📝", // Memo/Pencil to represent writing and instructions
+      href: "/admin/setting/author_guidlines",
+    },
   ];
 
   const isReviewActive = reviewStages.some((stage) =>
@@ -72,7 +97,7 @@ const AdminSidebar = () => {
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 flex flex-col p-2  h-screen px-2 overflow-x-scroll">
+        <nav className="flex-1 flex flex-col p-2  h-[calc(100vh-80px)] px-2 overflow-x-scroll">
           {menuItems.map((item, index) => {
             const isActive =
               (item.hasDropdown &&
@@ -220,6 +245,7 @@ const AdminSidebar = () => {
           <div className="my-4 border-t border-gray-200"></div>
         </nav>
       </div>
+
       <div className="bg-[#00b4d8] flex flex-row items-center w-full">
         <button
           onClick={() => setOpen(true)}

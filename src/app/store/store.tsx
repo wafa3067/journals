@@ -49,6 +49,14 @@ import addNewsPage from "../admin/adminSlice/news/newsAddSlice";
 import getNews from "../admin/adminSlice/news/newsGetSlice";
 import addAnnouncement from "../admin/adminSlice/announcement/addAnnouncementSlice";
 import getAnnouncement from "../admin/adminSlice/announcement/getAnnouncementSlice";
+import AimsPage from "../admin/adminSlice/aims/getAims";
+import getContactIngo from "../admin/adminSlice/contact_info/getContactInfo";
+import AddAimsPage from "../admin/adminSlice/aims/addAims";
+import getPublicationInsights from "../admin/adminSlice/publications/getPublications";
+import AddPublication from "../admin/adminSlice/publications/addPublications";
+import getAuthorsGuidlines from "../admin/adminSlice/authorsguidlines/getAuthorsGuidlines";
+import getJournals from "../admin/adminSlice/journals/getJournals";
+import AddJournalsInsights from "../admin/adminSlice/journals/addJournals";
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 //console.log("🧠 Store is being created..."); // 👈 ADD THIS
@@ -106,6 +114,21 @@ export function makeStore() {
       getNews: getNews,
       addAnnouncement: addAnnouncement,
       getAnnouncement: getAnnouncement,
+
+      addAims: AddAimsPage,
+      getAims: AimsPage,
+
+      getContactInfo: getContactIngo,
+      addContactInfo: addContactPage,
+
+      getPublications: getPublicationInsights,
+      addPublications: AddPublication,
+
+      getAuthor: getAuthorsGuidlines,
+      addAuthor: addAuthorPage,
+
+      getJournals: getJournals,
+      addJournals: AddJournalsInsights,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

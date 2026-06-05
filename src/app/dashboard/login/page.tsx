@@ -43,23 +43,23 @@ const Page = () => {
   const displayError = errors ?? localError;
   return (
     <div className="w-full  min-h-screen justify-center flex items-center">
-      <div className="w-75 md:w-137.5 p:2 md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
-        <div className="h-8.75 flex flex-row gap-2 mb-3">
+      <div className="w-75 md:w-137.5  md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
+        <div className="h-12 flex flex-row gap-2 mb-3 justify-end items-end">
           <Image
             color="white"
-            height={55}
-            width={55}
-            className=" object-cover"
+            height={90}
+            width={90}
+            className="object-cover "
             src="/images/logoos.png"
-            alt="Echos Quantum Logo"
+            alt="ECHOS Quantum Logo"
           />
           <CustomText
-            text={"Echos Quantum"}
-            style={"font-bold  md:text-2xl  pb-5 "}
+            text={"ECHOS Quantum"}
+            style={"font-bold  md:text-2xl  pb-5   "}
           />
         </div>
         <CustomText
-          text={"Welcome to Echos Quantum"}
+          text={"Welcome to ECHOS Quantum"}
           style={"font-bold  md:text-2xl  pb-5 "}
         />
 
@@ -80,7 +80,7 @@ const Page = () => {
           </div>
         )}
         <div className="flex flex-row gap-2 mb-5 mt-3 w-70 md:w-125 justify-center">
-          <CustomText text={"Dont have an account?"} style="text-sm" />
+          <CustomText text={"Don't have an account?"} style="text-sm" />
           <CustomText
             onTap={() => Navigate("/dashboard/register")}
             text={" Register"}

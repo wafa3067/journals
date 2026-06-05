@@ -11,9 +11,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-black "
-          >
-            Professional Services
-          </a>
+          ></a>
         </div>
         <div className="flex flex-col w-full items-end justify-center">
           <CustomText text={"CopyRight"} style={"text-2xl  w-fit pr-2 pb-2"} />

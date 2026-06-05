@@ -138,21 +138,22 @@ const Page = () => {
 
   return (
     <div className="w-full place-items-center justify-center bg-white p-5">
-      <div className="h-[35px] flex flex-row gap-2 mb-3">
+      <div className="h-12 flex flex-row gap-2 mb-3 justify-center items-center">
         <Image
           color="white"
-          height={35}
-          width={35}
+          height={90}
+          width={90}
+          className="object-cover"
           src="/images/logoos.png"
-          alt="Echos Quantum Logo"
+          alt="ECHOS Quantum Logo"
         />
         <CustomText
-          text={"Echos Quantum"}
+          text={"ECHOS Quantum"}
           style={"font-bold md:text-2xl pb-5"}
         />
       </div>
       <CustomText
-        text={"Welcome to Echos Quantum"}
+        text={"Welcome to ECHOS Quantum"}
         style={"font-bold md:text-2xl pb-5"}
       />
 

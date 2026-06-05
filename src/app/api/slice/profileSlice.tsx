@@ -51,6 +51,10 @@ export const fetchUserByEmail = createAsyncThunk(
       const token = localStorage.getItem("token");
       const email = localStorage.getItem("email");
 
+      if (token == null) {
+        return null;
+      }
+
       const response = await axios.get(
         `${BACKEND_URL}/api/find?email=${email}`,
         {

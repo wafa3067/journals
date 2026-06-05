@@ -94,7 +94,7 @@ const FirstHeader = () => {
         <div className="flex items-center gap-4">
           <Image
             src="/images/logoos.png"
-            width={90}
+            width={200}
             height={90}
             alt="logo"
             className="object-contain"
@@ -102,10 +102,10 @@ const FirstHeader = () => {
 
           <div className="leading-tight">
             <p className="text-xl font-semibold text-black">
-              The International Science Journals
+              An International Quantum Journal
             </p>
             <p className="text-sm text-gray-600">
-              Research • Innovation • Publication
+              Science,Technology,Engineering & Mathematics
             </p>
           </div>
         </div>
@@ -159,11 +159,11 @@ const FirstHeader = () => {
             )}
 
             <Image
-              src="/images/lg2-removebg-preview.png"
-              width={50}
-              height={50}
+              src="/images/logoos.png"
+              width={100}
+              height={100}
               alt="logo"
-              className="object-contain"
+              className="object-cover "
             />
 
             <p className="text-lg font-medium">Echos Quantum</p>
