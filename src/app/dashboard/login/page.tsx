@@ -42,9 +42,9 @@ const Page = () => {
 
   const displayError = errors ?? localError;
   return (
-    <div className="w-full  min-h-screen justify-center flex items-center">
-      <div className="w-75 md:w-137.5  md:p-10 p-4 place-items-center justify-center bg-white shadow-lg rounded-md  m-3">
-        <div className="h-12 flex flex-row gap-2 mb-3 justify-end items-end">
+    <div className="w-full  md:min-h-screen justify-center flex items-center h-full bg-white ">
+      <div className="w-full md:w-137.5  md:p-10 p-4 place-items-center justify-center  md:shadow-lg md:rounded-md  m-3 items-center">
+        <div className="h-12 flex flex-row gap-2 mb-3 md:justify-end md:items-end ">
           <Image
             color="white"
             height={90}
@@ -55,31 +55,31 @@ const Page = () => {
           />
           <CustomText
             text={"ECHOS Quantum"}
-            style={"font-bold  md:text-2xl  pb-5   "}
+            style={"font-bold  md:text-2xl  pb-5 pl-5  "}
           />
         </div>
         <CustomText
           text={"Welcome to ECHOS Quantum"}
-          style={"font-bold  md:text-2xl  pb-5 "}
+          style={"font-bold  md:text-2xl  pb-5  "}
         />
 
         <CustomInput
-          style="w-[250px] md:w-[500px] mb-2"
+          style="w-full md:w-[500px] mb-2"
           placeholder="Email"
           onChange={(v) => setEmail(v.target.value)}
         />
         <CustomInput
           type="password"
-          style="w-62.5 md:w-125 m-2"
+          style="w-full md:w-[500px] mb-2  "
           placeholder="Password"
           onChange={(v) => setPassword(v.target.value)}
         />
         {displayError && (
-          <div className="flex flex-row gap-2 mb-5 mt-3 w-62.5 md:w-125">
+          <div className="flex flex-row gap-2 mb-5 mt-3 w-[250px] md:w-[500px]">
             <CustomText text={displayError} style={"text-red-500"} />
           </div>
         )}
-        <div className="flex flex-row gap-2 mb-5 mt-3 w-70 md:w-125 justify-center">
+        <div className="flex flex-row gap-2 mb-5 mt-3 w-[250px] md:w-[500px] justify-center">
           <CustomText text={"Don't have an account?"} style="text-sm" />
           <CustomText
             onTap={() => Navigate("/dashboard/register")}
@@ -89,7 +89,7 @@ const Page = () => {
         </div>
 
         <CustomButton
-          width="w-[250px] md:w-[500px]"
+          width="w-full md:w-[500px]"
           bgColor="bg-[#00b4d8]"
           hoverEffect="hover:bg-[#0096c7]"
           rounded="8px"

@@ -137,8 +137,8 @@ const Page = () => {
   const isLoading = loadings || false; // Adjust based on your Redux state structure
 
   return (
-    <div className="w-full place-items-center justify-center bg-white p-5">
-      <div className="h-12 flex flex-row gap-2 mb-3 justify-center items-center">
+    <div className="w-full place-items-center justify-center items-center  bg-white p-5">
+      <div className="h-12 flex flex-row gap-2 mb-3 ">
         <Image
           color="white"
           height={90}
@@ -154,35 +154,35 @@ const Page = () => {
       </div>
       <CustomText
         text={"Welcome to ECHOS Quantum"}
-        style={"font-bold md:text-2xl pb-5"}
+        style={"font-bold md:text-2xl pb-5 "}
       />
 
       <CustomInput
-        style="w-[250px] md:w-[500px] m-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Given Name"
         value={givenName}
         onChange={(v) => setGivenName(v.target.value)}
       />
       <CustomInput
-        style="w-[250px] md:w-[500px] m-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Family Name"
         value={familyName}
         onChange={(v) => setFamilyName(v.target.value)}
       />
       <CustomInput
-        style="w-[250px] md:w-[500px] m-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Affiliation"
         value={affiliation}
         onChange={(v) => setAffiliation(v.target.value)}
       />
       <CustomInput
-        style="w-[250px] md:w-[500px] m-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Username"
         value={username}
         onChange={(v) => setUsername(v.target.value)}
       />
 
-      <div className="w-[250px] md:w-[500px] m-2 h-[56px]">
+      <div className="w-full md:w-[500px]  h-[56px]">
         <CountryDropdown
           onChange={(v) => setCountry(v.name)}
           placeholder={country}
@@ -191,7 +191,7 @@ const Page = () => {
       </div>
 
       <CustomInput
-        style="w-[250px] md:w-[500px] mb-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Email"
         value={email}
         onChange={(v) => setEmail(v.target.value)}
@@ -199,7 +199,7 @@ const Page = () => {
 
       <CustomInput
         type="password"
-        style="w-[250px] md:w-[500px] m-2"
+        style="w-full md:w-[500px] mb-2"
         placeholder="Password"
         value={password}
         onChange={(v) => setPassword(v.target.value)}
@@ -207,7 +207,7 @@ const Page = () => {
 
       <CustomInput
         type="password"
-        style="w-[250px] md:w-[500px] m-2 mb-5"
+        style="w-full md:w-[500px] mb-2 "
         placeholder="Confirm Password"
         value={confirmPassword}
         onChange={(v) => setConfirmPassword(v.target.value)}
@@ -229,7 +229,7 @@ const Page = () => {
       </div>
 
       <CustomButton
-        width="w-[250px] md:w-[500px]"
+        width="w-full md:w-[500px]"
         bgColor="bg-[#00b4d8]"
         hoverEffect="hover:bg-[#0096c7]"
         rounded="8px"
