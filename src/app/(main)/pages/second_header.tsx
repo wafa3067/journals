@@ -38,8 +38,8 @@ const SecondHeader = () => {
     { id: 1, label: "Aims and Scope" },
     { id: 2, label: "Editorial Board" },
     { id: 3, label: "Journal Insights" },
-    { id: 4, label: "News" },
-    { id: 5, label: "Announcements" },
+    { id: 4, label: "Professional Development" },
+    { id: 5, label: "Advertising & Services" },
     { id: 6, label: "Contact" },
   ];
   const publish = [

@@ -297,7 +297,7 @@ const FirstHeader = () => {
                   }}
                 />
                 <CustomText
-                  text="News"
+                  text="Professional Development"
                   style="cursor-pointer"
                   onTap={() => {
                     navigate("/news");
@@ -305,7 +305,7 @@ const FirstHeader = () => {
                   }}
                 />
                 <CustomText
-                  text="Announcements"
+                  text="Advertising & Services"
                   style="cursor-pointer"
                   onTap={() => {
                     navigate("/announce");

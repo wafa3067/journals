@@ -57,7 +57,7 @@ export default function SubmissionsLayout({
             className="text-2xl md:text-3xl text-black"
           />
           <CustomText
-            text={"Echos Quantum"}
+            text={"ECHOS Quantum"}
             style={" text-sm md:text-2xl text-white"}
           />
         </div>
