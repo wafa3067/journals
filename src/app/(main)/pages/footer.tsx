@@ -13,14 +13,20 @@ const Footer = () => {
             className="text-black "
           ></a>
         </div>
-        {/* <div className="flex flex-col w-full items-end justify-center">
-          <CustomText text={"CopyRight"} style={"text-2xl  w-fit pr-2 pb-2"} />
-          <CustomText text={"2026"} style={"text-2xl  w-fit pr-2 pb-2"} />
+        <div className="flex flex-col w-full items-end justify-center">
           <CustomText
-            text={"ISSN: 2957-4083"}
-            style={"text-sm font-bold  w-fit pr-2 pb-10 "}
+            text={"A project of Enchanting Horizons of Science"}
+            style={"font-semibold w-fit pr-2 pb-2"}
           />
-        </div> */}
+          <CustomText
+            text={"(ECHOS)"}
+            style={"font-semibold w-fit pr-2 pb-2"}
+          />
+          <CustomText
+            text={"Registered 2020"}
+            style={"font-semibold  w-fit pr-2 pb-10 "}
+          />
+        </div>
       </div>
       <div className="h-[30] bg-[#00b4d8] w-full"></div>
     </div>
