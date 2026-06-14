@@ -179,8 +179,8 @@ const SecondHeader = () => {
               "Editorial Board": "/editors",
               "Aims and Scope": "/aims",
               "Journal Insights": "/insights",
-              News: "/news",
-              Announcements: "/announce",
+              "Professional Development": "/news",
+              "Advertising & Services": "/announce",
               Contact: "/contact",
             };
             navigate(routes[val]);

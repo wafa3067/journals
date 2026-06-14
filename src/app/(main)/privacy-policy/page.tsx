@@ -1,18 +1,42 @@
 "use client";
+import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
+import React, { useEffect } from "react";
+import CustomText from "../components/custom_text";
+import { getPrivacyInsights } from "@/app/admin/adminSlice/privacy/getPrivacy";
+const Page = () => {
+  const dispatch = useAppDispatch();
+  const { Privacy, loading, success } = useAppSelector(
+    (state) => state.getPrivacy,
+  );
 
-import React from "react";
+  useEffect(() => {
+    dispatch(getPrivacyInsights());
+    // Fetch contact data when the component mounts
+  }, []);
 
-const PrivacyPolicyPage: React.FC = () => {
+  if (loading && !success) {
+    return <div>Loading...</div>;
+  }
+  if (Privacy.length === 0) {
+    return (
+      <div style={{ width: "100%" }} className=" p-5">
+        <CustomText
+          text="No data found"
+          style="text-center text-lg font-bold"
+        />
+      </div>
+    );
+  }
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-6 py-5 md:px-5 w-[100%]">
-      <h1 className="text-4xl font-bold mb-6 text-gray-900">Privacy Policy</h1>
-      <p className="text-sm text-gray-500 mb-10">
-        The names and email addresses entered in this journal site will be used
-        exclusively for the stated purposes of this journal and will not be made
-        available for any other purpose or to any other party.{" "}
-      </p>
+    <div className="m-4 md:m-6">
+      {Privacy.map((val, index) => (
+        <div key={index}>
+          <CustomText text={val.title} style="font-bold text-lg mb-2" />
+          <CustomText text={val.descriptions} style=" mb-2" />
+        </div>
+      ))}
     </div>
   );
 };
 
-export default PrivacyPolicyPage;
+export default Page;

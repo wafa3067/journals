@@ -57,6 +57,8 @@ import AddPublication from "../admin/adminSlice/publications/addPublications";
 import getAuthorsGuidlines from "../admin/adminSlice/authorsguidlines/getAuthorsGuidlines";
 import getJournals from "../admin/adminSlice/journals/getJournals";
 import AddJournalsInsights from "../admin/adminSlice/journals/addJournals";
+import AddPrivacy from "../admin/adminSlice/privacy/addPrivacy";
+import getPrivacyInsights from "../admin/adminSlice/privacy/getPrivacy";
 
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 //console.log("🧠 Store is being created..."); // 👈 ADD THIS
@@ -129,6 +131,9 @@ export function makeStore() {
 
       getJournals: getJournals,
       addJournals: AddJournalsInsights,
+
+      getPrivacy: getPrivacyInsights,
+      addPrivacy: AddPrivacy,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
