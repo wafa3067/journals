@@ -62,14 +62,14 @@ function Page() {
     <div className="min-h-screen  w-full">
       <header className="md:bg-[#00b4d8] p-5  flex justify-between items-center ">
         <h1 className="text-sm font-semibold flex items-center gap-2 text-black md:text-white">
-          Publications Ethics Management
+          Privacy Policy Management
         </h1>
       </header>
       <div className="min-h-screen bg-gray-50 px-6 py-12 w-full">
         {openModel == "add" && (
           <div className="fixed inset-0  bg-transparent bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-full overflow-y-scroll">
-              <p className="p-2">Add Publication Ethics </p>
+              <p className="p-2">Add Privacy Policy </p>
               <div>
                 <input
                   type="text"
@@ -129,7 +129,7 @@ function Page() {
         {openModel == "edit" && (
           <div className="fixed inset-0  bg-transparent bg-opacity-50 flex justify-center items-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96 max-h-full overflow-y-scroll">
-              <p className="p-2">Add type for members </p>
+              <p className="p-2">Edit Privacy Policy </p>
               <div>
                 <input
                   type="text"
@@ -203,7 +203,7 @@ function Page() {
               setType("Select Type");
             }}
           >
-            Add Publications Ethics
+            Add Privacy Policy
           </button>
         </div>
         {/* Page Title */}

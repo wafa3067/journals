@@ -77,6 +77,11 @@ const AdminSidebar = () => {
       icon: "📝", // Memo/Pencil to represent writing and instructions
       href: "/admin/setting/author_guidlines",
     },
+    {
+      name: "Privacy Policy", // Corrected spelling
+      icon: "📝", // Memo/Pencil to represent writing and instructions
+      href: "/admin/setting/privacy",
+    },
   ];
 
   const isReviewActive = reviewStages.some((stage) =>
