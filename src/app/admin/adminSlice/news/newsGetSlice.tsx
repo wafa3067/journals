@@ -7,7 +7,7 @@ export interface getNews {
   title: string;
   date: string;
   descriptions: string;
-  image: File;
+  image: string;
   link: string;
 }
 

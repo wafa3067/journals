@@ -24,9 +24,13 @@ const NewsFeed = () => {
 
   return (
     <div>
-      <CustomText text="News" style="pl-5 text-2xl font-bold" />
+      <CustomText
+        text="Professional Development > Awards"
+        style="p-5 text-sm "
+      />
       {getNews.map((news, index) => (
         <NewsCard
+          img={news.image}
           key={index}
           date={news.date}
           title={news.title}

@@ -1,7 +1,9 @@
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import React from "react";
 
 interface NewsCardProps {
   date: string;
+  img?: string;
   title: string;
   description: string;
   link?: string;
@@ -16,12 +18,25 @@ const NewsCard: React.FC<NewsCardProps> = ({
   link,
   deleteButton = false,
   deleteHandler,
+  img,
 }) => {
   const safeLink = link && link.startsWith("http") ? link : `https://${link}`;
   return (
-    <div className=" p-6   w-full mx-auto mb-1">
-      <div className="text-gray-600 text-sm mb-2">{date}</div>
-      <h2 className="text-2xl font-semibold text-gray-900 mb-4">{title}</h2>
+    <div className=" p-6  w-full mx-auto mb-1  ">
+      {img && (
+        <img
+          src={`${BACKEND_URL}${img}`}
+          alt="News"
+          className="w-full h-110 object-cover mb-2 rounded"
+        />
+      )}
+      <div className="flex flex-row justify-between items-center mb-1">
+        <h2 className="text-sm md:text-lg font-semibold text-gray-900 mb-2">
+          {title}
+        </h2>
+        <p className="text-base  text-blue-900 mb-2">{date}</p>
+      </div>
+
       <p className="text-gray-700">{description}</p>
 
       <a

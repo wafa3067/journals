@@ -6,9 +6,13 @@ import {
   addAnnouncement,
   deleteAnnouncementData,
 } from "../../adminSlice/announcement/addAnnouncementSlice";
+import {
+  addAdvertisingPage,
+  deleteAdvertising,
+} from "../../adminSlice/advertising/adertisingAddSlice";
+import { getAdvertisingData } from "../../adminSlice/advertising/advertisingGetSlice";
 import NewsCard from "@/app/(main)/components/news_card";
-import { getNewsData } from "../../adminSlice/news/newsGetSlice";
-import { addNewsPage, deleteNews } from "../../adminSlice/news/newsAddSlice";
+
 interface EditorData {
   title: string;
   date: string;
@@ -36,18 +40,18 @@ function Page() {
   };
   const dispatch = useAppDispatch();
 
-  const { getNews, success, loading } = useAppSelector(
-    (state) => state.getNews,
+  const { getAdvertising, success, loading } = useAppSelector(
+    (state) => state.getAdvertising,
   );
 
   useEffect(() => {
-    dispatch(getNewsData());
-  }, [getNewsData]);
+    dispatch(getAdvertisingData());
+  }, [getAdvertisingData]);
 
   const handleAddAnnouncement = () => {
     setOpenModal("null");
     dispatch(
-      addNewsPage({
+      addAdvertisingPage({
         title: editorFormData.title,
         date: editorFormData.date,
         desc: editorFormData.desc,
@@ -55,7 +59,7 @@ function Page() {
         image: selectedFile,
       }),
     ).then(() => {
-      dispatch(getNewsData());
+      dispatch(getAdvertisingData());
     });
   };
 
@@ -63,15 +67,15 @@ function Page() {
     <div>
       <header className="md:bg-[#00b4d8] p-5  flex justify-center items-center ">
         <h1 className="text-sm font-bold flex items-center gap-2 text-black md:text-white">
-          News Page Management
+          Advertising Page Management
         </h1>
       </header>
       {/* Editor Modal */}
       {openModal === "announcement" && (
         <div className="fixed inset-0 bg-[#00b4d8] bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-xl font-bold mb-4">Add News</h2>
-            {/* <input
+            <h2 className="text-xl font-bold mb-4">Add Advertising</h2>
+            <input
               type="file"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
@@ -79,7 +83,7 @@ function Page() {
                 }
               }}
               className="w-full text-sm text-gray-600 border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-blue-500 outline-none mb-2"
-            /> */}
+            />
             <input
               type="text"
               name="title"
@@ -126,25 +130,29 @@ function Page() {
           onClick={() => setOpenModal("announcement")}
           className="px-4 py-2 bg-[#00b4d8] text-white rounded-lg hover:bg-[#00b4d8]"
         >
-          Add News
+          Add Advertising
         </button>
       </div>
-      {getNews.length > 0 &&
-        getNews.map((news, index) => (
-          <NewsCard
-            key={index}
-            date={news.date}
-            title={news.title}
-            description={news.descriptions}
-            link={news.link}
-            deleteButton={true}
-            deleteHandler={() => {
-              dispatch(deleteNews(news.id)).then(() => {
-                dispatch(getNewsData());
-              });
-            }}
-          />
-        ))}
+      {/* div for scroll */}
+      <div className="overflow-y-auto h-[calc(100vh-100px)]">
+        {getAdvertising.length > 0 &&
+          getAdvertising.map((Advertising, index) => (
+            <NewsCard
+              key={index}
+              img={Advertising.image}
+              date={Advertising.date}
+              title={Advertising.title}
+              description={Advertising.descriptions}
+              link={Advertising.link}
+              deleteButton={true}
+              deleteHandler={() => {
+                dispatch(deleteAdvertising(Advertising.id)).then(() => {
+                  dispatch(getAdvertisingData());
+                });
+              }}
+            />
+          ))}
+      </div>
     </div>
   );
 }

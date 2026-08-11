@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { fetchUserByEmail } from "@/app/api/slice/profileSlice";
 import { setProfileData } from "@/app/api/slice/profileStateSlice";
 import { Contact } from "lucide-react";
+import MultiDropdown from "../components/multi_dropdown";
 
 const SecondHeader = () => {
   const [selected, setSelected] = useState<string>("Home");
@@ -38,8 +39,24 @@ const SecondHeader = () => {
     { id: 1, label: "Aims and Scope" },
     { id: 2, label: "Editorial Board" },
     { id: 3, label: "Journal Insights" },
-    { id: 4, label: "Professional Development" },
-    { id: 5, label: "Advertising & Services" },
+    {
+      id: 4,
+      label: "Professional Development",
+      children: [
+        { label: "Awards" },
+        { label: "Careers" },
+        { label: "Conferences" },
+      ],
+    },
+    {
+      id: 5,
+      label: "Advertising & Services",
+      children: [
+        { label: "Advertising" },
+        { label: "Services" },
+        { label: "Partnerships" },
+      ],
+    },
     { id: 6, label: "Contact" },
   ];
   const publish = [
@@ -166,7 +183,7 @@ const SecondHeader = () => {
           }}
         /> */}
 
-        <CustomDropdown
+        <MultiDropdown
           selectedOption={""}
           starting="About"
           options={about}
@@ -184,6 +201,28 @@ const SecondHeader = () => {
               Contact: "/contact",
             };
             navigate(routes[val]);
+          }}
+          onChangeSub={(val) => {
+            console.log(val, "Careers");
+            if (val === "Advertising") {
+              navigate("/advertising");
+              setSelected("Advertising");
+            } else if (val === "Services") {
+              navigate("/services");
+              setSelected("Services");
+            } else if (val === "Partnerships") {
+              navigate("/partnership");
+              setSelected("Partnerships");
+            } else if (val === "Awards") {
+              navigate("/news");
+              setSelected("Awards");
+            } else if (val == "Careers") {
+              navigate("/careers");
+              setSelected("Careers");
+            } else if (val === "Conferences") {
+              navigate("/conferences");
+              setSelected("Conferences");
+            }
           }}
         />
       </div>

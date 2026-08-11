@@ -60,6 +60,18 @@ import AddJournalsInsights from "../admin/adminSlice/journals/addJournals";
 import AddPrivacy from "../admin/adminSlice/privacy/addPrivacy";
 import getPrivacyInsights from "../admin/adminSlice/privacy/getPrivacy";
 
+import getCareersData from "../admin/adminSlice/careers/careersGetSlice";
+import addCareersPage from "../admin/adminSlice/careers/careersAddSlice";
+import addConferencesPage from "../admin/adminSlice/conferences/conferencesAddSlice";
+import getConferencesData from "../admin/adminSlice/conferences/conferencesGetSlice";
+
+import addAdvertisingPage from "../admin/adminSlice/advertising/adertisingAddSlice";
+import getAdvertisingData from "../admin/adminSlice/advertising/advertisingGetSlice";
+
+import addServicesPage from "../admin/adminSlice/services/servicesAddSlice";
+import getServicesData from "../admin/adminSlice/services/servicesGetSlice";
+import getPartnershipData from "../admin/adminSlice/partnership/partnershipGetSlice";
+import addPartnershipPage from "../admin/adminSlice/partnership/partnershipAddSlice";
 let storeInstance: ReturnType<typeof configureStore> | null = null;
 //console.log("🧠 Store is being created..."); // 👈 ADD THIS
 
@@ -112,8 +124,25 @@ export function makeStore() {
       getContact: getContactSlice,
       addAuthorSlice: addAuthorPage,
       getAuthorSlice: getAuthorSlice,
+
       addNews: addNewsPage,
       getNews: getNews,
+
+      addCareers: addCareersPage,
+      getCareers: getCareersData,
+
+      addConferences: addConferencesPage,
+      getConferences: getConferencesData,
+
+      addAdvertising: addAdvertisingPage,
+      getAdvertising: getAdvertisingData,
+
+      addServices: addServicesPage,
+      getServices: getServicesData,
+
+      addPartnership: addPartnershipPage,
+      getPartnership: getPartnershipData,
+
       addAnnouncement: addAnnouncement,
       getAnnouncement: getAnnouncement,
 
