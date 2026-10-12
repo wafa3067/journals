@@ -21,7 +21,7 @@ export const checkAllFieldsComplete = (state: metaData): boolean => {
   const requiredFields = [
     state.title,
     state.prefix,
-    state.subtitle,
+
     state.abstracts,
     state.keywords,
     state.references,

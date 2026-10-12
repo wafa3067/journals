@@ -1,6 +1,6 @@
 "use client";
 
-import { AboutHomeGetPage } from "@/app/admin/adminSlice/home/GetHomeAboutSlice";
+import { AboutHomeGetPage } from "@/app/api/adminSlice/home/GetHomeAboutSlice";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import React, { useEffect } from "react";
 

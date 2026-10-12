@@ -43,12 +43,14 @@ const Page = () => {
   const [error, setError] = useState("");
   const [active, setActive] = useState(false);
   const [isPending, startTransition] = useTransition();
+
   const Navigate = (route: string) => {
     setIsLoading(true);
     startTransition(() => {
       router.push(route);
     });
   };
+
   return (
     <main
       className=" md:w-5xl   md:mx-auto flex flex-col  md:bg-white m-10 p-6 md:rounded-md justify-start items-center md:shadow-lg"
@@ -64,7 +66,7 @@ const Page = () => {
           style={
             "font-bold text-black border-b-2 border-b-slate-500  text-sm md:text-base"
           }
-          text={"Meta Data Details"}
+          text={"Article’s details"}
         />
       </div>
       <div className="flex flex-row gap-4 ">
@@ -97,13 +99,7 @@ const Page = () => {
         />
       </div>
       <CustomInput
-        error={
-          active
-            ? research.subtitle.length == 0
-              ? "Sub Title is required"
-              : ""
-            : ""
-        }
+        error={""}
         value={research.subtitle}
         style={"lg:w-[740px] w-[290px]"}
         placeholder={"Sub Title"}
@@ -248,7 +244,7 @@ const Page = () => {
       {/* // refresnce section */}
       <div className="flex flex-col justify-end mt-4 lg:w-185 w-72.5 ">
         <CustomText
-          text={"References"}
+          text={"reviewer’s names"}
           style={"lg:w-[740px] w-[290px] h-[30px] font-bold "}
         />
         <area className="w-full p-3 text-gray-800 text-[10px] md:text-base" />
@@ -256,7 +252,7 @@ const Page = () => {
           error={
             active
               ? research.references.length == 0
-                ? "Refrences is required"
+                ? "reviewer’s names is required"
                 : ""
               : ""
           }

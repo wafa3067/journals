@@ -565,17 +565,24 @@ const FirstHeader = () => {
               fontSize="16px"
             />
           ) : (
-            <div className="flex items-center gap-6">
-              <CustomText
-                text="Log in"
-                style="text-black cursor-pointer hover:opacity-70 transition"
-                onTap={() => navigate("/dashboard/login")}
-              />
+            <div>
+              <div className="flex items-center gap-6">
+                <CustomText
+                  text="Log in"
+                  style="text-black cursor-pointer hover:opacity-70 transition"
+                  onTap={() => navigate("/dashboard/login")}
+                />
 
+                <CustomText
+                  text="Register"
+                  style="text-black cursor-pointer hover:opacity-70 transition"
+                  onTap={() => navigate("/dashboard/register")}
+                />
+              </div>
               <CustomText
-                text="Register"
-                style="text-black cursor-pointer hover:opacity-70 transition"
-                onTap={() => navigate("/dashboard/register")}
+                text="Login Reviewer"
+                style="text-black cursor-pointer hover:opacity-70 transition mt-2"
+                onTap={() => navigate("/splash_screen2")}
               />
             </div>
           )}
@@ -942,6 +949,14 @@ const FirstHeader = () => {
                     style="text-white cursor-pointer"
                     onTap={() => {
                       navigate("/dashboard/login");
+                      setShow(0);
+                    }}
+                  />
+                  <CustomText
+                    text=" Reviewer"
+                    style="text-white cursor-pointer"
+                    onTap={() => {
+                      navigate("/splash_screen2");
                       setShow(0);
                     }}
                   />

@@ -1,4 +1,6 @@
 import { AlertProvider } from "./(main)/components/AlertProvider";
+import BlockBackNavigation from "./(main)/components/BlockBackNavigation";
+import NavigationGuard from "./(main)/components/NavigationGuard";
 import "./globals.css";
 import StoreProvider from "./providers/StoreProvider";
 import { Open_Sans } from "next/font/google";
@@ -18,7 +20,11 @@ export default function RootLayout({
     <html lang="en" className={openSans.variable}>
       <body className="min-h-screen flex flex-col font-sans">
         <StoreProvider>
-          <AlertProvider>{children}</AlertProvider>
+          <AlertProvider>
+            <BlockBackNavigation />
+            <NavigationGuard />
+            {children}
+          </AlertProvider>
         </StoreProvider>
       </body>
     </html>

@@ -9,16 +9,16 @@ import { useAppDispatch, useAppSelector } from "../api/hooks/hooks";
 import { getToken } from "../api/slice/getTokenSlice";
 import { fetchUserByEmail } from "../api/slice/profileSlice";
 import { setProfileData } from "../api/slice/profileStateSlice";
-import { AboutHomePage } from "../admin/adminSlice/home/homePageSlice";
-import { createSideHomeSlice } from "../admin/adminSlice/sideHomeSlice/addSideHomeSlice";
+import { addContactPage } from "../admin/adminSlice/contact/addContactSlice";
 import { createEditorHome } from "../admin/adminSlice/editor/addEditorSlice";
 import { AboutHomeGetPage } from "../admin/adminSlice/home/GetHomeAboutSlice";
+import { AboutHomePage } from "../admin/adminSlice/home/homePageSlice";
 import {
   addCategoryIntial,
   addTeamPage,
 } from "../admin/adminSlice/team/addTeamSlice";
-import { GetTeam, GetTeamThunk } from "../admin/adminSlice/team/getTeamSlice";
-import { addContactPage } from "../admin/adminSlice/contact/addContactSlice";
+import { GetTeamThunk, GetTeam } from "../admin/adminSlice/team/getTeamSlice";
+
 export default function MainLayout({
   children,
 }: {

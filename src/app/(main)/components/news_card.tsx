@@ -20,38 +20,65 @@ const NewsCard: React.FC<NewsCardProps> = ({
   deleteHandler,
   img,
 }) => {
-  const safeLink = link && link.startsWith("http") ? link : `https://${link}`;
+  const safeLink = link
+    ? link.startsWith("http")
+      ? link
+      : `https://${link}`
+    : "https://www.google.com";
+
   return (
-    <div className=" p-6  w-full mx-auto mb-1  ">
-      {img && (
-        <img
-          src={`${BACKEND_URL}${img}`}
-          alt="News"
-          className="w-full h-110 object-cover mb-2 rounded"
-        />
-      )}
-      <div className="flex flex-row justify-between items-center mb-1">
-        <h2 className="text-sm md:text-lg font-semibold text-gray-900 mb-2">
-          {title}
-        </h2>
-        <p className="text-base  text-blue-900 mb-2">{date}</p>
-      </div>
+    <div className="w-full mx-auto mb-4 overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md md:p-6">
+      <div className="flex flex-col-reverse gap-5 md:flex-row md:items-start md:gap-8">
+        {/* Left Side: Content */}
+        <div className="flex min-w-0 flex-1 flex-col">
+          <p className="mb-3 text-sm font-medium text-blue-800">{date}</p>
 
-      <p className="text-gray-700">{description}</p>
+          <h2 className="mb-3 text-xl font-bold leading-snug text-gray-900 md:text-2xl">
+            {title}
+          </h2>
 
-      <a
-        href={safeLink || "http://www.google.com"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-500 hover:underline mt-4 inline-block"
-      >
-        Read more
-      </a>
-      {deleteButton && (
-        <div className=" bg-red-500 text-white px-4 py-2 rounded mt-4 ml-2 inline-block cursor-pointer">
-          <button onClick={deleteHandler}>Delete</button>
+          <p className="text-sm leading-7 text-gray-600 md:text-base">
+            {description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <a
+              href={safeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+            >
+              Read more
+              <span className="ml-2" aria-hidden="true">
+                →
+              </span>
+            </a>
+
+            {deleteButton && (
+              <button
+                type="button"
+                onClick={deleteHandler}
+                className="rounded-lg border border-red-200 px-5 py-2.5 text-sm font-semibold text-red-600 transition-colors hover:bg-red-50"
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Right Side: Image */}
+
+        {/* Right Side: Image */}
+        {img && (
+          <div className="shrink-0 md:w-64 lg:w-72 ">
+            <img
+              src={`${BACKEND_URL}${img}`}
+              alt={title}
+              className="h-48 w-full rounded-lg object-cover md:h-44 lg:h-48"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
