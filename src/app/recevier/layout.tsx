@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./dashboard/sidebar";
+import Sidebar from "./sidebar/sidebar";
 
 export default function RecevierLayout({
   children,

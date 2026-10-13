@@ -3,7 +3,7 @@
 import CustomText from "@/app/(main)/components/custom_text";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { logout } from "../adminSlice/adminAuthSlice";
 import { useAppDispatch } from "@/app/api/hooks/hooks";
@@ -241,6 +241,8 @@ const AdminSidebar = () => {
     );
   };
 
+  const router = useRouter();
+
   // --------------------------------------------------
   // Sidebar content
   // --------------------------------------------------
@@ -256,7 +258,8 @@ const AdminSidebar = () => {
             color="white"
             onClick={() => {
               dispatch(logout());
-              navigation.navigate("/splash_screen");
+
+              router.push("/splash_screen");
             }}
           />
           {/* Mobile close button */}

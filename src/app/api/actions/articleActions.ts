@@ -1,6 +1,6 @@
 // import axios from 'axios';
-export const BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL ||"http://localhost:8080";
-export const FRONT=process.env.NEXT_PUBLIC_BACKEND_URL ||"http://localhost:3000";
+export const BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL ||"https://api.echosquantum.com";
+export const FRONT=process.env.NEXT_PUBLIC_BACKEND_URL ||"https://echosquantum.com";
 //  "https://api.echosquantum.com";
 // // Action Types
 // export const SEARCH_REQUEST = 'SEARCH_REQUEST';

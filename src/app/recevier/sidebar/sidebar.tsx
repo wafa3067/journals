@@ -2,7 +2,7 @@
 
 import { LogOut } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { TbPasswordUser } from "react-icons/tb";
 
@@ -30,6 +30,7 @@ const articleStages = [
 ];
 
 const AdminSidebar = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -43,14 +44,14 @@ const AdminSidebar = () => {
           onClick={async () => {
             await localStorage.removeItem("reviewerToken");
 
-            navigation.navigate("/");
+            router.push("/");
           }}
         />
         <TbPasswordUser
           size={25}
           color="white"
           onClick={async () => {
-            navigation.navigate("/recevier/reviewer-update");
+            router.push("/recevier/reviewer-update");
           }}
         />
         <button

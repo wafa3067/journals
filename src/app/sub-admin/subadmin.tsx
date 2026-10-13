@@ -3,7 +3,7 @@
 import CustomText from "@/app/(main)/components/custom_text";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 interface data {
   permit: Array<String>;
@@ -244,7 +244,7 @@ const SubAdminSidebar = (val: data) => {
   // --------------------------------------------------
   // Sidebar content
   // --------------------------------------------------
-
+  const router = useRouter();
   const SidebarContent = () => {
     return (
       <>
@@ -259,7 +259,7 @@ const SubAdminSidebar = (val: data) => {
               await localStorage.removeItem("adminToken");
               await localStorage.removeItem("permissions");
 
-              navigation.navigate("/splash_screen");
+              router.push("/splash_screen");
             }}
           />
           {/* Mobile close button */}
