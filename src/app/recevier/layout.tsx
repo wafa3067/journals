@@ -7,12 +7,11 @@ export default function RecevierLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen ">
-      <div className="w-64 q">
+    <div className="flex h-screen overflow-hidden font-inter bg-gray-50 text-gray-900 flex-col md:flex-row ">
+      <div className="md:max-h-max  md:w-75">
         <Sidebar />
       </div>
-
-      <main className="min-w-0 flex-1 bg-[#f8fafc] mr-[200px]">{children}</main>
+      <div className="w-full  ">{children}</div>
     </div>
   );
 }

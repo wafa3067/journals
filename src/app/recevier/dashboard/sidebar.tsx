@@ -1,8 +1,10 @@
 "use client";
 
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { TbPasswordUser } from "react-icons/tb";
 
 const articleStages = [
   {
@@ -35,7 +37,22 @@ const AdminSidebar = () => {
     <>
       <div className="flex items-center justify-between border-b border-white/30 p-5">
         <h2 className="text-sm font-bold text-white">Reviewer Portal</h2>
+        <LogOut
+          size={25}
+          color="white"
+          onClick={async () => {
+            await localStorage.removeItem("reviewerToken");
 
+            navigation.navigate("/");
+          }}
+        />
+        <TbPasswordUser
+          size={25}
+          color="white"
+          onClick={async () => {
+            navigation.navigate("/recevier/reviewer-update");
+          }}
+        />
         <button
           type="button"
           onClick={() => setOpen(false)}
