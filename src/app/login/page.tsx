@@ -24,9 +24,6 @@ const ReviewerLogin: React.FC = () => {
     const result = await dispatch(loginReviewer(formData));
 
     if (loginReviewer.fulfilled.match(result)) {
-      console.log("Login successful:", result.payload.data?.id);
-      console.log("Login successful:", result.payload.data?.name);
-      console.log("Login successful:", result.payload.data?.email);
       // Save the credentials in Redux and navigate to the reviewer dashboard.
       if (result.payload.token) {
         router.push("/recevier");
@@ -34,6 +31,7 @@ const ReviewerLogin: React.FC = () => {
         localStorage.setItem("reviewerToken", result.payload.token);
         localStorage.setItem("email", result.payload.data?.email); // Store the entire response data if needed
         localStorage.setItem("name", result.payload.data?.name); // Store the entire response data if needed
+        localStorage.setItem("id", result.payload.data?.id.toString()); // Store the entire response data if needed
       }
     }
   };

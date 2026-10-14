@@ -77,9 +77,9 @@ export const getAssignedArticles = createAsyncThunk<
   "assigned/getAssignedArticles",
   async (reviewerId, { rejectWithValue }) => {
     try {
-        
+        const id =await localStorage.getItem("id");
       const response = await fetch(
-        `${API_URL}/assigned/reviewer/getall?reviewerId=${reviewerId}`
+        `${API_URL}/assigned/reviewer/getall?reviewerId=${id}`
       );
  console.log("Fetched assignments:", response.body);
       const data = await response.json();
