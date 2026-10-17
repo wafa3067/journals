@@ -1,6 +1,7 @@
 "use client";
 
 import StageComplete from "@/app/admin/components/StageComplete";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { setTab } from "@/app/api/slice/viewSlice";
 import React, { useEffect } from "react";
@@ -46,8 +47,10 @@ export default function ProductionPage() {
         </p>
 
         <a
-          href={article?.pdf}
-          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          href={`${BACKEND_URL}${article.pdfUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className=" disabled"
         >
           View Proof PDF
         </a>

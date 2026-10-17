@@ -81,7 +81,7 @@ export const getAssignedArticles = createAsyncThunk<
       const response = await fetch(
         `${API_URL}/assigned/reviewer/getall?reviewerId=${id}`
       );
- console.log("Fetched assignments:", response.body);
+
       const data = await response.json();
  
       if (!response.ok) {

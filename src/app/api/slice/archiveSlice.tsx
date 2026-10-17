@@ -64,6 +64,24 @@ export interface ArchiveArticle {
 
   copyeditor?: string;
   stage?: string;
+  contributorsList: Contributor[];
+}
+
+export interface Contributor {
+  id: number;
+  name: string;
+  giveName: string | null;
+  publicName: string | null;
+  homeurl: string | null;
+  orcid: string | null;
+  bio: string | null;
+  email: string | null;
+  role: string | null;
+  country: string | null;
+  affiliation: string | null;
+  primaryContact: boolean;
+  principleContact: boolean;
+  inBrowserlist: boolean;
 }
 
 /* ------------------ HELPERS ------------------ */

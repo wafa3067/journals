@@ -203,7 +203,6 @@ const SecondHeader = () => {
             navigate(routes[val]);
           }}
           onChangeSub={(val) => {
-            console.log(val, "Careers");
             if (val === "Advertising") {
               navigate("/advertising");
               setSelected("Advertising");

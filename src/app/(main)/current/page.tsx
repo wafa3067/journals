@@ -5,7 +5,11 @@ import CustomText from "../components/custom_text";
 import Journals from "../components/journals";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { selectArticles } from "@/app/api/selectors/archiveSelectors";
-import { fetchArchiveArticles } from "@/app/api/slice/archiveSlice";
+import {
+  ArchiveArticle,
+  Contributor,
+  fetchArchiveArticles,
+} from "@/app/api/slice/archiveSlice";
 import { useRouter } from "next/navigation";
 import { GetSelectorArticle } from "../archive/[year]/[month]/page";
 
@@ -13,7 +17,7 @@ const Page = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const articles = useAppSelector(selectArticles);
-  const [filtered, setFiltered] = useState<GetSelectorArticle[]>([]);
+  const [filtered, setFiltered] = useState<ArchiveArticle[]>([]);
 
   // Fetch all articles if not loaded
   useEffect(() => {
@@ -26,52 +30,19 @@ const Page = () => {
 
   // Filter articles for this year/month
   useEffect(() => {
-    const filteredArticles: GetSelectorArticle[] = articles
+    const filteredArticles: ArchiveArticle[] = articles
       .filter((article) => article.createdAt) // must have createdAt
       .filter((article) => {
         const [y, m] = article.createdAt!.split("-");
         return y === `${currentYear}` && m === `${currentMonth}`;
       })
-      .map(
-        (article): GetSelectorArticle => ({
-          id: article.id,
-          section: article.section ?? "",
-          previousPublished: article.previousPublished ?? "",
-          fileType: article.fileType ?? "",
-          refrencedUrl: article.refrencedUrl ?? "",
-          textStyle: article.textStyle ?? "",
-          textStylic: article.textStylic ?? "",
-          comment: article.comment ?? "",
-          copyright: article.copyright ?? "",
-          privacypolicy: article.privacypolicy ?? "",
-          pdf: article.pdf ?? "",
-          pdfUrl: article.pdfUrl ?? "",
-          finalFile: article.finalFile ?? null,
-          status: article.status ?? "",
-          user: article.user ?? "",
-          approvedBy: article.approvedBy ?? "",
-          prefix: article.prefix ?? "",
-          title: article.title ?? "",
-          subtitle: article.subtitle ?? "",
-          underReviewComments: article.underReviewComments ?? "",
-          abstracts: article.abstracts ?? "",
-          keywords: article.keywords ?? "",
-          userComments: article.userComments ?? "",
-          referenceText: article.referenceText ?? "",
-          userProductionComments: article.userProductionComments ?? "",
-          productionComments: article.productionComments ?? "",
-          createdAt: article.createdAt!, // we already filtered undefined
-          modifyCopyEditor: article.modifyCopyEditor,
-          modifyProduction: article.modifyProduction,
-        }),
-      );
+      .map((article) => article);
 
     setFiltered(filteredArticles);
   }, [articles, currentMonth, currentYear]);
 
   if (!filtered.length)
     return <p className="p-6">No articles found for {datePath}</p>;
-
   return (
     <div className="w-[100%]">
       <CustomText
@@ -97,16 +68,19 @@ const Page = () => {
         <Articles
           onClick={() => {
             // Assuming the handleClick function is inside a component
-
-            const encodedPdfData = encodeURIComponent(article.pdfUrl); // Encode the pdfData
-            router.push(`/viewpdf/${encodedPdfData}`); // Navigate to the URL with encoded data
+            if (article.pdf != null) {
+              const encodedPdfData = encodeURIComponent(article.pdf); // Encode the pdfData
+              router.push(`/viewpdf/${encodedPdfData}`);
+            }
+            // Navigate to the URL with encoded data
           }}
-          pdfUrl={article.pdfUrl}
+          pdfUrl={article.pdf}
           key={article.id}
           style1={"font-bold text-[#4b7d92]"}
           style2={"text-black w-[90%]"}
           title1={article.title}
-          title12={article.subtitle}
+          title12={`${article.contributorsList.map((v) => `${v.name.toUpperCase()} ` + "")}`}
+
           // cited={"123-130"}
         />
       ))}

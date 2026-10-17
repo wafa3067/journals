@@ -34,6 +34,7 @@ export interface Article {
   privacypolicy: string;
   pdf: string;
   status: string;
+  pdfUrl: string;
   user: string;
   approvedBy: string;
   prefix: string;

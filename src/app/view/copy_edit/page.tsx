@@ -1,6 +1,7 @@
 "use client";
 
 import StageComplete from "@/app/admin/components/StageComplete";
+import { BACKEND_URL } from "@/app/api/actions/articleActions";
 import { useAppDispatch, useAppSelector } from "@/app/api/hooks/hooks";
 import { setTab } from "@/app/api/slice/viewSlice";
 import { useEffect, useState } from "react";
@@ -57,10 +58,17 @@ export default function CopyEditorPage() {
           Manuscript Files
         </h2>
         <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md border border-gray-200">
-          <p>{article?.pdf}</p>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-            Download
-          </button>
+          <a
+            href={`${BACKEND_URL}${article.pdfUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" disabled"
+          >
+            <p>{article?.pdf}</p>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+              Download
+            </button>
+          </a>
         </div>
 
         <div className="mt-4">

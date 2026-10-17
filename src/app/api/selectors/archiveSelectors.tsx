@@ -26,5 +26,5 @@ export const selectArchiveFlat = createSelector(
       });
 
     return sorted;
-  }
+  },
 );
